@@ -1,0 +1,64 @@
+/// Color used for black ui items.
+///
+/// @type Color
+$black: #000000 !default;
+
+/// Color used for grey ui items.
+///
+/// @type Color
+$grey: #bdbdbd !default;
+
+/// Color used for white ui items.
+///
+/// @type Color
+$white: #ffffff !default;
+
+/// Color used for blue ui items.
+///
+/// @type Color
+$blue: #2185d0 !default;
+
+/// Color used for red ui items.
+///
+/// @type Color
+$red: #c62828 !default;
+
+/// Color used for red ui items.
+///
+/// @type Color
+$yellow: #ffdd57 !default;
+
+/// Color used for green ui items.
+///
+/// @type Color
+$green: #21ba45 !default;
+
+/// Color used for primary ui items.
+///
+/// @type Color
+$primary-color: $blue !default;
+
+/// Color used for secondary ui items.
+///
+/// @type Color
+$secondary-color: $grey !default;
+
+/// Color used for info ui items.
+///
+/// @type Color
+$info-color: $blue !default;
+
+/// Color used for success ui items.
+///
+/// @type Color
+$success-color: $green !default;
+
+/// Color used for warning ui items.
+///
+/// @type Color
+$warning-color: $yellow !default;
+
+/// Color used for danger ui items.
+///
+/// @type Color
+$danger-color: $red !default;
