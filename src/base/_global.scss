@@ -1,0 +1,111 @@
+/// Background color of the body.
+///
+/// @type Color
+$global-background: $white !default;
+
+/// Text color of the body.
+///
+/// @type Color
+$global-font-color: $black !default;
+
+/// Font size attribute applied to `<html>` and `<body>`.
+///
+/// @type Number
+$global-font-size: 100% !default;
+
+/// Font stack of sans serif font family
+///
+/// @type List
+$global-font-family-sans-serif: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif !default;
+
+/// Font stack of serif font family
+///
+/// @type List
+$global-font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif !default;
+
+/// Font stack of monospace font family
+///
+/// @type List
+$global-font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
+
+/// Font stack of the body.
+///
+/// @type List
+$global-font-family: $global-font-family-sans-serif !default;
+
+/// Base font weight used for normal type.
+///
+/// @type Keyword | Number
+$global-font-weight-normal: normal !default;
+
+/// Base font weight used for bold type.
+///
+/// @type Keyword | Number
+$global-font-weight-bold: bold !default;
+
+/// Line height of the body. `$global-line-height` is 24px while `$global-font-size` is 16px
+///
+/// @type Number
+$global-line-height: 1.5 !default;
+
+/// Text rendering method for the body text.
+///
+/// @type String
+$global-text-rendering: optimizeLegibility !default;
+
+/// Global value used for margin on components.
+///
+/// @type Number
+$global-margin: 1rem !default;
+
+/// Global value used for all elements that have a border radius.
+///
+/// @type Number
+$global-radius: 3px !default;
+
+/// Sets the text direction of the CSS. Can be either `ltr` or `rtl`.
+///
+/// @type Keyword
+$global-text-direction: ltr !default;
+
+// Internal variables used for text direction
+$global-left: if($global-text-direction == rtl, right, left);
+$global-right: if($global-text-direction == rtl, left, right);
+
+/// Sets the global style for a site.
+@mixin base-global {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: $global-font-size;
+    text-rendering: optimizeLegibility
+  }
+
+  body {
+    background: $global-background;
+    color: $global-font-color;
+    font-family: $global-font-family;
+    font-weight: $global-font-weight-normal;
+    line-height: $global-line-height;
+    margin: 0;
+    padding: 0;
+    text-rendering: $global-text-rendering;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    border: 0;
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+  }
+}

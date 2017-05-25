@@ -1,0 +1,45 @@
+//  scss-base Settings
+//  ------------------
+//
+//  Table of Contents:
+//
+//   1. Color
+//   2. Global
+
+
+// 1. Color
+// --------
+
+$black: #000000;
+$grey: #bdbdbd;
+$white: #ffffff;
+$blue: #2185d0;
+$red: #c62828;
+$yellow: #ffdd57;
+$green: #21ba45;
+
+$primary-color: $blue;
+$secondary-color: $grey;
+$info-color: $blue;
+$success-color: $green;
+$warning-color: $yellow;
+$danger-color: $red;
+
+
+// 2. Base
+// -------
+
+$global-background: $white;
+$global-font-color: $black;
+$global-font-size: 100%;
+$global-font-family-sans-serif: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$global-font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+$global-font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
+$global-font-family: $global-font-family-sans-serif;
+$global-font-weight-normal: normal;
+$global-font-weight-bold: bold;
+$global-line-height: 1.5;
+$global-text-rendering: optimizeLegibility;
+$global-margin: 1rem;
+$global-radius: 3px;
+$global-text-direction: ltr;

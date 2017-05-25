@@ -1,0 +1,10 @@
+/*! scss-base for sites v0.1.0 | github.com/scss-base/sites */
+
+// Settings
+// import your own `settings` here
+
+// Components
+@import 'base/base';
+
+// Includes
+@include base-global;
