@@ -1,0 +1,63 @@
+/// The maximum width of a row.
+///
+/// @type Number
+$grid-row-width: rem-calc(1280) !default;
+
+/// The default column count of a grid. Changing this value affects the logic of the grid mixins, and the number of CSS classes output.
+///
+/// @type Number
+$grid-column-count: 12 !default;
+
+/// The amount of space between columns at different screen sizes.
+///
+/// @type Map | Number
+$grid-column-gutter: (
+  small: rem-calc(20),
+  medium: rem-calc(30)
+) !default;
+
+@import 'column';
+@import 'gutter';
+@import 'row';
+
+/// @todo Documentation needed...
+@mixin base-grid {
+  .row {
+    @include grid-row-base();
+
+    & .row {
+      @include grid-row-nest-gutter;
+    }
+
+    &.collapse {
+      @include grid-row-collapse;
+    }
+
+    // Expanding
+    &.expanded,
+    &.expanded .row {
+      max-width: none;
+    }
+  }
+
+  .column {
+    @include grid-column;
+    @include grid-column-gutter;
+
+    // Sizing
+    &.shrink {
+      @include grid-column(shrink);
+    }
+
+    @each $breakpoint in map-keys($breakpoints) {
+      @include breakpoint-up($breakpoint) {
+        @for $i from 1 through $grid-column-count {
+          // Sizing
+          .#{$breakpoint}-#{$i} {
+            @include grid-column($i);
+          }
+        }
+      }
+    }
+  }
+}

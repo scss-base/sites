@@ -1,0 +1,16 @@
+/// @todo Documentation needed...
+@mixin grid-column(
+  $columns: expand,
+  $column-count: $grid-column-count
+) {
+  @if $columns == expand {
+    flex: 1 1 0px;
+    min-width: initial;
+  } @else if ($columns == shrink) {
+    flex: 0 0 auto;
+    max-width: 100%;
+  } @else {
+    flex: 0 0 percentage($columns / $column-count);
+    max-width: percentage($columns / $column-count)
+  }
+}

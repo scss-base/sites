@@ -1,0 +1,39 @@
+/// @todo Documentation needed...
+@mixin grid-column-gutter($gutter: $grid-column-gutter) {
+  @if type-of($gutter) == 'map' {
+    @each $breakpoint, $value in $gutter {
+      @if strip-unit($value) > 0 {
+        $padding: rem-calc($value) / 2;
+
+        @include breakpoint-up($breakpoint) {
+          padding-left: $padding;
+          padding-right: $padding;
+        }
+      }
+    }
+  } @else if type-of($gutter) == 'number' and strip-unit($gutter) > 0 {
+    $padding: rem-calc($gutter) / 2;
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin grid-row-nest-gutter($gutter: $grid-column-gutter) {
+  @if type-of($gutter) == 'map' {
+    @each $breakpoint, $value in $gutter {
+      @if strip-unit($value) > 0 {
+        $margin: rem-calc($value) / 2 * -1;
+
+        @include breakpoint-up($breakpoint) {
+          margin-right: $margin;
+          margin-left: $margin;
+        }
+      }
+    }
+  } @else if type-of($gutter) == 'number' and strip-unit($gutter) > 0 {
+    $margin: rem-calc($gutter) / 2 * -1;
+    margin-right: $margin;
+    margin-left: $margin;
+  }
+}
