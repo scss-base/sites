@@ -1,0 +1,166 @@
+/// Margin of a menu.
+///
+/// @type Number
+$menu-margin: 0 !default;
+
+/// Left-hand margin of a nested menu.
+///
+/// @type Number
+$menu-margin-nested: rem-calc(16) !default;
+
+/// Padding for items in a menu.
+///
+/// @type Number
+$menu-item-padding: rem-calc(11 16) !default;
+
+/// Text color of a menu item.
+///
+/// @type Color
+$menu-item-color: $primary-color !default;
+
+/// Text color of a hover menu item.
+///
+/// @type Color
+$menu-item-color-hover: scale-color($primary-color, $lightness: -15%) !default;
+
+/// Background color of a hover menu item.
+///
+/// @type Color
+$menu-item-background-hover: $grey !default;
+
+/// Text color of an active menu item.
+///
+/// @type Color
+$menu-item-color-active: $white !default;
+
+/// Background color of an active menu item.
+///
+/// @type Color
+$menu-item-background-active: $primary-color !default;
+
+/// Creates the base styles for a menu.
+///
+/// @param {Number} $margin [$menu-margin] - @todo Documentation needed
+/// @param {Number} $item-padding [$menu-item-padding] - @todo Documentation needed
+@mixin menu-base(
+  $margin: $menu-margin,
+  $item-padding: $menu-item-padding
+) {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  list-style-type: none;
+  margin: $margin;
+  width: 100%;
+
+  // List items are table cell to allow for vertical alignment
+  > li {
+    flex: 0 0 auto;
+
+    // Reset line height to make the height of the overall item easier to calculate
+    > a {
+      display: block;
+      padding: $item-padding;
+      line-height: 1;
+    }
+  }
+
+  // Reset styles of inner elements
+  input,
+  select,
+  a,
+  button {
+    margin-bottom: 0;
+  }
+}
+
+/// Sets the direction for a menu.
+///
+/// @param {Keyword} $dir [horizontal] - Direction of the menu can be `horizontal` or `vertical`.
+@mixin menu-direction($dir: horizontal) {
+  @if $dir == horizontal {
+    flex-wrap: nowrap;
+
+    > li {
+      flex: 0 0 auto;
+    }
+  } @else if $dir == vertical {
+    flex-wrap: wrap;
+
+    > li {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      > a {
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+    }
+  } @else {
+    @warn 'The direction used for menu-direction() must be horizontal or vertical.';
+  }
+}
+
+/// Sets the style for a menu.
+@mixin menu-style(
+  $color: $menu-item-color,
+  $background-hover: $menu-item-background-hover,
+  $color-hover: $menu-item-color-hover,
+  $background-active: $menu-item-background-active,
+  $color-active: $menu-item-color-active
+) {
+  > li {
+
+    > a {
+      color: $color;
+
+      // Hover state
+      &:hover {
+        background-color: $background-hover;
+        color: $color-hover;
+      }
+    }
+
+    // Active state
+    &.active > a {
+      background-color: $background-active;
+      color: $color-active;
+      cursor: default;
+    }
+  }
+}
+
+/// Outputs CSS classes for the menu.
+@mixin base-menu {
+  .menu {
+    @include menu-base;
+    @include menu-style;
+
+    // Orientation
+    @include menu-direction(horizontal);
+
+    &.vertical {
+      @include menu-direction(vertical);
+    }
+
+    // Responsive orientation
+    @each $breakpoint in map_keys($breakpoints) {
+      @if $breakpoint != sl-first(map_keys($breakpoints)) {
+        @include breakpoint-up($breakpoint) {
+          &.#{$breakpoint}-horizontal {
+            @include menu-direction(horizontal);
+          }
+
+          &.#{$breakpoint}-vertical {
+            @include menu-direction(vertical);
+          }
+        }
+      }
+    }
+
+    // Nesting
+    &.nested {
+      margin-#{$global-left}: $menu-margin-nested;
+    }
+  }
+}
