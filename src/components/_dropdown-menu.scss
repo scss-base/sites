@@ -1,0 +1,99 @@
+/// Background color for dropdowns.
+///
+/// @type Color
+$dropdownmenu-background: $white !default;
+
+/// Border for dropdown sub-menus.
+///
+/// @type List
+$dropdownmenu-border: 1px solid $grey !default;
+
+/// Minimum width of dropdown sub-menus.
+///
+/// @type Length
+$dropdownmenu-min-width: 200px !default;
+
+/// @todo Documentation needed...
+@mixin dropdown-menu-base {
+
+  > li {
+    position: relative;
+
+    &.is-active > .menu {
+      display: inline-flex;
+    }
+  }
+}
+
+/// @todo Documentation needed...
+@mixin dropdown-menu-style(
+  $background: $dropdownmenu-background,
+  $border: $dropdownmenu-border,
+  $min-width: $dropdownmenu-min-width
+) {
+  background: $background;
+  border: $border;
+  display: none;
+  position: absolute;
+  min-width: $min-width;
+  z-index: 1;
+}
+
+/// @todo Documentation needed...
+@mixin dropdown-menu-direction($direction: horizontal) {
+  @if ($direction == horizontal) {
+
+    > li {
+
+      > .menu {
+        left: 0;
+        top: 100%;
+      }
+
+      &.js-reposition-right > .menu{
+        left: auto;
+        right: 0;
+      }
+
+      &.js-reposition-up > .menu{
+        bottom: 100%;
+        top: auto;
+      }
+    }
+  } @else if ($direction == vertical) {
+
+    > li {
+
+      > .menu {
+        left: 100%;
+        top: 0;
+      }
+
+      &.js-reposition-right > .menu{
+        left: auto;
+        right: 100%;
+      }
+
+      &.js-reposition-up > .menu{
+        bottom: 0;
+        top: auto;
+      }
+    }
+  }
+}
+
+/// @todo Documentation needed...
+@mixin base-dropdown-menu() {
+  .dropdown.menu {
+    @include dropdown-menu-base;
+    @include dropdown-menu-direction(horizontal);
+
+    &.vertical {
+      @include dropdown-menu-direction(vertical);
+    }
+
+    .menu {
+      @include dropdown-menu-style;
+    }
+  }
+}
