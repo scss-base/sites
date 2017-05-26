@@ -23,7 +23,7 @@ $grid-column-gutter: (
 /// @todo Documentation needed...
 @mixin base-grid {
   .row {
-    @include grid-row-base();
+    @include grid-row-base;
 
     & .row {
       @include grid-row-nest-gutter;

@@ -11,6 +11,7 @@
     max-width: 100%;
   } @else {
     flex: 0 0 percentage($columns / $column-count);
-    max-width: percentage($columns / $column-count)
+    max-width: percentage($columns / $column-count);
   }
+  @content;
 }
