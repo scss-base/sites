@@ -53,6 +53,11 @@ $global-line-height: 1.5 !default;
 /// @type String
 $global-text-rendering: optimizeLegibility !default;
 
+/// Global width of your site.
+///
+/// @type Number
+$global-width: rem-calc(1280) !default;
+
 /// Global value used for margin on components.
 ///
 /// @type Number

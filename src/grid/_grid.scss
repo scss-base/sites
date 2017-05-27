@@ -1,7 +1,7 @@
 /// The maximum width of a row.
 ///
 /// @type Number
-$grid-row-width: rem-calc(1280) !default;
+$grid-row-width: $global-width !default;
 
 /// The default column count of a grid. Changing this value affects the logic of the grid mixins, and the number of CSS classes output.
 ///
@@ -20,7 +20,7 @@ $grid-column-gutter: (
 @import 'gutter';
 @import 'row';
 
-/// @todo Documentation needed...
+/// Outputs CSS classes for the grid.
 @mixin base-grid {
   .row {
     @include grid-row-base;
