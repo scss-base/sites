@@ -1,0 +1,116 @@
+/// Default background color for sections.
+///
+/// @type Color
+$section-background: $white !default;
+
+/// Default border style for sections.
+///
+/// @type List
+$section-border: 1px solid $white !default;
+
+/// Default font color for sections.
+///
+/// @type Color
+$section-color: $black !default;
+
+/// Default font color for sections, if the section has a dark background.
+///
+/// @type Color
+$section-color-alt: $white !default;
+
+/// Default bottom margin for sections.
+///
+/// @type Number
+$section-margin: 0 0 $global-margin 0 !default;
+
+/// Default inner padding for callouts.
+///
+/// @type Map | Number
+$section-padding: (
+  small: rem-calc(20),
+  medium: rem-calc(30)
+) !default;
+
+/// Default border radius for sections.
+///
+/// @type Color
+$section-radius: $global-radius !default;
+
+/// @todo Documentation needed...
+@mixin section-base(
+  $margin: $section-margin,
+  $padding: $section-padding
+) {
+  margin: $margin;
+
+  // Responsive padding
+  @if type-of($padding) == 'map' {
+    @each $breakpoint, $value in $padding {
+      @if strip-unit($value) > 0 {
+        @include breakpoint-up($breakpoint) {
+          padding: rem-calc($value);
+        }
+      }
+    }
+  } @else if type-of($padding) == 'number' and strip-unit($padding) > 0 {
+    padding: rem-calc($padding);
+  }
+
+  // Remove margin from the first- and last-child.
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin section-style (
+  $background: $section-background,
+  $border: $section-border,
+  $color: $section-color
+) {
+
+  @if $color == auto {
+    $color: color-pick-contrast($background, ($section-color, $section-color-alt));
+  }
+
+  background-color: $background;
+  border: $border;
+  color: $color;
+}
+
+/// @todo Documentation needed...
+@mixin base-section {
+  .section {
+    @include section-base;
+    @include section-style;
+
+    // Colors
+    &.primary {
+      @include section-style($primary-color, $primary-color, auto);
+    }
+
+    &.secondary {
+      @include section-style($secondary-color, $secondary-color, auto);
+    }
+
+    &.info {
+      @include section-style($info-color, $info-color, auto);
+    }
+
+    &.success {
+      @include section-style($success-color, $success-color, auto);
+    }
+
+    &.warning {
+      @include section-style($warning-color, $warning-color, auto);
+    }
+
+    &.danger {
+      @include section-style($danger-color, $danger-color, auto);
+    }
+  }
+}
