@@ -53,7 +53,7 @@ $grid-column-gutter: (
       @include breakpoint-up($breakpoint) {
         @for $i from 1 through $grid-column-count {
           // Sizing
-          .#{$breakpoint}-#{$i} {
+          &.#{$breakpoint}-#{$i} {
             @include grid-column($i);
           }
         }
