@@ -1,0 +1,21 @@
+@mixin typography-helpers{
+  // 1. Text Alignment
+  // -----------------
+
+  @each $breakpoint in map_keys($breakpoints) {
+    @include breakpoint-up($breakpoint) {
+      @each $align in (left, right, center, justify) {
+        @if $breakpoint != sl-first(map_keys($breakpoints)) {
+          .#{$breakpoint}-text-#{$align} {
+            text-align: $align;
+          }
+        }
+        @else {
+          .text-#{$align} {
+            text-align: $align;
+          }
+        }
+      }
+    }
+  }
+}
