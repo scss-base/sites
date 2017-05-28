@@ -2,7 +2,7 @@
 ///
 /// @param {Number} $num - Number to strip unit from.
 ///
-/// @returns {Number} The same number, sans unit.
+/// @return {Number} The same number, sans unit.
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);
 }
@@ -12,7 +12,7 @@
 /// @param {Number} $value - Pixel value to convert.
 /// @param {Number} $base [$global-font-size] - Base for pixel conversion.
 ///
-/// @returns {Number} A number in rems, calculated based on the given value and the base pixel value.
+/// @return {Number} A number in rems, calculated based on the given value and the base pixel value.
 @function rem($value, $base: $global-font-size) {
 
   // Convert $base to pixels
@@ -51,7 +51,7 @@
 /// @param {Number} $value - Value to convert.
 /// @param {Number} $base [$global-font-size] - Base for pixel conversion.
 ///
-/// @returns {Number} A number in pxs, calculated based on the given value and the base pixel value.
+/// @return {Number} A number in pxs, calculated based on the given value and the base pixel value.
 @function px($value, $base: $global-font-size) {
 
   // Convert $base to pixels
@@ -88,7 +88,7 @@
 /// @param {Number|List} $values - One or more values to convert.
 /// @param {Number} $base [$global-font-size] - Base for pixel conversion.
 ///
-/// @returns {List} A list of converted values.
+/// @return {List} A list of converted values.
 @function rem-calc($values, $base: $global-font-size) {
   $rem-values: ();
   $count: length($values);
