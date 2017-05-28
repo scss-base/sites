@@ -2,7 +2,7 @@
 ///
 /// @param {Mixed} $val - Value to check.
 ///
-/// @returns {Boolean} `true` if `$val` is not falsey.
+/// @return {Boolean} `true` if `$val` is not falsey.
 @function has-value($val) {
   @if $val == null or $val == none {
     @return false;
