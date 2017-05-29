@@ -1,0 +1,16 @@
+/// @todo Documentation needed...
+@function svg-encode($svg) {
+  $encoding-reference: (
+      ('<','%3C'),
+      ('>','%3E'),
+      ('"','\''),
+      ('#','%23'),
+      ('&','%26')
+  );
+
+  @each $char, $encoded in $encoding-reference {
+    $svg: str-replace($svg, $char, $encoded);
+  }
+
+  @return 'data:image/svg+xml,' + $svg;
+}

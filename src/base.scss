@@ -12,11 +12,14 @@
 
 // Components
 @import 'base/base';
+@import 'typography/typography';
 @import 'grid/grid';
 @import 'components/components';
 
 // Includes
 @include base-global;
+@include base-typography;
 @include base-grid;
 @include base-dropdown-menu;
 @include base-menu;
+@include base-section;

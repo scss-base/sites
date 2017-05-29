@@ -1,0 +1,21 @@
+/// Global spacing for form elements.
+///
+/// @type Number
+$form-spacing: rem-calc(16) !default;
+
+@import 'checkbox';
+@import 'fieldset';
+@import 'help-text';
+@import 'label';
+@import 'select';
+@import 'text';
+
+/// @todo Documentation needed...
+@mixin base-forms {
+  @include form-checkbox;
+  @include form-fieldset;
+  @include form-help-text;
+  @include form-label;
+  @include form-select;
+  @include form-text;
+}

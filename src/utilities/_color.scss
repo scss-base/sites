@@ -67,3 +67,12 @@
 
   @return $best;
 }
+
+/// Converts a color from hex to rgb.
+///
+/// @param {Color} $color - Color to convert in hex decimal.
+///
+/// @return {Color} Color as RGB value
+@function color-to-rgb($color) {
+  @return 'rgb(#{red($color)}, #{green($color)}, #{blue($color)})';
+}

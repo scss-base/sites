@@ -1,0 +1,23 @@
+/// Default color for help text.
+///
+/// @type Color
+$help-text-color: $black !default;
+
+/// Default font size for help text.
+///
+/// @type Number
+$help-text-font-size: rem-calc(13) !default;
+
+/// Default font style for help text.
+///
+/// @type Keyword
+$help-text-font-style: italic !default;
+
+@mixin form-help-text {
+  .help-text {
+    margin-top: ($form-spacing * 0.5) * -1;
+    font-size: $help-text-font-size;
+    font-style: $help-text-font-style;
+    color: $help-text-color;
+  }
+}

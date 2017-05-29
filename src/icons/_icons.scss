@@ -1,0 +1,10 @@
+/// Adds a triangle-down icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+///
+/// @param {Color} $color [$black] - Color to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
+@mixin svg-icon-triangle-down($color: $black, $size: 10px 9px) {
+  $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='10' height='9' viewBox='0 0 10 9'><path d='M0,0H10L5,9Z' style='fill: #{color-to-rgb($color)}'/></svg>";
+
+  background-image: url(svg-encode($svg));
+  background-size: $size;
+}
