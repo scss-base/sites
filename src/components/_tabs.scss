@@ -58,6 +58,11 @@ $tab-content-border: $tab-border !default;
 /// @type Color
 $tab-content-color: $global-font-color !default;
 
+/// Margin for tab content.
+///
+/// @type Number
+$tab-margin: 0 0 $global-margin 0 !default;
+
 /// Padding for tab content.
 ///
 /// @type Number | List
@@ -124,6 +129,7 @@ $tab-content-padding: rem-calc(20) !default;
   $background: $tab-content-background,
   $border: $tab-content-border,
   $color: $tab-content-color,
+  $margin: $tab-margin,
   $padding: $tab-padding
 ) {
   background: $background;
@@ -134,6 +140,7 @@ $tab-content-padding: rem-calc(20) !default;
     top: none;
   }
   color: $color;
+  margin: $margin;
   padding: $padding;
 }
 
