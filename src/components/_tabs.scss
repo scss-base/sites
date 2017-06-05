@@ -16,32 +16,32 @@ $tab-margin: 0 !default;
 /// Text color of a tab item.
 ///
 /// @type Color
-$tab-color: $primary-color !default;
+$tab-item-color: $primary-color !default;
 
 /// Text color of a hover tab item.
 ///
 /// @type Color
-$tab-color-hover: scale-color($primary-color, $lightness: -15%) !default;
+$tab-item-color-hover: scale-color($primary-color, $lightness: -15%) !default;
 
 /// Background color of a hover tab item.
 ///
 /// @type Color
-$tab-background-hover: $grey !default;
+$tab-item-background-hover: $grey !default;
 
 /// Text color of an active tab item.
 ///
 /// @type Color
-$tab-color-active: $white !default;
+$tab-item-color-active: $white !default;
 
 /// Background color of an active tab item.
 ///
 /// @type Color
-$tab-background-active: $primary-color !default;
+$tab-item-background-active: $primary-color !default;
 
 /// Padding of a tab item.
 ///
 /// @type Number
-$tab-padding: rem-calc(11 16) !default;
+$tab-item-padding: rem-calc(11 16) !default;
 
 /// Background color of tab content.
 ///
@@ -61,7 +61,7 @@ $tab-content-color: $global-font-color !default;
 /// Margin for tab content.
 ///
 /// @type Number
-$tab-margin: 0 0 $global-margin 0 !default;
+$tab-content-margin: 0 0 $global-margin 0 !default;
 
 /// Padding for tab content.
 ///
@@ -95,12 +95,12 @@ $tab-content-padding: rem-calc(20) !default;
 
 /// Sets the style for a menu.
 @mixin tabs-style(
-  $color: $tab-color,
-  $background-hover: $tab-background-hover,
-  $color-hover: $tab-color-hover,
-  $background-active: $tab-background-active,
-  $color-active: $tab-color-active,
-  $padding: $tab-padding
+  $color: $tab-item-color,
+  $background-hover: $tab-item-background-hover,
+  $color-hover: $tab-item-color-hover,
+  $background-active: $tab-item-background-active,
+  $color-active: $tab-item-color-active,
+  $padding: $tab-item-padding
 ) {
   > li {
 
@@ -129,8 +129,7 @@ $tab-content-padding: rem-calc(20) !default;
   $background: $tab-content-background,
   $border: $tab-content-border,
   $color: $tab-content-color,
-  $margin: $tab-margin,
-  $padding: $tab-padding
+  $margin: $tab-margin
 ) {
   background: $background;
   border: {
@@ -141,12 +140,14 @@ $tab-content-padding: rem-calc(20) !default;
   }
   color: $color;
   margin: $margin;
-  padding: $padding;
 }
 
 /// @todo Documentation needed...
-@mixin tab-base {
+@mixin tab-base (
+  $padding: $tab-content-margin
+) {
   display: none;
+  padding: $padding;
 
   // Visible state
   &.is-visible {
