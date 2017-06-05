@@ -1,3 +1,13 @@
+/// Default background color of a tab bar.
+///
+/// @type Color
+$menu-background: $white !default;
+
+/// Default border color of tab content.
+///
+/// @type Border
+$menu-border: none !default;
+
 /// Margin of a menu.
 ///
 /// @type Number
@@ -40,13 +50,17 @@ $menu-item-background-active: $primary-color !default;
 
 /// Creates the base styles for a menu.
 ///
+/// @param {Color} $background [$menu-background] - @todo Documentation needed
+/// @param {Border} $border [$menu-border] - @todo Documentation needed
 /// @param {Number} $margin [$menu-margin] - @todo Documentation needed
-/// @param {Number} $item-padding [$menu-item-padding] - @todo Documentation needed
 @mixin menu-base(
-  $margin: $menu-margin,
-  $item-padding: $menu-item-padding
+  $background: $menu-background,
+  $border: $menu-border,
+  $margin: $menu-margin
 ) {
   align-items: center;
+  background: $background;
+  border: $border;
   display: flex;
   flex-wrap: nowrap;
   list-style-type: none;
@@ -60,7 +74,6 @@ $menu-item-background-active: $primary-color !default;
     // Reset line height to make the height of the overall item easier to calculate
     > a {
       display: block;
-      padding: $item-padding;
       line-height: 1;
     }
   }
@@ -102,17 +115,26 @@ $menu-item-background-active: $primary-color !default;
 }
 
 /// Sets the style for a menu.
+///
+/// @param {Color} $color [$menu-item-color] - @todo Documentation needed
+/// @param {Color} $background-hover [$menu-item-background-hover] - @todo Documentation needed
+/// @param {Color} $color-hover [$menu-item-color-hover] - @todo Documentation needed
+/// @param {Color} $background-active [$menu-item-background-active] - @todo Documentation needed
+/// @param {Color} $color-active [$menu-item-color-active] - @todo Documentation needed
+/// @param {Number} $padding [$menu-item-padding] - @todo Documentation needed
 @mixin menu-style(
   $color: $menu-item-color,
   $background-hover: $menu-item-background-hover,
   $color-hover: $menu-item-color-hover,
   $background-active: $menu-item-background-active,
-  $color-active: $menu-item-color-active
+  $color-active: $menu-item-color-active,
+  $padding: $menu-item-padding
 ) {
   > li {
 
     > a {
       color: $color;
+      padding: $padding;
 
       // Hover state
       &:hover {
