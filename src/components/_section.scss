@@ -1,29 +1,29 @@
-/// Default background color for sections.
+/// Background color for sections.
 ///
 /// @type Color
 $section-background: $white !default;
 
-/// Default border style for sections.
+/// Border style for sections.
 ///
 /// @type List
 $section-border: 1px solid $white !default;
 
-/// Default font color for sections.
+/// Font color for sections.
 ///
 /// @type Color
 $section-color: $black !default;
 
-/// Default font color for sections, if the section has a dark background.
+/// Font color for sections, if the section has a dark background.
 ///
 /// @type Color
 $section-color-alt: $white !default;
 
-/// Default bottom margin for sections.
+/// Margin for sections.
 ///
 /// @type Number
 $section-margin: 0 0 $global-margin 0 !default;
 
-/// Default inner padding for callouts.
+/// Inner padding for callouts.
 ///
 /// @type Map | Number
 $section-padding: (
@@ -31,7 +31,7 @@ $section-padding: (
   medium: rem-calc(30)
 ) !default;
 
-/// Default border radius for sections.
+/// Border radius for sections.
 ///
 /// @type Color
 $section-radius: $global-radius !default;
