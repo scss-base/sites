@@ -1,0 +1,168 @@
+/// Background color of a tab bar.
+///
+/// @type Color
+$tab-background: $white !default;
+
+/// Border color of tab content.
+///
+/// @type Color
+$tab-border: 1px solid $grey !default;
+
+/// Margin of the tab bar.
+///
+/// @type Number
+$tab-margin: 0 !default;
+
+/// Text color of a tab item.
+///
+/// @type Color
+$tab-color: $primary-color !default;
+
+/// Text color of a hover tab item.
+///
+/// @type Color
+$tab-color-hover: scale-color($primary-color, $lightness: -15%) !default;
+
+/// Background color of a hover tab item.
+///
+/// @type Color
+$tab-background-hover: $grey !default;
+
+/// Text color of an active tab item.
+///
+/// @type Color
+$tab-color-active: $white !default;
+
+/// Background color of an active tab item.
+///
+/// @type Color
+$tab-background-active: $primary-color !default;
+
+/// Padding of a tab item.
+///
+/// @type Number
+$tab-padding: rem-calc(11 16) !default;
+
+/// Background color of tab content.
+///
+/// @type Color
+$tab-content-background: $tab-background !default;
+
+/// Border color of tab content.
+///
+/// @type Color
+$tab-content-border: $tab-border !default;
+
+/// Text color of tab content.
+///
+/// @type Color
+$tab-content-color: $global-font-color !default;
+
+/// Padding for tab content.
+///
+/// @type Number | List
+$tab-content-padding: rem-calc(20) !default;
+
+/// Adds styles for a tab container.
+@mixin tabs-base (
+  $background: $tab-background,
+  $border: $tab-border,
+  $margin: $tab-margin
+) {
+  background: $background;
+  border: $border;
+  display: flex;
+  flex-wrap: nowrap;
+  list-style-type: none;
+  margin: $margin;
+
+  // List items are table cell to allow for vertical alignment
+  > li {
+    flex: 0 0 auto;
+
+    // Reset line height to make the height of the overall item easier to calculate
+    > a {
+      display: block;
+      line-height: 1;
+    }
+  }
+}
+
+/// Sets the style for a menu.
+@mixin tabs-style(
+  $color: $tab-color,
+  $background-hover: $tab-background-hover,
+  $color-hover: $tab-color-hover,
+  $background-active: $tab-background-active,
+  $color-active: $tab-color-active,
+  $padding: $tab-padding
+) {
+  > li {
+
+    > a {
+      color: $color;
+      padding: $padding;
+
+      // Hover state
+      &:hover {
+        background-color: $background-hover;
+        color: $color-hover;
+      }
+    }
+
+    // Visible state
+    &.is-visible > a {
+      background-color: $background-active;
+      color: $color-active;
+      cursor: default;
+    }
+  }
+}
+
+/// Adds styles for the wrapper that surrounds a tab groups.
+@mixin tabs-content-base (
+  $background: $tab-content-background,
+  $border: $tab-content-border,
+  $color: $tab-content-color,
+  $padding: $tab-padding
+) {
+  background: $background;
+  border: {
+    bottom: $border;
+    left: $border;
+    right: $border;
+    top: none;
+  }
+  color: $color;
+  padding: $padding;
+}
+
+/// @todo Documentation needed...
+@mixin tab-base {
+  display: none;
+
+  // Visible state
+  &.is-visible {
+    display: block;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin base-tab {
+  .tab {
+    @include tab-base;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin base-tabs {
+  .tabs {
+    @include tabs-base;
+    @include tabs-style;
+  }
+
+  .tabs-content {
+    @include tabs-content-base;
+    @include base-tab;
+  }
+}
