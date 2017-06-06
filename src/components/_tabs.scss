@@ -129,7 +129,7 @@ $tab-content-padding: rem-calc(20) !default;
   $background: $tab-content-background,
   $border: $tab-content-border,
   $color: $tab-content-color,
-  $margin: $tab-margin
+  $margin: $tab-content-margin
 ) {
   background: $background;
   border: {
@@ -144,7 +144,7 @@ $tab-content-padding: rem-calc(20) !default;
 
 /// @todo Documentation needed...
 @mixin tab-base (
-  $padding: $tab-content-margin
+  $padding: $tab-content-padding
 ) {
   display: none;
   padding: $padding;
@@ -152,6 +152,15 @@ $tab-content-padding: rem-calc(20) !default;
   // Visible state
   &.is-visible {
     display: block;
+  }
+
+  // Remove margin from the first- and last-child.
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
   }
 }
 
