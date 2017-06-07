@@ -65,7 +65,7 @@ $menu-item-background-active: $primary-color !default;
   flex-wrap: nowrap;
   list-style-type: none;
   margin: $margin;
-  width: 100%;
+  //width: 100%;
 
   // List items are table cell to allow for vertical alignment
   > li {
