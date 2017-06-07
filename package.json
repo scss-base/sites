@@ -1,0 +1,19 @@
+{
+  "name": "scss-base-sites",
+  "version": "0.1.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scss-base/sites.git"
+  },
+  "author": "Sebastian Kalicki <sebastian@kalicki.email>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scss-base/sites/issues"
+  },
+  "homepage": "https://github.com/scss-base/sites/#readme",
+  "dependencies": {
+    "normalize-scss": "^7.0.0",
+    "sassy-lists": "^3.0.1"
+  }
+}
