@@ -1,0 +1,177 @@
+/// Default background color for buttons.
+///
+/// @type Color
+$button-background: $secondary-color !default;
+
+/// Background color on hover for buttons.
+///
+/// @type Color
+$button-background-hover: scale-color($button-background, $lightness: -20%) !default;
+
+/// Background color lightness on hover for buttons.
+///
+/// @type Number
+$button-background-hover-lightness: -20% !default;
+
+/// Font color for buttons.
+///
+/// @type List
+$button-color: $black !default;
+
+/// Font family for button elements.
+///
+/// @type Font
+$button-font-family: inherit !default;
+
+/// @todo Documentation needed...
+$button-font-weight: $global-font-weight-normal !default;
+
+/// Margin around buttons.
+///
+/// @type List
+$button-margin: 0 0 $global-margin 0 !default;
+
+/// Padding inside buttons.
+///
+/// @type List
+$button-padding: 0.5em 1em !default;
+
+/// @todo Documentation needed...
+$button-primary-background-color: $primary-color !default;
+$button-primary-background-color-hover: scale-color($button-primary-background-color, $lightness: $button-background-hover-lightness) !default;
+$button-primary-color: $white !default;
+$button-primary-color-hover: $white !default;
+
+$button-info-background-color: $info-color !default;
+$button-info-background-color-hover: scale-color($button-info-background-color, $lightness: $button-background-hover-lightness) !default;
+$button-info-color: $white !default;
+$button-info-color-hover: $white !default;
+
+$button-success-background-color: $success-color !default;
+$button-success-background-color-hover: scale-color($button-success-background-color, $lightness: $button-background-hover-lightness) !default;
+$button-success-color: $white !default;
+$button-success-color-hover: $white !default;
+
+$button-warning-background-color: $warning-color !default;
+$button-warning-background-color-hover: scale-color($button-warning-background-color, $lightness: $button-background-hover-lightness) !default;
+$button-warning-color: $black !default;
+$button-warning-color-hover: $black !default;
+
+$button-danger-background-color: $danger-color !default;
+$button-danger-background-color-hover: scale-color($button-danger-background-color, $lightness: $button-background-hover-lightness) !default;
+$button-danger-color: $white !default;
+$button-danger-color-hover: $white !default;
+
+/// Sizes for buttons.
+///
+/// @type Map
+$button-sizes: (
+  tiny: 0.6rem,
+  small: 0.75rem,
+  default: 1rem,
+  large: 1.25rem,
+) !default;
+
+/// Border radius for buttons, defaulted to global-radius.
+///
+/// @type Number
+$button-radius: $global-radius !default;
+
+/// transitions for buttons.
+///
+/// @type List
+$button-transition: background-color 0.25s ease-out, color 0.25s ease-out !default;
+
+/// Mouse cursor for disabled button.
+///
+/// @type Keyword
+$button-cursor-disabled: not-allowed;
+
+/// Opacity for a disabled button.
+///
+/// @type List
+$button-opacity-disabled: .25 !default;
+
+/// @todo Documentation needed...
+@mixin button-base(
+  $radius: $button-radius,
+  $font-family: $button-font-family,
+  $font-weight: $button-font-weight,
+  $margin: $button-margin,
+  $padding: $button-padding
+) {
+  border: get-border-value(width, $input-border) solid transparent;
+  border-radius: $radius;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: $font-family;
+  font-size: map-get($button-sizes, default);
+  font-weight: $font-weight;
+  line-height: 1;
+  margin: $margin;
+  padding: $padding;
+  text-align: center;
+  transition: $button-transition;
+}
+
+/// Sets the visual style of a button.
+@mixin button-style(
+  $color: $button-color,
+  $color-hover: $button-color,
+  $background: $button-background,
+  $background-hover: $button-background-hover
+) {
+  background-color: $background;
+  color: $color;
+
+  &:hover,
+  &:focus {
+    background-color: $background-hover;
+    color: $color-hover;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin base-button {
+
+  button,
+  .button {
+    @include button-base;
+    @include button-style;
+
+    // Sizes
+    @each $size, $value in map-remove($button-sizes, default) {
+      &.#{$size} {
+        font-size: $value;
+      }
+    }
+
+    // Colors
+    &.primary {
+      @include button-style($button-primary-color, $button-primary-color-hover, $button-primary-background-color, $button-primary-background-color-hover);
+    }
+
+    &.info {
+      @include button-style($button-info-color, $button-info-color-hover, $button-info-background-color, $button-info-background-color-hover);
+    }
+
+    &.success {
+      @include button-style($button-success-color, $button-success-color-hover, $button-success-background-color, $button-success-background-color-hover);
+    }
+
+    &.warning {
+      @include button-style($button-warning-color, $button-warning-color-hover, $button-warning-background-color, $button-warning-background-color-hover);
+    }
+
+    &.danger {
+      @include button-style($button-danger-color, $button-danger-color-hover, $button-danger-background-color, $button-danger-background-color-hover);
+    }
+
+    // Disabled state
+    &.disabled,
+    &[disabled] {
+      cursor: $button-cursor-disabled;
+      opacity: $button-opacity-disabled;
+    }
+  }
+}
