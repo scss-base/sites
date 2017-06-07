@@ -15,21 +15,17 @@ $select-radius: $global-radius !default;
 
 
 @mixin form-select-base {
-  $height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
-
-  height: $height;
-  margin: 0 0 $form-spacing;
-  padding: ($form-spacing / 2);
-
   appearance: none;
+  background-color: $select-background;
   border: $input-border;
   border-radius: $select-radius;
-  background-color: $select-background;
-
+  color: $input-color;
   font-family: $input-font-family;
   font-size: $input-font-size;
+  height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
   line-height: normal;
-  color: $input-color;
+  margin: 0 0 $form-spacing;
+  padding: ($form-spacing / 2);
 
   @if $select-triangle-color != transparent {
     @include svg-icon-triangle-down($select-triangle-color, 9px auto);
