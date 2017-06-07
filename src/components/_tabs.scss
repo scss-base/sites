@@ -58,17 +58,12 @@ $tab-content-border: $tab-border !default;
 /// @type Color
 $tab-content-color: $global-font-color !default;
 
-/// Margin for tab content.
-///
-/// @type Number
-$tab-content-margin: 0 0 $global-margin 0 !default;
-
 /// Padding for tab content.
 ///
 /// @type Number | List
 $tab-content-padding: rem-calc(20) !default;
 
-/// Adds styles for a tab container.
+/// Adds styles for tabs.
 @mixin tabs-base (
   $background: $tab-background,
   $border: $tab-border,
@@ -81,19 +76,37 @@ $tab-content-padding: rem-calc(20) !default;
   list-style-type: none;
   margin: $margin;
 
-  // List items are table cell to allow for vertical alignment
-  > li {
-    flex: 0 0 auto;
-
-    // Reset line height to make the height of the overall item easier to calculate
-    > a {
+  // Reset line height to make the height of the overall item easier to calculate
+  > li > a {
       display: block;
       line-height: 1;
-    }
+  }
+
+  // Reset styles of inner elements
+  input,
+  select,
+  a,
+  button {
+    margin-bottom: 0;
   }
 }
 
-/// Sets the style for a menu.
+/// Sets the direction for tabs.
+///
+/// @param {Keyword} $dir [horizontal] - Direction of the menu can be `horizontal` or `vertical`.
+@mixin tabs-direction($dir: horizontal) {
+  @if $dir == horizontal {
+    flex-direction: row;
+
+  } @else if $dir == vertical {
+    flex-direction: column;
+
+  } @else {
+    @warn 'The direction used for tabs-direction() must be horizontal or vertical.';
+  }
+}
+
+/// Sets the style for tabs.
 @mixin tabs-style(
   $color: $tab-item-color,
   $background-hover: $tab-item-background-hover,
@@ -107,6 +120,7 @@ $tab-content-padding: rem-calc(20) !default;
     > a {
       color: $color;
       padding: $padding;
+      white-space: nowrap;
 
       // Hover state
       &:hover {
@@ -125,21 +139,33 @@ $tab-content-padding: rem-calc(20) !default;
 }
 
 /// Adds styles for the wrapper that surrounds a tab groups.
-@mixin tabs-content-base (
+@mixin tabs-content-style (
   $background: $tab-content-background,
   $border: $tab-content-border,
-  $color: $tab-content-color,
-  $margin: $tab-content-margin
+  $color: $tab-content-color
 ) {
   background: $background;
-  border: {
-    bottom: $border;
-    left: $border;
-    right: $border;
-    top: none;
-  }
+  border: $border;
   color: $color;
-  margin: $margin;
+}
+
+@mixin tabs-content-direction (
+  $dir: horizontal,
+  $border: $tab-content-border
+) {
+  @if $dir == horizontal {
+    border: {
+      left: $border;
+      top: none;
+    }
+  } @else if $dir == vertical {
+    border: {
+      left: none;
+      top: $border;
+    }
+  } @else {
+    @warn 'The direction used for tabs-content-direction() must be horizontal or vertical.';
+  }
 }
 
 /// @todo Documentation needed...
@@ -153,15 +179,6 @@ $tab-content-padding: rem-calc(20) !default;
   &.is-visible {
     display: block;
   }
-
-  // Remove margin from the first- and last-child.
-  > :first-child {
-    margin-top: 0;
-  }
-
-  > :last-child {
-    margin-bottom: 0;
-  }
 }
 
 /// @todo Documentation needed...
@@ -173,13 +190,35 @@ $tab-content-padding: rem-calc(20) !default;
 
 /// @todo Documentation needed...
 @mixin base-tabs {
+  @include base-tab;
+
   .tabs {
     @include tabs-base;
     @include tabs-style;
+
+    @include tabs-direction(horizontal);
   }
 
   .tabs-content {
-    @include tabs-content-base;
-    @include base-tab;
+    @include tabs-content-style;
+    @include tabs-content-direction(horizontal);
+  }
+
+  .tabs-container {
+    display: flex;
+    flex-direction: column;
+
+    &.vertical {
+      flex-direction: row;
+
+      .tabs {
+        @include tabs-direction(vertical);
+      }
+
+      .tabs-content {
+        @include tabs-content-direction(vertical);
+        flex: 1 1 auto;
+      }
+    }
   }
 }
