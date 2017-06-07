@@ -1,3 +1,8 @@
+/// Bottom margin for the top bar.
+///
+/// @type Number
+$top-bar-margin: rem-calc(30) !default;
+
 /// Padding for the top bar.
 ///
 /// @type Number
@@ -70,11 +75,13 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
 
 /// @todo Documentation needed...
 @mixin top-bar-base(
+  $margin: $top-bar-margin,
   $padding: $top-bar-padding,
   $background: $top-bar-background
 ) {
   align-items: stretch;
   display: flex;
+  margin-bottom: $margin;
   padding: $padding;
 
   &,
