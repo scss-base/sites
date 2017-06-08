@@ -20,12 +20,15 @@ $select-radius: $global-radius !default;
   border: $input-border;
   border-radius: $select-radius;
   color: $input-color;
-  font-family: $input-font-family;
-  font-size: $input-font-size;
+  font: {
+    family: $input-font-family;
+    size: $input-font-size;
+  }
   height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
   line-height: normal;
   margin: 0 0 $form-spacing;
   padding: ($form-spacing / 2);
+  width: 100%;
 
   @if $select-triangle-color != transparent {
     @include svg-icon-triangle-down($select-triangle-color, 9px auto);
