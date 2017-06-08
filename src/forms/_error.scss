@@ -41,8 +41,11 @@ $error-text-font-weight: $global-font-weight-normal !default;
     color: $error-text-color;
 
     .error-text {
-      @include error-text-base;
       display: block;
     }
+  }
+
+  .error-text {
+    @include error-text-base;
   }
 }
