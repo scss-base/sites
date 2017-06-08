@@ -1,0 +1,48 @@
+/// Color for error text.
+///
+/// @type Color
+$error-text-color: $danger-color !default;
+
+/// Font size for error text.
+///
+/// @type Number
+$error-text-font-size: rem-calc(13) !default;
+
+/// Font style for error text.
+///
+/// @type Keyword
+$error-text-font-style: italic !default;
+
+/// Font weight for error text.
+///
+/// @type Keyword | Number
+$error-text-font-weight: $global-font-weight-normal !default;
+
+/// @todo Documentation needed...
+@mixin error-text-base(
+  $color: $error-text-color,
+  $font-size: $error-text-font-size,
+  $font-style:$error-text-font-style,
+  $font-weight:$error-text-font-weight
+) {
+  color: $color;
+  display: none;
+  font: {
+    size: $font-size;
+    style: $font-style;
+    weight: $font-weight;
+  }
+  margin-top: $form-spacing * -1;
+}
+
+/// @todo Documentation needed...
+@mixin form-error {
+  .error {
+    color: $error-text-color;
+
+    .error-text {
+      @include error-text-base;
+      display: block;
+    }
+  }
+}

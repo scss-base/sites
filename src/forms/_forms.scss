@@ -4,6 +4,7 @@
 $form-spacing: rem-calc(16) !default;
 
 @import 'checkbox';
+@import 'error';
 @import 'fieldset';
 @import 'help-text';
 @import 'label';
@@ -13,6 +14,7 @@ $form-spacing: rem-calc(16) !default;
 /// @todo Documentation needed...
 @mixin base-forms {
   @include form-checkbox;
+  @include form-error;
   @include form-fieldset;
   @include form-help-text;
   @include form-label;
