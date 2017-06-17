@@ -1,0 +1,21 @@
+{
+  "name": "scss-base-sites",
+  "description": "Sites is a lightweight and modular front-end framework for developing fast and powerful web interfaces.",
+  "main": "index.js",
+  "authors": [
+    "K. Media GbR <hello@kmedia.email> (http://kmedia.rocks)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/scss-base/sites",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-scss": "normalize.scss#^7.0.0",
+    "SassyLists": "^3.0.1"
+  }
+}
