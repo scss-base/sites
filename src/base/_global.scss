@@ -63,6 +63,11 @@ $global-width: rem-calc(1280) !default;
 /// @type Number
 $global-margin: 1rem !default;
 
+/// Global value used for padding on components.
+///
+/// @type Number
+$global-padding: 1rem !default;
+
 /// Global value used for all elements that have a border radius.
 ///
 /// @type Number
