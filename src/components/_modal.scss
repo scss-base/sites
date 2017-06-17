@@ -1,0 +1,162 @@
+
+/// Background color of a modal.
+///
+/// @type Color
+$modal-background: $white !default;
+
+/// Maximum width of a modal.
+///
+/// @type Number
+$modal-max-width: $global-width !default;
+
+/// Top position of a modal.
+///
+/// @type Number
+$modal-top: 100px !default;
+
+/// Sizes for modals.
+///
+/// @type Map
+$modal-sizes: (
+  tiny: 30%,
+  default: 600px,
+  small: 50%,
+  large: 90%,
+) !default;
+
+/// Border around a modal.
+///
+/// @type List
+$modal-border: 1px solid $grey !default;
+
+/// Padding inside a modal.
+///
+/// @type Number
+$modal-padding: $global-padding !default;
+
+/// Radius for modal.
+///
+/// @type Number
+$modal-radius: $global-radius !default;
+
+/// The z-index for modals. The overlay uses this value, while the modal itself uses this value plus one.
+///
+/// @type Number
+$modal-z-index: 1000 !default;
+
+/// Background color of modal overlays.
+///
+/// @type Color
+$modal-overlay-background: rgba($black, 0.45) !default;
+
+/// Adds base styles for a modal.
+///
+/// @param {Number} $top - [$modal-top] - Top position for a modal.
+/// @param {Number} $z-index [$modal-z-index + 1] - Z-index for a modal.
+@mixin modal-base (
+  $top: $modal-top,
+  $z-index: $modal-z-index + 1
+) {
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: auto;
+  position: relative;
+  top: $top;
+  z-index: $z-index + 1;
+}
+
+/// Adds styles for a modal.
+///
+/// @param {Color} $background [$modal-background] - Background color for a modal.
+/// @param {List} $border [$modal-border] - Border style for a modal.
+/// @param {Number} $padding [$modal-padding] - Padding for a modal.
+/// @param {Number} $radius [$modal-radius] - Radius for a modal.
+@mixin modal-styles(
+  $background: $modal-background,
+  $border: $modal-border,
+  $padding: $modal-padding,
+  $radius: $modal-radius
+) {
+  background-color: $background;
+  border: $border;
+  border-radius: $radius;
+  padding: $padding;
+}
+
+/// Adjusts the width of a modal.
+/// @param {Number} $width [map-get($modal-sizes, default)] - Width of the modal. Generally a percentage.
+/// @param {Number} $max-width [$modal-max-width] - Maximum width of the modal.
+@mixin modal-width(
+  $width: map-get($modal-sizes, default),
+  $max-width: $modal-max-width
+) {
+  @include breakpoint-up(medium) {
+    width: $width;
+    max-width: $max-width;
+  }
+}
+
+/// Adds styles for a modal overlay.
+///
+/// @param {Color} $background [$modal-overlay-background] - Background color of the overlay.
+/// @param {Number} $z-index [$modal-z-index] - Z-index of the overlay.
+@mixin modal-overlay-base(
+  $background: $modal-overlay-background,
+  $z-index: $modal-z-index
+) {
+  background-color: $background;
+  bottom: 0;
+  display: none;
+  left: 0;
+  overflow-y: scroll;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $z-index;
+
+  &.is-visible {
+    display: block;
+  }
+}
+
+/// Creates a full-screen modal, which stretches the full width and height of the window.
+@mixin modal-fullscreen-base {
+  border: 0;
+  border-radius: 0;
+  height: 100vh;
+  left: 0;
+  margin-left: 0;
+  max-width: none;
+  min-height: 100vh;
+  top: 0;
+  width: 100vw;
+}
+
+@mixin base-modal {
+
+  .modal {
+    @include modal-base;
+    @include modal-styles;
+    @include modal-width;
+
+    // Sizing classes
+    @each $size, $value in map-remove($modal-sizes, default) {
+      &.#{$size} {
+        @include modal-width($value);
+      }
+    }
+
+    // Full-screen mode
+    &.full {
+      @include modal-fullscreen-base;
+    }
+
+    @include breakpoint-only(small) {
+      @include modal-fullscreen-base;
+    }
+  }
+
+  .modal-overlay {
+    @include modal-overlay-base;
+  }
+}
