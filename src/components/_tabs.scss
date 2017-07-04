@@ -195,18 +195,26 @@ $tab-content-padding: rem-calc(20) !default;
   .tabs {
     @include tabs-base;
     @include tabs-style;
-
-    @include tabs-direction(horizontal);
   }
 
   .tabs-content {
     @include tabs-content-style;
-    @include tabs-content-direction(horizontal);
   }
 
   .tabs-container {
     display: flex;
-    flex-direction: column;
+
+    &.horizontal {
+      flex-direction: column;
+
+      .tabs {
+        @include tabs-direction(horizontal);
+      }
+
+      .tabs-content {
+        @include tabs-content-direction(horizontal);
+      }
+    }
 
     &.vertical {
       flex-direction: row;
