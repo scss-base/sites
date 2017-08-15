@@ -8,8 +8,12 @@
 //   3. Breakpoints
 //   4. The Grid
 //   5. Typography
-//   6. Button
-//   7. Top Bar
+//   6. Forms
+//   7. Button
+//   8. Section
+//   9. Top Bar
+//
+//  ------------------
 
 // 1. Color
 // --------
@@ -135,7 +139,48 @@ $keystroke-background: $grey;
 $keystroke-padding: rem-calc(2 4 0);
 $keystroke-radius: $global-radius;
 
-// 6. Button
+// 6. Forms
+// --------
+
+$form-spacing: rem-calc(16);
+$fieldset-border: 1px solid $grey;
+$fieldset-padding: rem-calc(20);
+$fieldset-margin: rem-calc(18 0);
+$legend-margin: rem-calc(8);
+$legend-padding: rem-calc(0 3);
+$form-label-color: $black;
+$form-label-font-size: rem-calc(14);
+$form-label-font-weight: $global-font-weight-normal;
+$form-label-line-height: 1.8;
+$input-color: $black;
+$input-placeholder-color: $grey;
+$input-font-family: inherit;
+$input-font-size: rem-calc(16);
+$input-font-weight: $global-font-weight-normal;
+$input-background: $white;
+$input-background-focus: $white;
+$input-background-disabled: $grey;
+$input-border: 1px solid $grey;
+$input-border-focus: 1px solid $grey;
+$input-shadow: inset 0 1px 2px rgba($black, 0.1);
+$input-shadow-focus: 0 0 5px $grey;
+$input-cursor-disabled: not-allowed;
+$input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+$input-number-spinners: true;
+$input-radius: $global-radius;
+$input-button-radius: $global-radius;
+$select-background: $white;
+$select-triangle-color: $grey;
+$select-radius: $global-radius;
+$help-text-color: $black;
+$help-text-font-size: rem-calc(13);
+$help-text-font-style: italic;
+$error-text-color: $danger-color;
+$error-text-font-size: rem-calc(13);
+$error-text-font-style: italic;
+$error-text-font-weight: $global-font-weight-normal;
+
+// 7. Button
 // ---------
 
 $button-background: $secondary-color;
@@ -177,7 +222,22 @@ $button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
 $button-cursor-disabled: not-allowed;
 $button-opacity-disabled: .25;
 
-// 7. Top Bar
+// 8. Section
+// ----------
+
+$section-background: $white;
+$section-border: 1px solid $white;
+$section-color: $black;
+$section-color-alt: $white;
+$section-margin: 0 0 $global-margin 0;
+$section-padding: (
+  small: rem-calc(20),
+  medium: rem-calc(30)
+);
+$section-radius: $global-radius;
+
+
+// 9. Top Bar
 // ----------
 
 $top-bar-margin: rem-calc(30);
