@@ -8,6 +8,8 @@
 //   3. Breakpoints
 //   4. The Grid
 //   5. Typography
+//   6. Button
+//   7. Top Bar
 
 // 1. Color
 // --------
@@ -33,7 +35,7 @@ $danger-color: $red;
 $global-background: $white;
 $global-font-color: $black;
 $global-font-size: 100%;
-$global-font-family-sans-serif: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$global-font-family-sans-serif: Roboto, Arial, sans-serif;
 $global-font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
 $global-font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $global-font-family: $global-font-family-sans-serif;
@@ -132,3 +134,64 @@ $keystroke-color: $black;
 $keystroke-background: $grey;
 $keystroke-padding: rem-calc(2 4 0);
 $keystroke-radius: $global-radius;
+
+// 6. Button
+// ---------
+
+$button-background: $secondary-color;
+$button-background-hover: scale-color($button-background, $lightness: -20%);
+$button-background-hover-lightness: -20%;
+$button-color: $black;
+$button-font-family: inherit;
+$button-font-weight: $global-font-weight-normal;
+$button-margin: 0 0 $global-margin 0;
+$button-padding: 0.5em 1em;
+$button-primary-background-color: $primary-color;
+$button-primary-background-color-hover: scale-color($button-primary-background-color, $lightness: $button-background-hover-lightness);
+$button-primary-color: $white;
+$button-primary-color-hover: $white;
+$button-info-background-color: $info-color;
+$button-info-background-color-hover: scale-color($button-info-background-color, $lightness: $button-background-hover-lightness);
+$button-info-color: $white;
+$button-info-color-hover: $white;
+$button-success-background-color: $success-color;
+$button-success-background-color-hover: scale-color($button-success-background-color, $lightness: $button-background-hover-lightness);
+$button-success-color: $white;
+$button-success-color-hover: $white;
+$button-warning-background-color: $warning-color;
+$button-warning-background-color-hover: scale-color($button-warning-background-color, $lightness: $button-background-hover-lightness);
+$button-warning-color: $black;
+$button-warning-color-hover: $black;
+$button-danger-background-color: $danger-color;
+$button-danger-background-color-hover: scale-color($button-danger-background-color, $lightness: $button-background-hover-lightness);
+$button-danger-color: $white;
+$button-danger-color-hover: $white;
+$button-sizes: (
+  tiny: 0.6rem,
+  small: 0.75rem,
+  default: 1rem,
+  large: 1.25rem,
+);
+$button-radius: $global-radius;
+$button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+$button-cursor-disabled: not-allowed;
+$button-opacity-disabled: .25;
+
+// 7. Top Bar
+// ----------
+
+$top-bar-margin: rem-calc(30);
+$top-bar-padding: 0;
+$top-bar-background: scale-color($black, $lightness: 20%);
+$top-bar-title-color: $white;
+$top-bar-title-font-size: rem-calc(16);
+$top-bar-title-font-weight: $global-font-weight-bold;
+$top-bar-title-padding: rem-calc(10);
+$top-bar-menu-item-color: $white;
+$top-bar-menu-item-background-hover: scale-color($black, $lightness: 13.5%);
+$top-bar-menu-item-color-hover: $white;
+$top-bar-menu-item-background-active: $primary-color;
+$top-bar-menu-item-color-active: $white;
+$top-bar-menu-item-padding: rem-calc(10 20);
+$top-bar-dropdownmenu-background: $top-bar-background;
+$top-bar-dropdownmenu-border: 1px solid $white;
