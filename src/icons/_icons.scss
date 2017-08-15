@@ -8,3 +8,14 @@
   background-image: url(svg-encode($svg));
   background-size: $size;
 }
+
+/// Adds a log-out icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+///
+/// @param {Color} $color [$black] - Color to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
+@mixin svg-icon-log-out($color: $black, $size: 20px 20px) {
+  $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path d='M19,10l-6-5v3H6v4h7v3L19,10z M3,3h8V1H3C1.9,1,1,1.9,1,3v14c0,1.1,0.9,2,2,2h8v-2H3V3z' style='fill: #{color-to-rgb($color)}'/></svg>";
+
+  background-image: url(svg-encode($svg));
+  background-size: $size;
+}
