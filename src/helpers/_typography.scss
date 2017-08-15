@@ -1,6 +1,4 @@
-@mixin typography-helpers{
-  // 1. Text Alignment
-  // -----------------
+@mixin base-typography-helpers{
 
   @each $breakpoint in map_keys($breakpoints) {
     @include breakpoint-up($breakpoint) {

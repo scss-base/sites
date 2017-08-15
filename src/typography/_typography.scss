@@ -11,9 +11,6 @@
   // Base typography styles (tags only)
   @include typography-base;
 
-  // Base typography helpers (classes only)
-  @include typography-helpers;
-
   // Base typography print style
   @include typography-print;
 }
