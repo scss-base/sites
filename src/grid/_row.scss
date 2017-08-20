@@ -18,3 +18,17 @@
     @content;
   }
 }
+
+/// Creates a block grid for a flex grid row.
+///
+/// @param {Number} $n - Number of columns to display on each row.
+@mixin grid-block-base($n) {
+  flex-wrap: wrap;
+
+  > .column {
+    $pct: percentage(1/$n);
+
+    flex: 0 0 $pct;
+    max-width: $pct;
+  }
+}

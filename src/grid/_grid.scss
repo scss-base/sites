@@ -16,6 +16,11 @@ $grid-column-gutter: (
   medium: rem-calc(30)
 ) !default;
 
+/// The maximum number of cells in a block grid.
+///
+/// @type Number
+$grid-block-max: 8 !default;
+
 @import 'column';
 @import 'gutter';
 @import 'row';
@@ -37,6 +42,18 @@ $grid-column-gutter: (
     &.expanded,
     &.expanded .row {
       max-width: none;
+    }
+
+    @each $breakpoint in map-keys($breakpoints) {
+      @include breakpoint-up($breakpoint) {
+
+        // Block grid
+        @for $i from 1 through $grid-block-max {
+          &.#{$breakpoint}-up-#{$i} {
+            @include grid-block-base($i);
+          }
+        }
+      }
     }
   }
 
