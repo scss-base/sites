@@ -11,7 +11,7 @@ $tab-border: 1px solid $grey !default;
 /// Margin of the tab bar.
 ///
 /// @type Number
-$tab-margin: 0 0 $global-margin 0;
+$tab-margin: 0;
 
 /// Text color of a tab item.
 ///
@@ -62,6 +62,11 @@ $tab-content-color: $global-font-color !default;
 ///
 /// @type Number | List
 $tab-content-padding: rem-calc(20) !default;
+
+/// Margin for tab container.
+///
+/// @type Number | List
+$tabs-container-margin: 0 0 $global-margin 0;
 
 /// Adds styles for tabs.
 @mixin tabs-base (
@@ -203,6 +208,7 @@ $tab-content-padding: rem-calc(20) !default;
 
   .tabs-container {
     display: flex;
+    margin: $tabs-container-margin;
 
     &.horizontal {
       flex-direction: column;
