@@ -11,7 +11,7 @@ $tab-border: 1px solid $grey !default;
 /// Margin of the tab bar.
 ///
 /// @type Number
-$tab-margin: 0 !default;
+$tab-margin: 0 0 $global-margin 0;
 
 /// Text color of a tab item.
 ///
