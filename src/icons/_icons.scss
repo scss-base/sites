@@ -1,4 +1,4 @@
-/// Adds a triangle-down icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+/// Adds a triangle-down icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
 ///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
@@ -9,10 +9,10 @@
   background-size: $size;
 }
 
-/// Adds a log-out icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+/// Adds a log-out icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
 ///
 /// @param {Color} $color [$black] - Color to use for the triangle.
-/// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the log-out icon.
 @mixin svg-icon-log-out($color: $black, $size: 20px 20px) {
   $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path d='M19,10l-6-5v3H6v4h7v3L19,10z M3,3h8V1H3C1.9,1,1,1.9,1,3v14c0,1.1,0.9,2,2,2h8v-2H3V3z' style='fill: #{color-to-rgb($color)}'/></svg>";
 
@@ -20,10 +20,10 @@
   background-size: $size;
 }
 
-/// Adds a cross icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+/// Adds a cross icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
 ///
 /// @param {Color} $color [$black] - Color to use for the triangle.
-/// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the cross icon.
 @mixin svg-icon-cross($color: $black, $size: 20px 20px) {
   $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path d='M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0 c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697c0.469-0.469,1.228-0.469,1.697,0 L10,8.183l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0c0.469,0.469,0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15 C14.817,13.62,14.817,14.38,14.348,14.849z' style='fill: #{color-to-rgb($color)}'/></svg>";
 
@@ -31,10 +31,10 @@
   background-size: $size;
 }
 
-/// Adds a eye icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+/// Adds a eye icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
 ///
 /// @param {Color} $color [$black] - Color to use for the triangle.
-/// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the eye icon.
 @mixin svg-icon-eye($color: $black, $size: 20px 20px) {
   $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path d='M10,4.4C3.439,4.4,0,9.232,0,10c0,0.766,3.439,5.6,10,5.6c6.56,0,10-4.834,10-5.6C20,9.232,16.56,4.4,10,4.4z M10,14.307 c-2.455,0-4.445-1.928-4.445-4.307c0-2.379,1.99-4.309,4.445-4.309c2.455,0,4.444,1.93,4.444,4.309 C14.444,12.379,12.455,14.307,10,14.307z M10,10c-0.407-0.447,0.663-2.154,0-2.154c-1.228,0-2.223,0.965-2.223,2.154 c0,1.189,0.995,2.154,2.223,2.154c1.227,0,2.223-0.965,2.223-2.154C12.223,9.453,10.346,10.379,10,10z' style='fill: #{color-to-rgb($color)}'/></svg>";
 
@@ -43,10 +43,10 @@
 }
 
 
-/// Adds a text document icon a background image to an element. The image is formatted as an SVG, making it easy to change the color.
+/// Adds a text document icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
 ///
 /// @param {Color} $color [$black] - Color to use for the triangle.
-/// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the text document icon.
 @mixin svg-icon-text-document($color: $black, $size: 20px 20px) {
   $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path fill-rule='evenodd' clip-rule='evenodd' d='M16,1H4C3.447,1,3,1.447,3,2v16c0,0.552,0.447,1,1,1h12c0.553,0,1-0.448,1-1V2 C17,1.448,16.553,1,16,1z M13,15H7v-2h6V15z M13,11H7V9h6V11z M13,7H7V5h6V7z' style='fill: #{color-to-rgb($color)}'/></svg>";
 
@@ -54,3 +54,26 @@
   background-size: $size;
 }
 
+/// Adds a user icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
+///
+/// @param {Color} $color [$black] - Color to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the user icon.
+@mixin svg-icon-user($color: $black, $size: 20px 20px) {
+  $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path d='M7.725,2.146c-1.016,0.756-1.289,1.953-1.239,2.59C6.55,5.515,6.708,6.529,6.708,6.529s-0.313,0.17-0.313,0.854 C6.504,9.1,7.078,8.359,7.196,9.112c0.284,1.814,0.933,1.491,0.933,2.481c0,1.649-0.68,2.42-2.803,3.334C3.196,15.845,1,17,1,19v1 h18v-1c0-2-2.197-3.155-4.328-4.072c-2.123-0.914-2.801-1.684-2.801-3.334c0-0.99,0.647-0.667,0.932-2.481 c0.119-0.753,0.692-0.012,0.803-1.729c0-0.684-0.314-0.854-0.314-0.854s0.158-1.014,0.221-1.793c0.065-0.817-0.398-2.561-2.3-3.096 c-0.333-0.34-0.558-0.881,0.466-1.424C9.439,0.112,8.918,1.284,7.725,2.146z' style='fill: #{color-to-rgb($color)}'/>
+</svg>";
+
+  background-image: url(svg-encode($svg));
+  background-size: $size;
+}
+
+/// Adds a users icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
+///
+/// @param {Color} $color [$black] - Color to use for the triangle.
+/// @param {Keyword|List} $size [20px 20px] - Size to use for the users icon.
+@mixin svg-icon-users($color: $black, $size: 20px 20px) {
+  $svg: "<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='20' height='20' viewBox='0 0 20 20'><path d='M15.989,19.129c0-2.246-2.187-3.389-4.317-4.307c-2.123-0.914-2.801-1.684-2.801-3.334c0-0.989,0.648-0.667,0.932-2.481 c0.12-0.752,0.692-0.012,0.802-1.729c0-0.684-0.313-0.854-0.313-0.854s0.159-1.013,0.221-1.793c0.064-0.817-0.398-2.56-2.301-3.095 C7.88,1.195,7.655,0.654,8.679,0.112c-2.24-0.104-2.761,1.068-3.954,1.93c-1.015,0.756-1.289,1.953-1.24,2.59 c0.065,0.78,0.223,1.793,0.223,1.793s-0.314,0.17-0.314,0.854c0.11,1.718,0.684,0.977,0.803,1.729 C4.481,10.822,5.13,10.5,5.13,11.489c0,1.65-0.212,2.21-2.336,3.124C0.663,15.53,0,17,0.011,19.129C0.014,19.766,0,20,0,20h16 C16,20,15.989,19.766,15.989,19.129z M18.528,13.365c-1.135-0.457-1.605-1.002-1.605-2.066c0-0.641,0.418-0.432,0.602-1.603 c0.077-0.484,0.447-0.008,0.518-1.115c0-0.441-0.202-0.551-0.202-0.551s0.103-0.656,0.143-1.159c0.05-0.627-0.364-2.247-2.268-2.247 c-1.903,0-2.318,1.62-2.269,2.247c0.042,0.502,0.144,1.159,0.144,1.159s-0.202,0.109-0.202,0.551 c0.071,1.107,0.441,0.631,0.518,1.115c0.184,1.172,0.602,0.963,0.602,1.603c0,1.064-0.438,1.562-1.809,2.152 c-0.069,0.029-0.12,0.068-0.183,0.102c1.64,0.712,4.226,1.941,4.838,4.447H20c0,0,0-1.906,0-2.318 C20,14.682,19.727,13.848,18.528,13.365z' style='fill: #{color-to-rgb($color)}'/>
+</svg>";
+
+  background-image: url(svg-encode($svg));
+  background-size: $size;
+}
