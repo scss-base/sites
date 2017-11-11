@@ -1,0 +1,8 @@
+files:
+    include: 'src/**/*.scss'
+
+options:
+  formatter: stylish
+  merge-default-rules: true
+
+rules:
