@@ -105,12 +105,12 @@ $menu-item-background-active: $primary-color !default;
       max-width: 100%;
 
       > a {
-        justify-content: flex-start;
         align-items: flex-start;
+        justify-content: flex-start;
       }
     }
   } @else {
-    @warn 'The direction used for menu-direction() must be horizontal or vertical.';
+    @error 'The direction used for menu-direction() must be horizontal or vertical.';
   }
 }
 
@@ -166,8 +166,8 @@ $menu-item-background-active: $primary-color !default;
     }
 
     // Responsive orientation
-    @each $breakpoint in map_keys($breakpoints) {
-      @if $breakpoint != sl-first(map_keys($breakpoints)) {
+    @each $breakpoint in map_keys($breakpoints) { // sass-lint:disable-line function-name-format
+      @if $breakpoint != sl-first(map_keys($breakpoints)) { // sass-lint:disable-line function-name-format
         @include breakpoint-up($breakpoint) {
           &.#{$breakpoint}-horizontal {
             @include menu-direction(horizontal);

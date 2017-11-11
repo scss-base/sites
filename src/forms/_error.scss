@@ -22,8 +22,8 @@ $error-text-font-weight: $global-font-weight-normal !default;
 @mixin error-text-base(
   $color: $error-text-color,
   $font-size: $error-text-font-size,
-  $font-style:$error-text-font-style,
-  $font-weight:$error-text-font-weight
+  $font-style: $error-text-font-style,
+  $font-weight: $error-text-font-weight
 ) {
   color: $color;
   display: none;

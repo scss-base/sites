@@ -94,10 +94,12 @@ $global-right: if($global-text-direction == rtl, left, right);
   html {
     box-sizing: border-box;
     font-size: $global-font-size;
-    text-rendering: optimizeLegibility
+    text-rendering: optimizeLegibility;
   }
 
   body {
+    -moz-osx-font-smoothing: grayscale; // sass-lint:disable-line no-vendor-prefixes
+    -webkit-font-smoothing: antialiased; // sass-lint:disable-line no-vendor-prefixes
     background: $global-background;
     color: $global-font-color;
     font-family: $global-font-family;
@@ -106,16 +108,14 @@ $global-right: if($global-text-direction == rtl, left, right);
     margin: 0;
     padding: 0;
     text-rendering: $global-text-rendering;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
   }
 
   img {
+    -ms-interpolation-mode: bicubic; // sass-lint:disable-line no-vendor-prefixes
     border: 0;
     display: inline-block;
     height: auto;
     max-width: 100%;
-    -ms-interpolation-mode: bicubic;
     vertical-align: middle;
   }
 }

@@ -74,6 +74,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
   $border: $tab-border,
   $margin: $tab-margin
 ) {
+  // sass-lint:disable-block indentation
   background: $background;
   border: $border;
   display: flex;
@@ -108,7 +109,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
     flex-direction: column;
 
   } @else {
-    @warn 'The direction used for tabs-direction() must be horizontal or vertical.';
+    @error 'The direction used for tabs-direction() must be horizontal or vertical.';
   }
 }
 
@@ -162,15 +163,15 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
   @if $dir == horizontal {
     border: {
       left: $border;
-      top: none;
+      top: 0;
     }
   } @else if $dir == vertical {
     border: {
-      left: none;
+      left: 0;
       top: $border;
     }
   } @else {
-    @warn 'The direction used for tabs-content-direction() must be horizontal or vertical.';
+    @error 'The direction used for tabs-content-direction() must be horizontal or vertical.';
   }
 }
 

@@ -34,7 +34,7 @@ $button-margin: 0 0 $global-margin 0 !default;
 /// Padding inside buttons.
 ///
 /// @type List
-$button-padding: 0.5em 1em !default;
+$button-padding: .5em 1em !default;
 
 /// @todo Documentation needed...
 $button-primary-background-color: $primary-color !default;
@@ -66,8 +66,8 @@ $button-danger-color-hover: $white !default;
 ///
 /// @type Map
 $button-sizes: (
-  tiny: 0.6rem,
-  small: 0.75rem,
+  tiny: .6rem,
+  small: .75rem,
   default: 1rem,
   large: 1.25rem,
 ) !default;
@@ -80,7 +80,7 @@ $button-radius: $global-radius !default;
 /// transitions for buttons.
 ///
 /// @type List
-$button-transition: background-color 0.25s ease-out, color 0.25s ease-out !default;
+$button-transition: background-color .25s ease-out, color .25s ease-out !default;
 
 /// Mouse cursor for disabled button.
 ///

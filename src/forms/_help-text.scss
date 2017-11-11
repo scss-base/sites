@@ -15,9 +15,9 @@ $help-text-font-style: italic !default;
 
 @mixin form-help-text {
   .help-text {
-    margin-top: ($form-spacing * 0.5) * -1;
+    color: $help-text-color;
     font-size: $help-text-font-size;
     font-style: $help-text-font-style;
-    color: $help-text-color;
+    margin-top: ($form-spacing * 0.5) * -1; // sass-lint:disable-line leading-zero
   }
 }

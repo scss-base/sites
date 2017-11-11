@@ -9,11 +9,10 @@
   [type='checkbox'] + label,
   [type='radio'] + label {
     display: inline-block;
-    vertical-align: baseline;
-
-    margin-#{$global-left}: $form-spacing * 0.5;
+    margin-#{$global-left}: $form-spacing * 0.5; // sass-lint:disable-line leading-zero
     margin-#{$global-right}: $form-spacing;
     margin-bottom: 0;
+    vertical-align: baseline;
 
     &[for] {
       cursor: pointer;
@@ -23,7 +22,7 @@
   // Styles for inputs inside labels
   label > [type='checkbox'],
   label > [type='radio'] {
-    margin-#{$global-right}: $form-spacing * 0.5;
+    margin-#{$global-right}: $form-spacing * 0.5; // sass-lint:disable-line leading-zero
   }
 
   // Normalize file input width

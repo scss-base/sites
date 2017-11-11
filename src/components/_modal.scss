@@ -47,7 +47,7 @@ $modal-z-index: 1000 !default;
 /// Background color of modal overlays.
 ///
 /// @type Color
-$modal-overlay-background: rgba($black, 0.45) !default;
+$modal-overlay-background: rgba($black, .45) !default;
 
 /// Adds base styles for a modal.
 ///
@@ -91,8 +91,8 @@ $modal-overlay-background: rgba($black, 0.45) !default;
   $max-width: $modal-max-width
 ) {
   @include breakpoint-up(medium) {
-    width: $width;
     max-width: $max-width;
+    width: $width;
   }
 }
 

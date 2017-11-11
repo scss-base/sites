@@ -24,29 +24,29 @@ $legend-margin: rem-calc(8) !default;
 $legend-padding: rem-calc(0 3) !default;
 
 @mixin fieldset-base {
+  border: $fieldset-border;
   margin: $fieldset-margin;
   padding: $fieldset-padding;
-  border: $fieldset-border;
 
   legend {
+    background: $global-background;
     margin: 0;
     margin-#{$global-left}: rem-calc(-3);
     margin-bottom: $legend-margin;
     padding: $legend-padding;
-    background: $global-background;
   }
 }
 
 @mixin form-fieldset {
   fieldset {
+    border: 0;
     margin: 0;
     padding: 0;
-    border: 0;
   }
 
   legend {
+    margin-bottom: $form-spacing * 0.5; // sass-lint:disable-line leading-zero
     max-width: 100%;
-    margin-bottom: $form-spacing * 0.5;
   }
 
   .fieldset {
