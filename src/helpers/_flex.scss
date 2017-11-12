@@ -22,7 +22,7 @@ $flex-align: (
     @if map-has-key($flex-justify, $x) {
       $x: map-get($flex-justify, $x);
     } @else {
-      @warn 'flex-grid-row-align(): #{$x} is not a valid value for horizontal alignment. Use left, right, center, justify, or spaced.';
+      @error 'flex-grid-row-align(): #{$x} is not a valid value for horizontal alignment. Use left, right, center, justify, or spaced.';
     }
   }
 
@@ -30,12 +30,12 @@ $flex-align: (
     @if map-has-key($flex-align, $y) {
       $y: map-get($flex-align, $y);
     } @else {
-      @warn 'flex-grid-row-align(): #{$y} is not a valid value for vertical alignment. Use top, bottom, middle, or stretch.';
+      @error 'flex-grid-row-align(): #{$y} is not a valid value for vertical alignment. Use top, bottom, middle, or stretch.';
     }
   }
 
-  justify-content: $x;
   align-items: $y;
+  justify-content: $x;
 }
 
 /// Vertically align a single column within a flex row. Apply this mixin to a flex column.
@@ -46,7 +46,7 @@ $flex-align: (
     @if map-has-key($flex-align, $y) {
       $y: map-get($flex-align, $y);
     } @else {
-      @warn 'flex-grid-column-align(): #{$y} is not a valid value for alignment. Use top, bottom, middle, or stretch.';
+      @error 'flex-grid-column-align(): #{$y} is not a valid value for alignment. Use top, bottom, middle, or stretch.';
     }
   }
 

@@ -45,10 +45,10 @@ $select-radius: $global-radius !default;
 
   // Focus state
   &:focus {
-    outline: none;
-    border: $input-border-focus;
     background-color: $input-background-focus;
+    border: $input-border-focus;
     box-shadow: $input-shadow-focus;
+    outline: none;
 
     @if has-value($input-transition) {
       transition: $input-transition;
@@ -62,13 +62,13 @@ $select-radius: $global-radius !default;
   }
 
   // Hide the dropdown arrow shown in newer IE versions
-  &::-ms-expand {
+  &::-ms-expand { // sass-lint:disable-line no-vendor-prefixes
     display: none;
   }
 
   &[multiple] {
-    height: auto;
     background-image: none;
+    height: auto;
   }
 }
 

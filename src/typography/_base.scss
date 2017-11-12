@@ -161,7 +161,7 @@ $definition-list-margin-bottom: 1rem !default;
 /// Spacing between `<dt>` and `<dd>` elements.
 ///
 /// @type Number
-$definition-list-term-margin-bottom: 0.3rem !default;
+$definition-list-term-margin-bottom: .3rem !default;
 
 /// Font weight for `<dt>` elements.
 ///
@@ -373,9 +373,9 @@ $keystroke-radius: $global-radius !default; // @todo...
   ul,
   ol,
   dl {
-    margin-bottom: $list-margin-bottom;
-    list-style-position: $list-style-position;
     line-height: $list-lineheight;
+    list-style-position: $list-style-position;
+    margin-bottom: $list-margin-bottom;
   }
 
   // List items
@@ -385,8 +385,8 @@ $keystroke-radius: $global-radius !default; // @todo...
 
   // Unordered lists
   ul {
-    margin-#{$global-left}: $list-side-margin;
     list-style-type: $list-style-type;
+    margin-#{$global-left}: $list-side-margin;
   }
 
   // Ordered lists
@@ -395,7 +395,8 @@ $keystroke-radius: $global-radius !default; // @todo...
   }
 
   // Nested unordered/ordered lists
-  ul, ol {
+  ul,
+  ol {
     & & {
       margin-#{$global-left}: $list-nested-side-margin;
       margin-bottom: 0;
@@ -407,8 +408,8 @@ $keystroke-radius: $global-radius !default; // @todo...
     margin-bottom: $definition-list-margin-bottom;
 
     dt {
-      margin-bottom: $definition-list-term-margin-bottom;
       font-weight: $definition-list-term-weight;
+      margin-bottom: $definition-list-term-margin-bottom;
     }
   }
 
@@ -416,13 +417,14 @@ $keystroke-radius: $global-radius !default; // @todo...
   // --------------
 
   blockquote {
+    border-#{$global-left}: $blockquote-border;
     margin: 0 0 $paragraph-margin-bottom;
     padding: $blockquote-padding;
-    border-#{$global-left}: $blockquote-border;
 
-    &, p {
-      line-height: $paragraph-line-height;
+    &,
+    p {
       color: $blockquote-color;
+      line-height: $paragraph-line-height;
     }
   }
 
@@ -430,11 +432,11 @@ $keystroke-radius: $global-radius !default; // @todo...
   // ------------
 
   cite {
+    color: $cite-color;
     display: block;
     font-size: $cite-font-size;
-    color: $cite-color;
 
-    &:before {
+    &::before {
       content: $cite-pseudo-content;
     }
   }
@@ -459,27 +461,23 @@ $keystroke-radius: $global-radius !default; // @todo...
   // ---------------
 
   code {
-    padding: $code-padding;
-
-    border: $code-border;
     background-color: $code-background;
-
+    border: $code-border;
+    color: $code-color;
     font-family: $code-font-family;
     font-weight: $code-font-weight;
-    color: $code-color;
+    padding: $code-padding;
   }
 
   // 13. Keystrokes
   // --------------
 
   kbd {
+    background-color: $keystroke-background;
+    color: $keystroke-color;
+    font-family: $keystroke-font;
     margin: 0;
     padding: $keystroke-padding;
-
-    background-color: $keystroke-background;
-
-    font-family: $keystroke-font;
-    color: $keystroke-color;
 
     @if has-value($keystroke-radius) {
       border-radius: $keystroke-radius;

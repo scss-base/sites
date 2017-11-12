@@ -1,3 +1,5 @@
+// sass-lint:disable no-important no-color-keywords no-color-literals force-element-nesting force-pseudo-nesting force-attribute-nesting no-qualifying-elements
+
 /// If `true`, all elements will have transparent backgrounds when printed, to save on ink.
 ///
 /// @type Boolean
@@ -29,6 +31,7 @@ $print-hrefs: true !default;
     .show-for-print {
       display: block !important;
     }
+
     .hide-for-print {
       display: none !important;
     }
@@ -36,18 +39,23 @@ $print-hrefs: true !default;
     table.show-for-print {
       display: table !important;
     }
+
     thead.show-for-print {
       display: table-header-group !important;
     }
+
     tbody.show-for-print {
       display: table-row-group !important;
     }
+
     tr.show-for-print {
       display: table-row !important;
     }
+
     td.show-for-print {
       display: table-cell !important;
     }
+
     th.show-for-print {
       display: table-cell !important;
     }
@@ -57,21 +65,22 @@ $print-hrefs: true !default;
     a:visited {
       text-decoration: underline;
     }
+
     @if $print-hrefs {
-      a[href]:after {
+      a[href]::after {
         content: ' (' attr(href) ')';
       }
     }
 
     // Don't display the URL for images or JavaScript/internal links
-    .ir a:after,
-    a[href^='javascript:']:after,
-    a[href^='#']:after {
+    .ir a::after,
+    a[href^='javascript:']::after,
+    a[href^='#']::after {
       content: '';
     }
 
     // Display what an abbreviation stands for after the text
-    abbr[title]:after {
+    abbr[title]::after {
       content: ' (' attr(title) ')';
     }
 
@@ -97,7 +106,7 @@ $print-hrefs: true !default;
     }
 
     @page {
-      margin: 0.5cm;
+      margin: .5cm;
     }
 
     p,

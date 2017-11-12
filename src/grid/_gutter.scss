@@ -26,14 +26,14 @@
         $margin: rem-calc($value) / 2 * -1;
 
         @include breakpoint-up($breakpoint) {
-          margin-right: $margin;
           margin-left: $margin;
+          margin-right: $margin;
         }
       }
     }
   } @else if type-of($gutter) == 'number' and strip-unit($gutter) > 0 {
     $margin: rem-calc($gutter) / 2 * -1;
-    margin-right: $margin;
     margin-left: $margin;
+    margin-right: $margin;
   }
 }

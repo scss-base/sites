@@ -69,12 +69,11 @@ $tab-content-padding: rem-calc(20) !default;
 $tabs-container-margin: 0 0 $global-margin 0 !default;
 
 /// Adds styles for tabs.
-@mixin tabs-base (
+@mixin tabs-base(
   $background: $tab-background,
   $border: $tab-border,
   $margin: $tab-margin
 ) {
-  // sass-lint:disable-block indentation
   background: $background;
   border: $border;
   display: flex;
@@ -84,8 +83,8 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 
   // Reset line height to make the height of the overall item easier to calculate
   > li > a {
-      display: block;
-      line-height: 1;
+    display: block;
+    line-height: 1;
   }
 
   // Reset styles of inner elements
@@ -146,7 +145,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 }
 
 /// Adds styles for the wrapper that surrounds a tab groups.
-@mixin tabs-content-style (
+@mixin tabs-content-style(
   $background: $tab-content-background,
   $border: $tab-content-border,
   $color: $tab-content-color
@@ -156,7 +155,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
   color: $color;
 }
 
-@mixin tabs-content-direction (
+@mixin tabs-content-direction(
   $dir: horizontal,
   $border: $tab-content-border
 ) {
@@ -176,7 +175,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 }
 
 /// @todo Documentation needed...
-@mixin tab-base (
+@mixin tab-base(
   $padding: $tab-content-padding
 ) {
   display: none;

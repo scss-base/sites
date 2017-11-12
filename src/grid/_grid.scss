@@ -40,7 +40,7 @@ $grid-block-max: 8 !default;
 
     // Expanding
     &.expanded,
-    &.expanded .row {
+    &.expanded .row { // sass-lint:disable-line force-element-nesting
       max-width: none;
     }
 

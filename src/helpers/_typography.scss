@@ -1,14 +1,13 @@
-@mixin base-typography-helpers{
+@mixin base-typography-helpers {
 
-  @each $breakpoint in map_keys($breakpoints) {
+  @each $breakpoint in map_keys($breakpoints) { // sass-lint:disable-line function-name-format
     @include breakpoint-up($breakpoint) {
       @each $align in (left, right, center, justify) {
-        @if $breakpoint != map-first(map_keys($breakpoints)) {
+        @if $breakpoint != map-first(map_keys($breakpoints)) { // sass-lint:disable-line function-name-format
           .#{$breakpoint}-text-#{$align} {
             text-align: $align;
           }
-        }
-        @else {
+        } @else {
           .text-#{$align} {
             text-align: $align;
           }

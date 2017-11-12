@@ -18,9 +18,9 @@
 // 1. Color
 // --------
 
-$black: #000000;
+$black: #000;
 $grey: #bdbdbd;
-$white: #ffffff;
+$white: #fff;
 $blue: #2185d0;
 $red: #c62828;
 $yellow: #ffdd57;
@@ -118,7 +118,7 @@ $list-style-position: outside;
 $list-side-margin: 1.25rem;
 $list-nested-side-margin: 1.25rem;
 $definition-list-margin-bottom: 1rem;
-$definition-list-term-margin-bottom: 0.3rem;
+$definition-list-term-margin-bottom: .3rem;
 $definition-list-term-weight: $global-font-weight-bold;
 $blockquote-color: $grey;
 $blockquote-padding: rem-calc(9 20 0 19);
@@ -162,10 +162,10 @@ $input-background-focus: $white;
 $input-background-disabled: $grey;
 $input-border: 1px solid $grey;
 $input-border-focus: 1px solid $grey;
-$input-shadow: inset 0 1px 2px rgba($black, 0.1);
+$input-shadow: inset 0 1px 2px rgba($black, .1);
 $input-shadow-focus: 0 0 5px $grey;
 $input-cursor-disabled: not-allowed;
-$input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+$input-transition: box-shadow .5s, border-color .25s ease-in-out;
 $input-number-spinners: true;
 $input-radius: $global-radius;
 $input-button-radius: $global-radius;
@@ -190,7 +190,7 @@ $button-color: $black;
 $button-font-family: inherit;
 $button-font-weight: $global-font-weight-normal;
 $button-margin: 0 0 $global-margin 0;
-$button-padding: 0.5em 1em;
+$button-padding: .5em 1em;
 $button-primary-background-color: $primary-color;
 $button-primary-background-color-hover: scale-color($button-primary-background-color, $lightness: $button-background-hover-lightness);
 $button-primary-color: $white;
@@ -212,13 +212,13 @@ $button-danger-background-color-hover: scale-color($button-danger-background-col
 $button-danger-color: $white;
 $button-danger-color-hover: $white;
 $button-sizes: (
-  tiny: 0.6rem,
-  small: 0.75rem,
+  tiny: .6rem,
+  small: .75rem,
   default: 1rem,
   large: 1.25rem,
 );
 $button-radius: $global-radius;
-$button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+$button-transition: background-color .25s ease-out, color .25s ease-out;
 $button-cursor-disabled: not-allowed;
 $button-opacity-disabled: .25;
 

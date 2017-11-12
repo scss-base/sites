@@ -1,11 +1,11 @@
 /// @todo Documentation needed...
 @function svg-encode($svg) {
   $encoding-reference: (
-      ('<','%3C'),
-      ('>','%3E'),
-      ('"','\''),
-      ('#','%23'),
-      ('&','%26')
+    ('<', '%3C'),
+    ('>', '%3E'),
+    ('"', '\''),
+    ('#', '%23'),
+    ('&', '%26')
   );
 
   @each $char, $encoded in $encoding-reference {

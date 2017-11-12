@@ -24,9 +24,8 @@
   // If the key doesn't exist, or it's the last key in the map, return null
   @if $i > length($map) {
     @return null;
-  }
+  } @else {
     // Otherwise, return the value
-  @else {
     @return nth($values, $i);
   }
 }

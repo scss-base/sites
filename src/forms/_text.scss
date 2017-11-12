@@ -51,7 +51,7 @@ $input-border-focus: 1px solid $grey !default;
 /// Box shadow inside text inputs when not focused.
 ///
 /// @type Shadow
-$input-shadow: inset 0 1px 2px rgba($black, 0.1) !default;
+$input-shadow: inset 0 1px 2px rgba($black, .1) !default;
 
 /// Box shadow outside text inputs when focused.
 ///
@@ -66,7 +66,7 @@ $input-cursor-disabled: not-allowed !default;
 /// Properties to transition on text inputs.
 ///
 /// @type Transition
-$input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out !default;
+$input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
 
 /// Enables the up/down buttons that Chrome and Firefox add to `<input type='number'>` elements.
 ///
@@ -84,20 +84,20 @@ $input-radius: $global-radius !default;
 $input-button-radius: $global-radius !default;
 
 @mixin form-text {
-  [type="text"],
-  [type="password"],
-  [type="date"],
-  [type="datetime"],
-  [type="datetime-local"],
-  [type="month"],
-  [type="week"],
-  [type="email"],
-  [type="number"],
-  [type="search"],
-  [type="tel"],
-  [type="time"],
-  [type="url"],
-  [type="color"],
+  [type='text'],
+  [type='password'],
+  [type='date'],
+  [type='datetime'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='week'],
+  [type='email'],
+  [type='number'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='url'],
+  [type='color'],
   textarea {
     appearance: none;
     background-color: $input-background;
@@ -123,10 +123,10 @@ $input-button-radius: $global-radius !default;
 
     // Focus state
     &:focus {
-      outline: none;
-      border: $input-border-focus;
       background-color: $input-background-focus;
+      border: $input-border-focus;
       box-shadow: $input-shadow-focus;
+      outline: none;
 
       @if has-value($input-transition) {
         transition: $input-transition;
@@ -163,18 +163,18 @@ $input-button-radius: $global-radius !default;
   }
 
   // Reset Normalize setting content-box to search elements
-  input[type='search'] {
+  input[type='search'] { // sass-lint:disable-line force-attribute-nesting no-qualifying-elements
     box-sizing: border-box;
   }
 
   // Number input styles
   [type='number'] {
     @if not $input-number-spinners {
-      -moz-appearance: textfield;
+      -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefixes
 
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
+      &::-webkit-inner-spin-button, // sass-lint:disable-line no-vendor-prefixes
+      &::-webkit-outer-spin-button { // sass-lint:disable-line no-vendor-prefixes
+        -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
         margin: 0;
       }
     }
