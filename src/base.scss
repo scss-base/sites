@@ -1,9 +1,5 @@
 /*! scss-base for sites v0.1.0 | github.com/scss-base/sites */
 
-// Dependencies
-@import '../node_modules/sassy-lists/stylesheets/functions/first';
-@import '../node_modules/sassy-lists/stylesheets/functions/is-empty';
-
 // Utilities
 @import 'utilities/utilities';
 
@@ -15,6 +11,7 @@
 @import 'components/components';
 @import 'forms/forms';
 @import 'grid/grid';
+@import 'helpers/helpers';
 @import 'icons/icons';
 @import 'layouts/layouts';
 @import 'typography/typography';
@@ -30,3 +27,6 @@
 @include base-tabs;
 @include base-top-bar;
 @include base-typography;
+
+@include base-flex-helpers;
+@include base-typography-helpers;
