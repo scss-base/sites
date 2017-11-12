@@ -167,7 +167,7 @@ $menu-item-background-active: $primary-color !default;
 
     // Responsive orientation
     @each $breakpoint in map_keys($breakpoints) { // sass-lint:disable-line function-name-format
-      @if $breakpoint != sl-first(map_keys($breakpoints)) { // sass-lint:disable-line function-name-format
+      @if $breakpoint != map-first(map_keys($breakpoints)) { // sass-lint:disable-line function-name-format
         @include breakpoint-up($breakpoint) {
           &.#{$breakpoint}-horizontal {
             @include menu-direction(horizontal);

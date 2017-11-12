@@ -3,7 +3,7 @@
   @each $breakpoint in map_keys($breakpoints) {
     @include breakpoint-up($breakpoint) {
       @each $align in (left, right, center, justify) {
-        @if $breakpoint != sl-first(map_keys($breakpoints)) {
+        @if $breakpoint != map-first(map_keys($breakpoints)) {
           .#{$breakpoint}-text-#{$align} {
             text-align: $align;
           }
