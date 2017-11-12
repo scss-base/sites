@@ -7,6 +7,8 @@ module.exports = {
     'ios >= 7'
   ],
 
+  JS_FILES: ['js/**/*.js'],
+
   SASS_FILES: [
     'src/base.scss',
   ],
