@@ -19,8 +19,8 @@ $dropdownmenu-min-width: 200px !default;
   > li {
     position: relative;
 
-    &.is-active > .menu {
-      display: inline-flex;
+    &.is-opened > .menu {
+       display: inline-flex;
     }
   }
 }
