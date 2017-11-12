@@ -23,6 +23,10 @@ class Dropdown extends BasePlugin{
     this.parentElement.classList.remove('is-opened');
   }
 
+  /**
+   * Adjusts the positionable possible position
+   * @todo Create a class Positionable...
+   */
   repositon() {
     const menuRect = this.element.getBoundingClientRect();
     const menuLeft = menuRect.left + document.body.scrollLeft;

@@ -17,7 +17,7 @@ class Toggler extends BasePlugin {
 
     this.element = element;
     this.container = $(`#${this.element.dataset.toggle}`);
-    this.click();
+    //this.click();
   }
 
   click() {

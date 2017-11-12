@@ -1,8 +1,11 @@
 class BasePlugin {
 
-  constructor(element, options) {
-    console.log('init Plugin class');
-  }
+  /**
+   *
+   * @param element
+   * @param [options]
+   */
+  constructor(element, options) {}
 }
 
 export {BasePlugin};
