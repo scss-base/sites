@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Theming Examples</title>
+  <link rel="stylesheet" href="../build/css/base.css">
+</head>
+<body>
+
+
+<button type="button" class="primary" data-toggle="section">Toggle Class</button>
+<button type="button" class="primary" data-open="modal1">Open Modal</button>
+<button type="button" class="primary" data-close="modal1">Close Modal</button>
+
+<div class="section primary" id="section" data-toggler="primary">sdfsdfsdf</div>
+<div id="modal1" data-modal>
+  modal1
+</div>
+
+
+<div class="row">
+  <div class="column">
+    <h1 class="text-center">Theming Examples</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <h2>Site</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+    <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient
+      montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+  </div>
+  <div class="column">
+    <h2>Example body text</h2>
+    <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis
+      parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+    <p>
+      <small>This line of text is meant to be treated as fine print.</small>
+    </p>
+    <p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
+    <p>The following snippet of text is <em>rendered as italicized text</em>.</p>
+    <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
+  </div>
+  <div class="column">
+    <div class="ui three column stackable padded middle aligned centered color grid">
+      <div class="red column">Red</div>
+      <div class="orange column">Orange</div>
+      <div class="yellow column">Yellow</div>
+      <div class="olive column">Olive</div>
+      <div class="green column">Green</div>
+      <div class="teal column">Teal</div>
+      <div class="blue column">Blue</div>
+      <div class="violet column">Violet</div>
+      <div class="purple column">Purple</div>
+      <div class="pink column">Pink</div>
+      <div class="brown column">Brown</div>
+      <div class="grey column">Grey</div>
+      <div class="black column">Black</div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <h2>Menu</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <ul class="menu">
+      <li><a href="#">Link</a></li>
+      <li class="is-active"><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+  <div class="column">
+    <ul class="menu vertical">
+      <li><a href="#">Link</a></li>
+      <li class="is-active"><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+      <li>
+        <ul class="menu vertical nested">
+          <li><a href="#">Sub link</a></li>
+          <li><a href="#">Sub link</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <h2>Button</h2>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <a href="#" class="button">Default</a>
+    <a href="#" class="button primary">Primary</a>
+    <a href="#" class="button success">Success</a>
+    <a href="#" class="button warning">Warning</a>
+    <a href="#" class="button danger">Danger</a>
+  </div>
+  <div class="column">
+    <button type="button" class="tiny">Tiny</button>
+    <button type="button" class="small">Small</button>
+    <button type="button">Default</button>
+    <button type="button" class="large">Large</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <h2>Dropdown Menu</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li><a href="#">Link</a></li>
+      <li class="is-active">
+        <a href="#">Link</a>
+        <ul class="menu vertical">
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Link</a></li>
+      <li>
+        <a href="#">Link</a>
+        <ul class="menu vertical">
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <h2>Modal</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <a data-modal="exampleModal1">Click me for a modal</a>
+  </div>
+</div>
+
+<script src="../build/js/base.js"></script>
+<script src="test.js"></script>
+
+</body>
+</html>
