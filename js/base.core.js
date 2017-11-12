@@ -1,9 +1,9 @@
-const BASE_VERSION = '1.0.0';
+import { version } from '../package.json';
 
 class BaseCore {
 
   constructor() {
-    this.version = BASE_VERSION;
+    this.version = version;
   }
 
   init() {

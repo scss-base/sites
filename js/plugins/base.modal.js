@@ -1,9 +1,9 @@
 import { BasePlugin } from '../base.plugin';
 
 /**
- * Toggler module to toggle a css class
+ * Modal module
  */
-class Toggler extends BasePlugin {
+class Modal extends BasePlugin {
 
   /**
    *
@@ -13,12 +13,8 @@ class Toggler extends BasePlugin {
   constructor(element, options) {
     super(element, options);
     this.element = element;
-  }
-
-  toggle() {
-    const className = this.element.dataset.toggler;
-    this.element.classList.toggle(className);
+    // console.log(this.element);
   }
 }
 
-export { Toggler };
+export { Modal };
