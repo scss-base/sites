@@ -13,7 +13,14 @@ class Modal extends BasePlugin {
   constructor(element, options) {
     super(element, options);
     this.element = element;
-    // console.log(this.element);
+  }
+
+  close() {
+    this.element.style.display = 'none';
+  }
+
+  open() {
+    this.element.style.display = 'block';
   }
 }
 
