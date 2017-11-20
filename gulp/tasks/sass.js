@@ -9,7 +9,6 @@ const autoprefixer = require('autoprefixer');
 
 const CONFIG = require('../config');
 
-// Compiles Sass files into CSS
 gulp.task('sass', (cb) => {
   sequence('sass:build', 'sass:lint', cb);
 });
