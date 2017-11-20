@@ -1,38 +1,63 @@
 import { $, $$ } from './base.dom';
-import { Toggler } from '../plugins/base.toggler';
-import { Modal } from '../plugins/base.modal';
+import Plugins from '../plugins';
+
+const triggerTypes = ['close', 'open', 'toggle'];
 
 class Trigger {
 
   constructor() {
-    this.listeners = {};
-    this.init();
+
+
+
+    this.bindClickEvents();
   }
 
-  init() {
-    $$('[ data-close], [data-open], [ data-toggle]').forEach(element => {
-      const id = element.dataset.close || element.dataset.open || element.dataset.toggle;
-      if (!this.listeners[id]) {
-        let className = undefined;
-        const selector = $(`#${id}`);
-        Object.keys(selector.dataset).forEach(dataName => {
-          switch (dataName) {
-            case 'modal':
-              className = new Modal(selector);
-              break;
-            case 'toggler':
-              className = new Toggler(selector);
-              break;
-          }
+  bindClickEvents() {
+    $$('[data-close], [data-open], [data-toggle]').forEach(element => {
+      const triggerType = this.getTriggerType(element);
+
+      console.log(element);
+
+
+      if (triggerType) {
+        element.addEventListener('click', () => {
+          const id = element.dataset[triggerType];
+          const targetElement = $(`#${id}`);
+
+          console.log(Plugins);
+          console.log(targetElement);
+          console.log(element.dataset[triggerType]);
+          console.log('test', element.dataset, triggerType);
+
         });
-        this.listeners[id] = className;
       }
     });
-    this.initListeners();
   }
 
-  initListeners() {
-    console.log(this.listeners);
+  getTriggerType(element) {
+    let type = null;
+
+    Object.keys(element.dataset).forEach(dataName => {
+      switch (dataName) {
+        case 'close':
+          type = 'close';
+          break;
+        case 'open':
+          type = 'open';
+          break;
+        case 'toggle':
+          type = 'toggle';
+          break;
+        default:
+          return false;
+      }
+    });
+
+    return type;
+  }
+
+  getPluginClass() {
+
   }
 
   // initCloseListener() {

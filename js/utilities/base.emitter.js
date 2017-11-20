@@ -1,14 +1,18 @@
 import { Subject } from 'rxjs-es';
 
+let instance;
+
 class Emitter {
 
   constructor() {
+    if (!instance) instance = this;
     this.subjects = [];
+    return instance;
   }
 
   emit(name, data) {
     this.subjects[name] || (this.subjects[name] = new Subject());
-    this.subjects[name].onNext(data);
+    this.subjects[name].next(data);
   }
 
   on(name, handler) {
