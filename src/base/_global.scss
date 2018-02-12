@@ -104,7 +104,7 @@ $global-right: if($global-text-direction == rtl, left, right);
     color: $global-font-color;
     font: {
       family: $global-font-family;
-      size: $global-font-size;
+      size: 1rem; // reset
       weight: $global-font-weight-normal;
     };
     font-family: $global-font-family;
