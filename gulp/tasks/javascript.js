@@ -25,14 +25,14 @@ gulp.task('javascript', (cb) => {
   sequence('javascript:dev', cb);
 });
 
-gulp.task('javascript:dev', function () {
+gulp.task('javascript:dev', () => {
   return gulp.src('js/base.js')
     .pipe(named())
     .pipe(webpackStream(webpackGulpConfig, webpack))
     .pipe(gulp.dest('build/js'));
 });
 
-gulp.task('javascript:build', function () {
+gulp.task('javascript:build', () => {
   return gulp.src('js/base.js')
     .pipe(named())
     .pipe(webpackStream(Object.assign({}, webpackGulpConfig, {
