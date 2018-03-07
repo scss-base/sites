@@ -107,8 +107,6 @@ $global-right: if($global-text-direction == rtl, left, right);
       size: 1rem; // reset
       weight: $global-font-weight-normal;
     };
-    font-family: $global-font-family;
-    font-weight: $global-font-weight-normal;
     line-height: $global-line-height;
     margin: 0;
     padding: 0;
