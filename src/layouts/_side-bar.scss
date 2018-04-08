@@ -1,0 +1,152 @@
+/// Background color for the side bar menu. This color also cascades to menus within the side bar.
+///
+/// @type Color
+$side-bar-background: scale-color($black, $lightness: 20%) !default;
+
+/// Text color for the side bar title.
+///
+/// @type Color
+$side-bar-title-color: $white !default;
+
+/// Font size for the side bar title.
+///
+/// @type Keyword | Number
+$side-bar-title-font-size: rem-calc(16) !default;
+
+/// Font weight for the side bar title.
+///
+/// @type Keyword | Number
+$side-bar-title-font-weight: $global-font-weight-bold !default;
+
+/// Padding value for the side bar title.
+///
+/// @type Number
+$side-bar-title-padding: rem-calc(10) !default;
+
+/// Text color for a top bar menu item.
+///
+/// @type Color
+$side-bar-menu-item-color: $white !default;
+
+/// Background color for a hover top bar menu item.
+///
+/// @type Color
+$side-bar-menu-item-background-hover: scale-color($black, $lightness: 13.5%) !default;
+
+/// Text color for a hover top bar menu item.
+///
+/// @type Color
+$side-bar-menu-item-color-hover: $white !default;
+
+/// Background color for an active top bar menu item.
+///
+/// @type Color
+$side-bar-menu-item-background-active: $primary-color !default;
+
+/// Text color for an active top bar menu item.
+///
+/// @type Color
+$side-bar-menu-item-color-active: $white !default;
+
+/// Padding for top bar menu item.
+///
+/// @type Number
+$side-bar-menu-item-padding: rem-calc(10 20) !default;
+
+/// @todo Documentation needed...
+@mixin side-bar-base {
+  align-items: stretch;
+  display: flex;
+}
+
+/// @todo Documentation needed...
+@mixin side-bar-content {
+  flex: 1 1 auto;
+}
+
+/// @todo Documentation needed...
+@mixin side-bar-menu(
+  $background: $side-bar-background
+) {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  height: 100vh;
+
+  &,
+  ul {
+    background-color: $background;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin side-bar-title(
+  $color: $side-bar-title-color,
+  $font-size: $side-bar-title-font-size,
+  $font-weight: $side-bar-title-font-weight,
+  $padding: $side-bar-title-padding
+) {
+  color: $color;
+  flex: 0 1 auto;
+  font: {
+    size: $font-size;
+    weight: $font-weight;
+  }
+  padding: $padding;
+
+  > * {
+    margin: 0;
+  }
+}
+
+/// @todo Documentation needed...
+@mixin side-bar-menu-style(
+  $color: $side-bar-menu-item-color,
+  $background-hover: $side-bar-menu-item-background-hover,
+  $color-hover: $side-bar-menu-item-color-hover,
+  $background-active: $side-bar-menu-item-background-active,
+  $color-active: $side-bar-menu-item-color-active,
+  $padding: $side-bar-menu-item-padding
+) {
+  @include menu-style($color, $background-hover, $color-hover, $background-active, $color-active, $padding);
+}
+
+/// @todo Documentation needed...
+@mixin side-bar-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/// @todo Documentation needed...
+@mixin base-side-bar {
+
+  .side-bar {
+    @include side-bar-base;
+  }
+
+  .side-bar-content {
+    @include side-bar-content;
+  }
+
+  .side-bar-menu {
+    @include side-bar-menu;
+  }
+
+  .side-bar-title {
+    @include side-bar-title;
+  }
+
+  .side-bar-container {
+    @include side-bar-container;
+  }
+
+  .side-bar-top,
+  .side-bar-bottom {
+
+    .menu {
+      @include side-bar-menu-style;
+    }
+  }
+}
