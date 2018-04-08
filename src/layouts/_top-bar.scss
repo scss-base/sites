@@ -134,11 +134,7 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
   $color-active: $top-bar-menu-item-color-active,
   $padding: $top-bar-menu-item-padding
 ) {
-  @include menu-style($color, $background-hover, $color-hover, $background-active, $color-active);
-
-  > li > a {
-    padding: $padding;
-  }
+  @include menu-style($color, $background-hover, $color-hover, $background-active, $color-active, $padding);
 }
 
 /// @todo Documentation needed...
