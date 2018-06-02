@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const sequence = require('run-sequence');
 const named = require('vinyl-named');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -21,10 +20,6 @@ const webpackGulpConfig = {
   },
 };
 
-gulp.task('javascript', (cb) => {
-  sequence('javascript:dev', cb);
-});
-
 gulp.task('javascript:dev', () => {
   return gulp.src('js/base.js')
     .pipe(named())
@@ -42,3 +37,5 @@ gulp.task('javascript:build', () => {
     }), webpack))
     .pipe(gulp.dest('build/js'));
 });
+
+gulp.task('javascript', gulp.series('javascript:dev'));

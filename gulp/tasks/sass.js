@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const sequence = require('run-sequence');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
@@ -9,9 +8,6 @@ const autoprefixer = require('autoprefixer');
 
 const CONFIG = require('../config');
 
-gulp.task('sass', (cb) => {
-  sequence('sass:build', 'sass:lint', cb);
-});
 
 gulp.task('sass:build', () => {
   return gulp.src(CONFIG.SASS_FILES)
@@ -32,3 +28,5 @@ gulp.task('sass:lint', () => {
     }))
     .pipe(sassLint.format());
 });
+
+gulp.task('sass', gulp.series('sass:build', 'sass:lint'));

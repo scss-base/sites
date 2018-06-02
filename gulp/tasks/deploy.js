@@ -1,13 +1,8 @@
 const gulp = require('gulp');
-const sequence = require('run-sequence');
 const inquirer = require('inquirer');
 
 const CURRENT_VERSION = require('../../package.json').version;
 let NEXT_VERSION;
-
-gulp.task('deploy', (cb) => {
-  sequence('deploy:prompt', cb);
-});
 
 gulp.task('deploy:prompt', (cb) => {
   inquirer.prompt([{
@@ -20,3 +15,5 @@ gulp.task('deploy:prompt', (cb) => {
       cb();
     });
 });
+
+gulp.task('deploy', gulp.series('deploy:prompt'));
