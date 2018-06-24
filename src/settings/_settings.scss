@@ -9,9 +9,10 @@
 //   4. The Grid
 //   5. Typography
 //   6. Forms
-//   7. Button
-//   8. Section
-//   9. Top Bar
+//   7. Menu
+//   8. Button
+//   9. Section
+//  10. Top Bar
 //
 //  ------------------
 
@@ -222,7 +223,21 @@ $button-transition: background-color .25s ease-out, color .25s ease-out;
 $button-cursor-disabled: not-allowed;
 $button-opacity-disabled: .25;
 
-// 8. Section
+// 8. Menu
+// -------
+$menu-background: $white;
+$menu-border: none;
+$menu-margin: 0;
+$menu-margin-nested: rem-calc(16);
+$menu-item-padding: rem-calc(10 16);
+$menu-item-background: $white;
+$menu-item-color: $primary-color;
+$menu-item-color-hover: scale-color($primary-color, $lightness: -15%);
+$menu-item-background-hover: $grey;
+$menu-item-color-active: $white;
+$menu-item-background-active: $primary-color;
+
+// 9. Section
 // ----------
 
 $section-background: $white;
@@ -237,7 +252,7 @@ $section-padding: (
 $section-radius: $global-radius;
 
 
-// 9. Top Bar
+// 10. Top Bar
 // ----------
 
 $top-bar-margin: rem-calc(30);
