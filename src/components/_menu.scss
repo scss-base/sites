@@ -28,6 +28,11 @@ $menu-item-padding: rem-calc(10 16) !default;
 /// @type Color
 $menu-item-color: $primary-color !default;
 
+/// Background color of a menu item.
+///
+/// @type Color
+$menu-item-background: $white !default;
+
 /// Text color of a hover menu item.
 ///
 /// @type Color
@@ -111,6 +116,7 @@ $menu-item-background-active: $primary-color !default;
 /// @param {Color} $color-active [$menu-item-color-active] - @todo Documentation needed
 /// @param {Number} $padding [$menu-item-padding] - @todo Documentation needed
 @mixin menu-style(
+  $background: $menu-item-background,
   $color: $menu-item-color,
   $background-hover: $menu-item-background-hover,
   $color-hover: $menu-item-color-hover,
@@ -121,6 +127,7 @@ $menu-item-background-active: $primary-color !default;
   > li {
 
     > a {
+      background-color: $background;
       color: $color;
       padding: $padding;
 
