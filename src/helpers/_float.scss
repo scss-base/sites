@@ -5,8 +5,8 @@
 @mixin clearfix {
   &::before,
   &::after {
-    display: table;
     content: ' ';
+    display: table;
 
     //@if $global-flexbox {
     //  flex-basis: 0;
@@ -30,8 +30,8 @@
 
   .float-center {
     display: block;
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
   }
 
   .clearfix {
