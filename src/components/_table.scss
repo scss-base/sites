@@ -1,0 +1,186 @@
+/// Default color for table background.
+///
+/// @type Color
+$table-background: $white !default;
+
+/// Default style for table border.
+///
+/// @type List
+$table-border: 1px solid $grey !default;
+
+/// Default value for showing the stripe on rows of the tables, excluding the header and footer. If even, the even rows will have a background color. If odd, the odd rows will have a background color. If none, or any other value, the table rows will have no striping.
+///
+/// @type Keyword
+$table-stripe: even !default;
+
+/// Default background color for striped rows.
+///
+/// @type Color
+$table-striped-background: darken($table-background, 2%) !default;
+
+/// Default color of standard rows on hover.
+///
+/// @type List
+$table-row-hover: darken($table-background, 2%) !default;
+
+/// Default color of striped rows on hover.
+///
+/// @type List
+$table-row-stripe-hover: darken($table-background, 7%) !default;
+
+/// Default color for header background.
+///
+/// @type Color
+$table-head-background: darken($table-background, 2%) !default;
+
+/// Default color of header rows on hover.
+///
+/// @type List
+$table-head-row-hover: darken($table-head-background, 2%) !default;
+
+/// Default color for footer background.
+///
+/// @type Color
+$table-foot-background: darken($table-background, 2%) !default;
+
+/// Default color of footer rows on hover.
+///
+/// @type List
+$table-foot-row-hover: darken($table-background, 2%) !default;
+
+/// Default font color for header.
+///
+/// @type Color
+$table-head-font-color: $global-font-color !default;
+
+/// Default font color for footer.
+///
+/// @type Color
+$table-foot-font-color: $global-font-color !default;
+
+/// Default padding for table.
+///
+/// @type Number
+$table-padding: rem-calc(8 10 10) !default;
+
+/// Default margin for table.
+///
+/// @type Number
+$table-margin: 0 0 $global-margin !default;
+
+/// Default border radius for table.
+///
+/// @type Number
+$table-border-radius: $global-radius !default;
+
+/// Adds the general styles for tables.
+/// @param {Number} $margin [$table-margin] -
+/// @param {Number} $radius-border [$table-border-radius] -
+@mixin table-base(
+  $margin: $table-margin,
+  $radius-border: $table-border-radius
+) {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: $margin;
+  border-radius: $radius-border;
+}
+
+@mixin table-stripe($stripe: $table-stripe) {
+  tr {
+    // If stripe is set to even, darken the even rows.
+    @if $stripe == even {
+      &:nth-child(even) {
+        border-bottom: 0;
+        background-color: $table-striped-background;
+      }
+    }
+
+      // If stripe is set to odd, darken the odd rows.
+    @else if $stripe == odd {
+      &:nth-child(odd) {
+        background-color: $table-striped-background;
+      }
+    }
+  }
+}
+
+@mixin table-unstripe() {
+  tr {
+    border-bottom: 0;
+    border-bottom: $table-border;
+    background-color: $table-background;
+  }
+}
+
+/// @param {Keyword} $stripe [$table-stripe] - Uses keywords even, odd, or none to darken rows of the table. The default value is even.
+@mixin table-style() {
+  thead,
+  tbody,
+  tfoot {
+    border: $table-border;
+    background-color: $table-background;
+  }
+
+  // Caption
+  caption {
+    padding: $table-padding;
+    font-weight: $global-font-weight-bold;
+  }
+
+  // Table head
+  thead {
+    background: $table-head-background;
+    color: $table-head-font-color;
+  }
+
+  // Table foot
+  tfoot {
+    background: $table-foot-background;
+    color: $table-foot-font-color;
+  }
+
+  // Table head and foot
+  thead,
+  tfoot {
+    // Rows within head and foot
+    tr {
+      background: transparent;
+    }
+
+    // Cells within head and foot
+    th,
+    td {
+      padding: $table-padding;
+      font-weight: $global-font-weight-bold;
+      text-align: #{$global-left};
+    }
+  }
+
+  // Table rows
+  tbody {
+    th,
+    td {
+      padding: $table-padding;
+    }
+  }
+}
+
+/// Outputs CSS classes for the menu.
+@mixin base-table {
+  table {
+    @include table-base;
+    @include table-style;
+
+    tbody {
+      @include table-stripe;
+    }
+
+    &.unstriped {
+      tbody {
+        @include table-unstripe();
+      }
+    }
+
+  }
+}
