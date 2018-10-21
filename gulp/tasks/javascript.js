@@ -18,6 +18,7 @@ const webpackGulpConfig = {
       }
     ]
   },
+  mode: 'development',
 };
 
 gulp.task('javascript:dev', () => {
