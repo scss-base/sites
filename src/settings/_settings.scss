@@ -11,9 +11,10 @@
 //   6. Forms
 //   7. Menu
 //   8. Button
-//   9. Section
-//  10. Top Bar
-//  11. Side Bar
+//   9. Table
+//  10. Section
+//  11. Top Bar
+//  12. Side Bar
 //
 //  ------------------
 
@@ -238,8 +239,26 @@ $menu-item-background-hover: $grey;
 $menu-item-color-active: $white;
 $menu-item-background-active: $primary-color;
 
-// 9. Section
-// ----------
+// 9. Table
+// --------
+$table-background: $white;
+$table-border: 1px solid $grey;
+$table-stripe: even;
+$table-striped-background: darken($table-background, 2%);
+$table-row-hover: darken($table-background, 2%);
+$table-row-stripe-hover: darken($table-background, 7%);
+$table-head-background: darken($table-background, 2%);
+$table-head-row-hover: darken($table-head-background, 2%);
+$table-foot-background: darken($table-background, 2%);
+$table-foot-row-hover: darken($table-background, 2%);
+$table-head-font-color: $global-font-color;
+$table-foot-font-color: $global-font-color;
+$table-padding: rem-calc(8 10 10);
+$table-margin: 0 0 $global-margin;
+$table-border-radius: $global-radius;
+
+// 10. Section
+// -----------
 
 $section-background: $white;
 $section-border: 1px solid $white;
@@ -253,8 +272,8 @@ $section-padding: (
 $section-radius: $global-radius;
 
 
-// 10. Top Bar
-// ----------
+// 11. Top Bar
+// -----------
 
 $top-bar-margin: rem-calc(30);
 $top-bar-padding: 0;
@@ -273,8 +292,8 @@ $top-bar-dropdownmenu-background: $top-bar-background;
 $top-bar-dropdownmenu-border: 1px solid $white;
 
 
-// 11. Side Bar
-// ----------
+// 12. Side Bar
+// -----------
 
 $side-bar-background: scale-color($black, $lightness: 20%);
 $side-bar-title-color: $white;
