@@ -166,7 +166,7 @@ $table-border-radius: $global-radius !default;
   }
 }
 
-/// Outputs CSS classes for the menu.
+/// Outputs CSS classes for table.
 @mixin base-table {
   table {
     @include table-base;
