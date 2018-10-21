@@ -30,12 +30,16 @@ $grid-block-max: 8 !default;
   .row {
     @include grid-row-base;
 
-    & .row:not(.collapse) {
+    & .row {
       @include grid-row-nest-gutter;
     }
 
     &.collapse {
       @include grid-row-collapse;
+
+      .row {
+        @include grid-row-base;
+      }
     }
 
     // Expanding
