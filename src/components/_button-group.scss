@@ -1,0 +1,46 @@
+/// Margin for button groups.
+///
+/// @type Number
+$button-group-margin: $button-margin !default;
+
+@mixin button-group-base {
+  @include clearfix;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin-bottom: $button-group-margin;
+
+  .button,
+  button {
+    margin: 0;
+    border-radius: 0;
+    font-size: map-get($button-sizes, default);
+    flex: 0 0 auto;
+
+    &:first-child {
+      border-top-#{$global-left}-radius: $button-radius;
+      border-bottom-#{$global-left}-radius: $button-radius;
+    }
+
+    &:last-child {
+      border-top-#{$global-right}-radius: $button-radius;
+      border-bottom-#{$global-right}-radius: $button-radius;
+    }
+  }
+}
+
+@mixin base-button-group {
+  .button-group {
+    @include button-group-base;
+
+    // Sizes
+    @each $size, $value in map-remove($button-sizes, default) {
+      &.#{$size} {
+        .button,
+        button {
+          font-size: $value;
+        }
+      }
+    }
+  }
+}

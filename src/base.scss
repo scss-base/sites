@@ -1,4 +1,4 @@
-/*! scss-base for sites v0.1.0 | github.com/scss-base/sites */
+/*! scss-base for sites | github.com/scss-base/sites */
 
 // Utilities
 @import 'utilities/utilities';
@@ -19,6 +19,7 @@
 // Includes
 @include base-global;
 @include base-button;
+@include base-button-group;
 @include base-dropdown-menu;
 @include base-forms;
 @include base-grid;
