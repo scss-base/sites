@@ -1,0 +1,49 @@
+/// @type Map
+$spacers: (
+  margin: (
+    0: 0,
+    1: ($global-margin * .25),
+    2: ($global-margin * .5),
+    3: $global-margin,
+    4: ($global-margin * 1.5),
+    5: ($global-margin * 3)
+  ),
+  padding: (
+    0: 0,
+    1: ($global-padding * .25),
+    2: ($global-padding * .5),
+    3: $global-padding,
+    4: ($global-padding * 1.5),
+    5: ($global-padding * 3)
+  ),
+) !default;
+
+@mixin base-spacer-helpers {
+  @each $property, $sizes in $spacers {
+    @each $index, $value in $sizes {
+      .#{$property}-#{$index} {
+        #{$property}: $value !important;
+      }
+
+      .#{$property}-left-#{$index},
+      .#{$property}-x-#{$index} {
+        #{$property}-left: $value !important;
+      }
+
+      .#{$property}-right-#{$index},
+      .#{$property}-x-#{$index} {
+        #{$property}-right: $value !important;
+      }
+
+      .#{$property}-top-#{$index},
+      .#{$property}-y-#{$index} {
+        #{$property}-top: $value !important;
+      }
+
+      .#{$property}-bottom-#{$index},
+      .#{$property}-y-#{$index} {
+        #{$property}-bottom: $value !important;
+      }
+    }
+  }
+}
