@@ -11,6 +11,7 @@ $flex-align: (
   'bottom': flex-end,
   'middle': center,
   'stretch': stretch,
+  'baseline': baseline,
 );
 
 /// Horizontally or vertically aligns the items within a flex container.
