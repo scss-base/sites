@@ -4,7 +4,6 @@
 $button-group-margin: $button-margin !default;
 
 @mixin button-group-base {
-  @include clearfix;
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
