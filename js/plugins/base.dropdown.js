@@ -16,7 +16,7 @@ class Dropdown extends BasePlugin{
 
   mouseenter() {
     this.parentElement.classList.add('is-opened');
-    this.repositon();
+    this.reposition();
   }
 
   mouseleave() {
@@ -27,7 +27,7 @@ class Dropdown extends BasePlugin{
    * Adjusts the positionable possible position
    * @todo Create a class Positionable...
    */
-  repositon() {
+  reposition() {
     const menuRect = this.element.getBoundingClientRect();
     const menuLeft = menuRect.left + document.body.scrollLeft;
     const menuTop = menuRect.top + document.body.scrollTop;
