@@ -6,7 +6,6 @@ import { BasePlugin } from '../base.plugin';
 class Toggler extends BasePlugin {
 
   /**
-   *
    * @param element
    * @param [options]
    */
@@ -15,6 +14,16 @@ class Toggler extends BasePlugin {
     this.element = element;
   }
 
+  /**
+   * @returns {string}
+   */
+  static get name () {
+    return 'toggler';
+  }
+
+  /**
+   * Toggle class name
+   */
   toggle() {
     const className = this.element.dataset.toggler;
     this.element.classList.toggle(className);

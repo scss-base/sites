@@ -4,6 +4,7 @@ class BaseCore {
 
   constructor() {
     this.version = version;
+    this.plugins = this.plugins | [];
   }
 
   init() {

@@ -1,12 +1,15 @@
 import { $, $$ } from './base.dom';
-import Plugin from '../plugins';
+import Plugins from '../plugins';
 
-const triggerTypes = [
-  { name: 'close', plugin: 'Modal' },
-  { name: 'open', plugin: 'Modal' },
-  { name: 'toggle', plugin: 'Toggler' }
-];
-const triggerAttributes = triggerTypes.map(value => `[data-${value.name}]`);
+/**
+ * @type {string[]}
+ */
+const triggerNames = ['close', 'open', 'toggle'];
+
+/**
+ * @type {string[]}
+ */
+const triggerAttributes = triggerNames.map(name => `[data-${name}]`);
 
 class Trigger {
 
@@ -19,14 +22,11 @@ class Trigger {
       const triggers = this.getClickTriggers(element);
 
       triggers.forEach(trigger => {
+        console.log(triggers, trigger);
         trigger.element.addEventListener('click', event => {
           event.preventDefault();
-          triggerTypes.forEach(triggerType => {
-            if (triggerType.name === trigger.type) {
-              const plugin = new Plugin[triggerType.plugin](trigger.targetElement);
-              plugin[trigger.type]();
-            }
-          });
+          const plugin = new trigger.plugin(trigger.targetElement);
+          plugin[trigger.method]();
         });
       });
     });
@@ -35,12 +35,19 @@ class Trigger {
   /**
    *
    * @param element
-   * @returns {{type: string, element: HTMLElement, targetElement: HTMLElement}[]}
+   * @returns {{plugin: *, element: HTMLElement, targetElement: HTMLElement}[]}
    */
   getClickTriggers(element) {
     return Object.keys(element.dataset)
-      .filter(filterValue => triggerTypes.filter(triggerType => triggerType.name === filterValue).length > 0)
-      .map(type => ({ type, element, targetElement: $(`#${element.dataset[type]}`) }));
+      .filter(filterValue => triggerNames.filter(triggerName => triggerName === filterValue).length > 0)
+      .map(method => {
+        const targetId = `#${element.dataset[method]}`;
+        const targetElement = $(targetId);
+        const pluginName = Object.keys(Plugins).find(plugin => Object.keys(targetElement.dataset).includes(Plugins[plugin].name));
+        const plugin = Plugins[pluginName];
+
+        return { plugin, method, element, targetElement};
+      });
   }
 }
 
