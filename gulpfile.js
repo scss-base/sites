@@ -7,6 +7,6 @@ requireDir('./gulp/tasks');
 
 // Watch files for changes
 gulp.task('watch', function() {
-  gulp.watch(CONFIG.SASS_LINT_FILES, ['sass']);
-  gulp.watch(CONFIG.JS_FILES, ['javascript']);
+  gulp.watch(CONFIG.SASS_LINT_FILES, gulp.series('sass'));
+  gulp.watch(CONFIG.JS_FILES, gulp.series('javascript'));
 });
