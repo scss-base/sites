@@ -7,5 +7,5 @@ export default {
   Dropdown,
   DropdownMenu,
   Modal,
-  Toggler
+  Toggler,
 }

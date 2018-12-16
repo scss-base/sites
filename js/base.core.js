@@ -15,21 +15,21 @@ class BaseCore {
 
   plugin(pluginClass, pluginName) {
     const name = pluginName || pluginClass.prototype.constructor.name;
-    this.plugins = Object.assign({}, this.plugins, {[name]: pluginClass});
+    this.plugins = Object.assign({}, this.plugins, { [name]: pluginClass });
   }
 
   ready(fn) {
-    if (document.readyState != 'loading'){
+    if (document.readyState !== 'loading') {
       fn();
     } else if (document.addEventListener) {
       document.addEventListener('DOMContentLoaded', fn);
     } else {
-      document.attachEvent('onreadystatechange', function() {
-        if (document.readyState != 'loading')
+      document.attachEvent('onreadystatechange', () => {
+        if (document.readyState !== 'loading')
           fn();
       });
     }
   }
 }
 
-export {BaseCore};
+export { BaseCore };

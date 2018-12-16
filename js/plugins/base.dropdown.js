@@ -1,6 +1,6 @@
 import { BasePlugin } from '../base.plugin';
 
-class Dropdown extends BasePlugin{
+class Dropdown extends BasePlugin {
 
   constructor(element, options) {
     super(element, options);
@@ -49,4 +49,4 @@ class Dropdown extends BasePlugin{
   }
 }
 
-export {Dropdown};
+export { Dropdown };

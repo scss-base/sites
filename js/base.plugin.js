@@ -8,4 +8,4 @@ class BasePlugin {
   constructor(element, options) {}
 }
 
-export {BasePlugin};
+export { BasePlugin };

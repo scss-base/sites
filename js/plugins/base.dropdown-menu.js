@@ -2,7 +2,7 @@ import { BasePlugin } from '../base.plugin';
 import { Dropdown } from './base.dropdown';
 import { $$ } from '../utilities/base.dom';
 
-class DropdownMenu extends BasePlugin{
+class DropdownMenu extends BasePlugin {
 
   constructor(element, options) {
     super(element, options);
@@ -18,4 +18,4 @@ class DropdownMenu extends BasePlugin{
   }
 }
 
-export {DropdownMenu};
+export { DropdownMenu };
