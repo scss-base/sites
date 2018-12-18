@@ -1,53 +1,74 @@
 import { $, $$ } from './base.dom';
 import Plugins from '../plugins';
 
-/**
- * @type {string[]}
- */
-const triggerNames = ['close', 'open', 'toggle'];
-
-/**
- * @type {string[]}
- */
-const triggerAttributes = triggerNames.map(name => `[data-${name}]`);
-
 class Trigger {
-
-  constructor() {
-    this.bindClickEvents();
+  static get allowed () {
+    return ['close', 'open', 'toggle'];
   }
 
-  bindClickEvents() {
-    $$(triggerAttributes).forEach(element => {
-      const triggers = this.getClickTriggers(element);
+  static get attributes () {
+    return Trigger.allowed.map(name => `[data-${name}]`);
+  }
 
-      triggers.forEach(trigger => {
-        console.log(triggers, trigger);
+  constructor() {
+    this.plugins = {};
+    this.triggers = [];
+
+    this._init();
+    this._bind();
+  }
+
+  _init() {
+    $$(Trigger.attributes).forEach(element => {
+      const filterDataset = this._filterDataset(element);
+      const targets = this._getTargets(filterDataset);
+
+      this._setPlugins(targets);
+      this.triggers.push({
+        element,
+        targets,
+      });
+    });
+  }
+
+  _bind() {
+    this.triggers.forEach(trigger => {
+      trigger.targets.forEach(target => {
         trigger.element.addEventListener('click', event => {
           event.preventDefault();
-          const plugin = new trigger.plugin(trigger.targetElement);
-          plugin[trigger.method]();
+          this.plugins[target.id][target.method]();
         });
       });
     });
   }
 
-  /**
-   *
-   * @param element
-   * @returns {{plugin: *, element: HTMLElement, targetElement: HTMLElement}[]}
-   */
-  getClickTriggers(element) {
-    return Object.keys(element.dataset)
-      .filter(filterValue => triggerNames.filter(triggerName => triggerName === filterValue).length > 0)
-      .map(method => {
-        const targetId = `#${element.dataset[method]}`;
-        const targetElement = $(targetId);
-        const pluginName = Object.keys(Plugins).find(plugin => Object.keys(targetElement.dataset).includes(Plugins[plugin].name));
-        const plugin = Plugins[pluginName];
+  _filterDataset(element) {
+    return Object.keys(element.dataset).reduce((filteredDataset, datasetName) => {
+      if (Trigger.allowed.includes(datasetName)) {
+        filteredDataset[datasetName] = element.dataset[datasetName];
+      }
+      return filteredDataset;
+    }, {});
+  }
 
-        return { plugin, method, element, targetElement};
+  _getTargets(dataset) {
+    return Object.keys(dataset).reduce((targets, datasetName) => {
+      const targetId = `#${dataset[datasetName]}`;
+      targets.push({
+          id: dataset[datasetName],
+          method: datasetName,
+          element: $(targetId),
       });
+      return targets;
+    }, []);
+  }
+
+  _setPlugins(targets) {
+    targets.forEach(target => {
+      const pluginName = Object.keys(Plugins)
+        .find(plugin => Object.keys(target.element.dataset).includes(Plugins[plugin].name));
+      this.plugins[target.id] = new Plugins[pluginName](target.element);
+    });
   }
 }
 
