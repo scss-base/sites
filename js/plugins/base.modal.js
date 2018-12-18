@@ -1,4 +1,5 @@
 import BasePlugin from '../base.plugin';
+import { $ } from '../utilities/base.dom';
 
 /**
  * Modal module
@@ -12,8 +13,13 @@ export default class Modal extends BasePlugin {
    */
   constructor(element, options) {
     super(element, options);
-    this.element = element;
+    this.modal = element;
+    this.overlay = $('#modal-overlay');
     this.isHidden = true;
+
+    if (!this.overlay) {
+      this._createOverlay();
+    }
   }
 
   /**
@@ -38,12 +44,12 @@ export default class Modal extends BasePlugin {
   }
 
   close() {
-    this.element.style.display = 'none';
+    this.modal.style.display = this.overlay.style.display = 'none';
     this.isHidden = true;
   }
 
   open() {
-    this.element.style.display = 'block';
+    this.modal.style.display = this.overlay.style.display = 'block';
     this.isHidden = false;
   }
 
@@ -51,7 +57,14 @@ export default class Modal extends BasePlugin {
     this.isHidden ? this.open() : this.close();
   }
 
-  _createOverlay() {
+  _bindEvents() {
 
+  }
+
+  _createOverlay() {
+    this.overlay = document.createElement('div');
+    this.overlay.setAttribute('id', 'modal-overlay');
+    this.overlay.appendChild(this.modal);
+    $('body').appendChild(this.overlay);
   }
 }
