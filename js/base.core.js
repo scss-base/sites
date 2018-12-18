@@ -13,7 +13,7 @@ export default class BaseCore {
       this[pluginName] = this.plugins[pluginName];
     });
 
-    new Trigger();
+    this.Trigger = Trigger.getInstance;
   }
 
   plugin(pluginClass, pluginName) {

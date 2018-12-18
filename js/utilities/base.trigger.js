@@ -1,13 +1,23 @@
 import { $, $$ } from './base.dom';
 import Plugins from '../plugins';
 
+let trigger = null;
+
 export default class Trigger {
-  static get allowed () {
+  static get allowed() {
     return ['close', 'open', 'toggle'];
   }
 
-  static get attributes () {
+  static get attributes() {
     return Trigger.allowed.map(name => `[data-${name}]`);
+  }
+
+  static get getInstance() {
+    if (!trigger) {
+      trigger = new Trigger();
+    }
+
+    return trigger;
   }
 
   constructor() {
@@ -55,9 +65,9 @@ export default class Trigger {
     return Object.keys(dataset).reduce((targets, datasetName) => {
       const targetId = `#${dataset[datasetName]}`;
       targets.push({
-          id: dataset[datasetName],
-          method: datasetName,
-          element: $(targetId),
+        id: dataset[datasetName],
+        method: datasetName,
+        element: $(targetId),
       });
       return targets;
     }, []);
@@ -67,7 +77,10 @@ export default class Trigger {
     targets.forEach(target => {
       const pluginName = Object.keys(Plugins)
         .find(plugin => Object.keys(target.element.dataset).includes(Plugins[plugin].name));
-      this.plugins[target.id] = new Plugins[pluginName](target.element);
+
+      if (!this.plugins[target.id]) {
+        this.plugins[target.id] = new Plugins[pluginName](target.element);
+      }
     });
   }
 }
