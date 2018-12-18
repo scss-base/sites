@@ -1,9 +1,9 @@
-import { BasePlugin } from '../base.plugin';
+import BasePlugin from '../base.plugin';
 
 /**
  * Toggler module to toggle a css class
  */
-class Toggler extends BasePlugin {
+export default class Toggler extends BasePlugin {
 
   /**
    * @param element
@@ -29,5 +29,3 @@ class Toggler extends BasePlugin {
     this.element.classList.toggle(className);
   }
 }
-
-export { Toggler };

@@ -1,11 +1,10 @@
-class BasePlugin {
+export default class BasePlugin {
 
   /**
    *
    * @param element
    * @param [options]
    */
-  constructor(element, options) {}
+  constructor(element, options) {
+  }
 }
-
-export { BasePlugin };

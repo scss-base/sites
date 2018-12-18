@@ -1,16 +1,19 @@
 import { version } from '../package.json';
+import Trigger from './utilities/base.trigger';
 
-class BaseCore {
+export default class BaseCore {
 
   constructor() {
     this.version = version;
-    this.plugins = this.plugins | [];
+    this.plugins = this.plugins || {};
   }
 
   init() {
     Object.keys(this.plugins).forEach(pluginName => {
       this[pluginName] = this.plugins[pluginName];
     });
+
+    new Trigger();
   }
 
   plugin(pluginClass, pluginName) {
@@ -31,5 +34,3 @@ class BaseCore {
     }
   }
 }
-
-export { BaseCore };

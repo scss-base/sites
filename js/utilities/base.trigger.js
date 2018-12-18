@@ -1,7 +1,7 @@
 import { $, $$ } from './base.dom';
 import Plugins from '../plugins';
 
-class Trigger {
+export default class Trigger {
   static get allowed () {
     return ['close', 'open', 'toggle'];
   }
@@ -71,5 +71,3 @@ class Trigger {
     });
   }
 }
-
-export { Trigger }

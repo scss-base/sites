@@ -1,9 +1,9 @@
-import { BasePlugin } from '../base.plugin';
+import BasePlugin from '../base.plugin';
 
 /**
  * Modal module
  */
-class Modal extends BasePlugin {
+export default class Modal extends BasePlugin {
 
   /**
    *
@@ -50,6 +50,8 @@ class Modal extends BasePlugin {
   toggle() {
     this.isHidden ? this.open() : this.close();
   }
-}
 
-export { Modal };
+  _createOverlay() {
+
+  }
+}

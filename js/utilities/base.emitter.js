@@ -1,34 +1,37 @@
-import { Subject } from 'rxjs-es';
+// import { Subject } from 'rxjs-es';
 
-let instance;
+// let instance;
 
 class Emitter {
-
-  constructor() {
-    if (!instance) instance = this;
-    this.subjects = [];
-    return instance;
+  constructor () {
+    console.log('test', document);
   }
-
-  emit(name, data) {
-    this.subjects[name] || (this.subjects[name] = new Subject());
-    this.subjects[name].next(data);
-  }
-
-  on(name, handler) {
-    this.subjects[name] || (this.subjects[name] = new Subject());
-    this.subjects[name].subscribe(handler);
-  }
-
-  off(name) {
-    try {
-      this.subjects[name].dispose();
-      delete this.subjects[name];
-    } catch (exception) {
-      console.error(exception);
-    }
-
-  }
+  //
+  // constructor() {
+  //   if (!instance) instance = this;
+  //   this.subjects = [];
+  //   return instance;
+  // }
+  //
+  // emit(name, data) {
+  //   this.subjects[name] || (this.subjects[name] = new Subject());
+  //   this.subjects[name].next(data);
+  // }
+  //
+  // on(name, handler) {
+  //   this.subjects[name] || (this.subjects[name] = new Subject());
+  //   this.subjects[name].subscribe(handler);
+  // }
+  //
+  // off(name) {
+  //   try {
+  //     this.subjects[name].dispose();
+  //     delete this.subjects[name];
+  //   } catch (exception) {
+  //     console.error(exception);
+  //   }
+  //
+  // }
 }
 
 export { Emitter };
