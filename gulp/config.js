@@ -10,10 +10,10 @@ module.exports = {
   JS_FILES: ['js/**/*.js'],
 
   SASS_FILES: [
-    'src/base.scss',
+    'src/scss/base.scss',
   ],
 
   SASS_LINT_FILES: [
-    'src/**/*.scss',
+    'src/scss/**/*.scss',
   ],
 };
