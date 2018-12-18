@@ -57,6 +57,7 @@ $modal-overlay-background: rgba($black, .45) !default;
   $top: $modal-top,
   $z-index: $modal-z-index + 1
 ) {
+  display: none;
   margin-left: auto;
   margin-right: auto;
   overflow-y: auto;
@@ -156,7 +157,7 @@ $modal-overlay-background: rgba($black, .45) !default;
     }
   }
 
-  .modal-overlay {
+  #modal-overlay {
     @include modal-overlay-base;
   }
 }
