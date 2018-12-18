@@ -8,12 +8,17 @@
 <body>
 
 
-<button type="button" class="primary" data-toggle="section" data-close="modal1" data-unknow="modal1">Toggle Class</button>
+<button type="button" class="primary" data-toggle="section1" data-close="modal1" data-unknown="modal1">Toggle Class</button>
 <button type="button" class="primary" data-open="modal1">Open Modal</button>
 <button type="button" class="primary" data-close="modal1">Close Modal</button>
+<button type="button" class="primary" data-toggle="modal1">Toggle Modal</button>
 
-<div class="section primary" id="section" data-toggler="primary">sdfsdfsdf</div>
-<div id="modal1" data-modal>
+<div class="section primary" id="section1" data-toggler="primary">
+  <h1>Section</h1>
+  <p>Blind Text</p>
+</div>
+
+<div id="modal1" class="modal" data-modal data-unknown>
   modal1
 </div>
 
@@ -170,7 +175,6 @@
 </div>
 
 <script src="../build/js/base.js"></script>
-<script src="test.js"></script>
 
 </body>
 </html>
