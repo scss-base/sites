@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const CONFIG = require('../config');
+
 const webpackGulpConfig = {
   externals: {},
   module: {
@@ -22,21 +24,21 @@ const webpackGulpConfig = {
 };
 
 gulp.task('javascript:dev', () => {
-  return gulp.src('js/base.js')
+  return gulp.src(CONFIG.JS.SRC)
     .pipe(named())
     .pipe(webpackStream(webpackGulpConfig, webpack))
-    .pipe(gulp.dest('build/js'));
+    .pipe(gulp.dest(CONFIG.JS.DEST));
 });
 
 gulp.task('javascript:build', () => {
-  return gulp.src('js/base.js')
+  return gulp.src(CONFIG.JS.SRC)
     .pipe(named())
     .pipe(webpackStream(Object.assign({}, webpackGulpConfig, {
       plugins: [
         new UglifyJsPlugin()
       ]
     }), webpack))
-    .pipe(gulp.dest('build/js'));
+    .pipe(gulp.dest(CONFIG.JS.DEST));
 });
 
 gulp.task('javascript', gulp.series('javascript:dev'));

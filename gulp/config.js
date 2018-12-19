@@ -7,13 +7,15 @@ module.exports = {
     'ios >= 7',
   ],
 
-  JS_FILES: ['js/**/*.js'],
+  JS: {
+    SRC: ['src/js/base.js'],
+    DEST: 'build/js',
+    FILES: ['src/js/**/*.js'],
+  },
 
-  SASS_FILES: [
-    'src/scss/base.scss',
-  ],
-
-  SASS_LINT_FILES: [
-    'src/scss/**/*.scss',
-  ],
+  SASS: {
+    SRC: ['src/scss/base.scss'],
+    DEST: 'build/css',
+    FILES: ['src/scss/**/*.scss'],
+  },
 };
