@@ -7,10 +7,37 @@
 </head>
 <body>
 
+<div class="top-bar">
+  <div class="top-bar-title">
+    Title
+  </div>
+  <div class="top-bar-container">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a href="#item1">Item 1</a></li>
+        <li><a href="#item2">Item 2</a></li>
+        <li>
+          <a href="#item3">Item 3</a>
+          <ul class="menu nested">
+            <li><a href="#item1">Item 1</a></li>
+            <li><a href="#item2">Item 2</a></li>
+            <li><a href="#item3">Item 3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><a href="#item1">Item 1</a></li>
+        <li><a href="#item2">Item 2</a></li>
+        <li><a href="#item3">Item 3</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<button type="button" class="primary" data-toggle="section1" data-close="modal1" data-unknown="modal1">Toggle Class</button>
+<button type="button" class="primary" data-toggle="section1" data-open="modal1">Toggle Class</button>
 <button type="button" class="primary" data-open="modal1">Open Modal</button>
-<button type="button" class="primary" data-close="modal1">Close Modal</button>
 <button type="button" class="primary" data-toggle="modal1">Toggle Modal</button>
 
 <div class="section primary" id="section1" data-toggler="primary">
@@ -18,8 +45,15 @@
   <p>Blind Text</p>
 </div>
 
-<div id="modal1" class="modal" data-modal data-unknown>
-  modal1
+<div id="modal1" class="modal" data-modal>
+  <h1>Modal 1</h1>
+  <button type="button" class="secondary" data-close="modal1">Close Modal</button>
+  <button type="button" class="primary" data-open="modal2">Open next Modal</button>
+</div>
+
+<div id="modal2" class="modal" data-modal>
+  <h1>Modal 2</h1>
+  <button type="button" class="primary" data-close="modal2">Close Modal</button>
 </div>
 
 
@@ -138,7 +172,7 @@
 </div>
 <div class="row">
   <div class="column">
-    <ul class="dropdown menu" data-dropdown-menu>
+    <ul class="dropdown menu">
       <li><a href="#">Link</a></li>
       <li class="is-active">
         <a href="#">Link</a>
@@ -175,6 +209,5 @@
 </div>
 
 <script src="../build/js/base.js"></script>
-
 </body>
 </html>

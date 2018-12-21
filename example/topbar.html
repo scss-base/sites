@@ -16,10 +16,17 @@
   </div>
   <div class="top-bar-container">
     <div class="top-bar-left">
-      <ul class="menu">
+      <ul class="dropdown menu">
         <li><a href="#item1">Item 1</a></li>
         <li><a href="#item2">Item 2</a></li>
-        <li><a href="#item3">Item 3</a></li>
+        <li>
+          <a href="#item3">Item 3</a>
+          <ul class="menu nested">
+            <li><a href="#item1">Item 1</a></li>
+            <li><a href="#item2">Item 2</a></li>
+            <li><a href="#item3">Item 3</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
     <div class="top-bar-right">
@@ -53,6 +60,7 @@
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+<script src="../build/js/base.js"></script>
 
 </body>
 </html>
