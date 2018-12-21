@@ -18,6 +18,7 @@ export default class Modal extends Plugin {
     this.isHidden = true;
 
     this._createOverlay();
+    this._moveElement();
     this._bindEvents();
   }
 
@@ -71,7 +72,9 @@ export default class Modal extends Plugin {
       this.overlay.setAttribute('id', 'modal-overlay');
       $('body').appendChild(this.overlay);
     }
+  }
 
+  _moveElement() {
     if (this.element) {
       this.overlay.appendChild(this.element);
     }
