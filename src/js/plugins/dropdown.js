@@ -1,25 +1,31 @@
-import BasePlugin from '../base.plugin';
+import Plugin from './plugin';
 
-export default class Dropdown extends BasePlugin {
+export default class Dropdown extends Plugin {
 
   constructor(element, options) {
     super(element, options);
-    this.element = element;
     this.parentElement = this.element.parentElement;
-    this.events();
+    this._bindEvents();
   }
 
-  events() {
-    this.parentElement.addEventListener('mouseenter', this.mouseenter.bind(this));
-    this.parentElement.addEventListener('mouseleave', this.mouseleave.bind(this));
+  /**
+   * @returns {string}
+   */
+  static get className() {
+    return 'Dropdown';
   }
 
-  mouseenter() {
+  _bindEvents() {
+    this.on('mouseenter', this._mouseenter.bind(this), false, this.parentElement);
+    this.on('mouseleave', this._mouseleave.bind(this), false, this.parentElement);
+  }
+
+  _mouseenter() {
     this.parentElement.classList.add('is-opened');
-    this.reposition();
+    this._reposition();
   }
 
-  mouseleave() {
+  _mouseleave() {
     this.parentElement.classList.remove('is-opened');
   }
 
@@ -27,7 +33,7 @@ export default class Dropdown extends BasePlugin {
    * Adjusts the positionable possible position
    * @todo Create a class Positionable...
    */
-  reposition() {
+  _reposition() {
     const menuRect = this.element.getBoundingClientRect();
     const menuLeft = menuRect.left + document.body.scrollLeft;
     const menuTop = menuRect.top + document.body.scrollTop;
