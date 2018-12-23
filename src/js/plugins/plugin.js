@@ -1,27 +1,49 @@
+import { kebabCase, pid } from '../helper';
+
 export default class Plugin {
 
   /**
-   *
-   * @param element
-   * @param [options]
+   * @param {Element} element - Element object to use for the modal.
+   * @param {Object} options
    */
   constructor(element, options) {
+    this.id = element;
     this.element = element;
+    this.pluginName = this;
+    this.pluginId = this.pluginName;
+
+    if (
+      !this.element.hasAttribute(`data-${this.pluginName}`) ||
+      this.element.getAttribute(`data-${this.pluginName}`).length === 0
+    ) {
+      this.element.setAttribute(`data-${this.pluginName}`, this.pluginId)
+    }
+
+    this.element.emit(`init.base.${this.pluginName}`);
   }
 
-  emit(type, detail, scope) {
-    const event = new CustomEvent(type, { detail });
-    scope ? scope.dispatchEvent(event) : this.element.dispatchEvent(event);
-    return this;
+  set id(element) {
+    this._id = element.id;
   }
 
-  on(type, fn, options, scope) {
-    scope ? scope.addEventListener(type, fn, options) : document.addEventListener(type, fn, options);
-    return this;
+  get id() {
+    return this._id;
   }
 
-  off(type, fn, options, scope) {
-    scope ? scope.removeEventListener(type, fn, options) : document.removeEventListener(type, fn, options);
-    return this;
+  set pluginId(pluginName) {
+    this._pluginId = pid(6, pluginName);
+  }
+
+  get pluginId() {
+    return this._pluginId
+  }
+
+  set pluginName(object) {
+    const pluginName = object.constructor.name ? object.constructor.name : object.className;
+    this._pluginName = kebabCase(pluginName);
+  }
+
+  get pluginName() {
+    return this._pluginName;
   }
 }
