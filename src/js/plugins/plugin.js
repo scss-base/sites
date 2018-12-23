@@ -19,7 +19,7 @@ export default class Plugin {
       this.element.setAttribute(`data-${this.pluginName}`, this.pluginId)
     }
 
-    this.element.emit(`init.base.${this.pluginName}`);
+    this.element.trigger(`init.base.${this.pluginName}`);
   }
 
   set id(element) {

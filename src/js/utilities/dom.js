@@ -4,7 +4,7 @@
  * @param {String} type
  * @param {*} detail
  */
-HTMLElement.prototype.emit = function (type, detail = null) {
+HTMLElement.prototype.trigger = function (type, detail = null) {
   const event = new CustomEvent(type, { detail });
   this.dispatchEvent(event);
 
