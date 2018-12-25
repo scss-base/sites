@@ -14,16 +14,11 @@ export default class Triggers {
 
   static closeListener(event) {
     const id = event.target.dataset.close;
-
     if (id) {
       $(`#${id}`).trigger('close.base.trigger');
     } else {
-      console.log(this, event);
-      // $(this).trigger('close.base.trigger');
-      // console.log($('[data-close]'));
-      console.log(event.target.closest(['[data-modal]', ]));
+      event.target.closest('[data-base-plugin]').trigger('close.base.trigger');
     }
-
   }
 
   static toggleListener(event) {
@@ -32,27 +27,14 @@ export default class Triggers {
   }
 
   static addListeners() {
-    Triggers.addOpenListener();
-    Triggers.addCloseListener();
-    Triggers.addToggleListener();
-  }
-
-  static addOpenListener() {
     $$('[data-open]')
       .forEach(element =>
         element.off('click', Triggers.openListener).on('click', Triggers.openListener, false));
-  }
-
-  static addCloseListener() {
     $$('[data-close]')
       .forEach(element =>
         element.off('click', Triggers.closeListener).on('click', Triggers.closeListener, false));
-  }
-
-  static addToggleListener() {
     $$('[data-toggle]')
       .forEach(element =>
         element.off('click', Triggers.toggleListener).on('click', Triggers.toggleListener, false));
-
   }
 }
