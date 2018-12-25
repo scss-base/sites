@@ -1,49 +1,58 @@
-import { $$ } from './index';
-import { camelCase, kebabCase } from '../helper';
-import * as Plugins from '../plugins';
-import Trigger from './trigger';
-
-const _plugins = new Map();
+import { $, $$, Core } from './index';
 
 export default class Triggers {
   static init() {
-    $$(Trigger.selectors).forEach(element => {
-      const trigger = new Trigger(element);
-      Triggers.plugins = trigger.targets;
-      Triggers.listeners = trigger;
+    Core.ready(() => {
+      Triggers.addListeners();
     });
   }
 
-  static set plugins(targets) {
-    targets.forEach(target => {
-      const targetId = target.get('id');
-      const targetElement = target.get('element');
+  static openListener(event) {
+    const id = event.target.dataset.open;
+    $(`#${id}`).trigger('open.base.trigger');
+  };
 
-      const pluginName = Object.keys(Plugins)
-        .find(plugin =>
-          Object.keys(targetElement.dataset).includes(camelCase(kebabCase(Plugins[plugin].className))));
+  static closeListener(event) {
+    const id = event.target.dataset.close;
 
-      if (!_plugins.has(targetId)) {
-        _plugins.set(targetId, new Plugins[pluginName](targetElement));
-      }
-    });
+    if (id) {
+      $(`#${id}`).trigger('close.base.trigger');
+    } else {
+      console.log(this, event);
+      // $(this).trigger('close.base.trigger');
+      // console.log($('[data-close]'));
+      console.log(event.target.closest(['[data-modal]', ]));
+    }
+
   }
 
-  static get plugins() {
-    return _plugins;
+  static toggleListener(event) {
+    const id = event.target.dataset.toggle;
+    $(`#${id}`).trigger('toggle.base.trigger');
   }
 
-  static set listeners(trigger) {
-    trigger.targets.forEach(target => {
-      if (target.has('method')) {
-        const targetId = target.get('id');
-        const targetMethod = target.get('method');
+  static addListeners() {
+    Triggers.addOpenListener();
+    Triggers.addCloseListener();
+    Triggers.addToggleListener();
+  }
 
-        trigger.element.addEventListener('click', event => {
-          event.preventDefault();
-          Triggers.plugins.get(targetId)[targetMethod]();
-        });
-      }
-    });
+  static addOpenListener() {
+    $$('[data-open]')
+      .forEach(element =>
+        element.off('click', Triggers.openListener).on('click', Triggers.openListener, false));
+  }
+
+  static addCloseListener() {
+    $$('[data-close]')
+      .forEach(element =>
+        element.off('click', Triggers.closeListener).on('click', Triggers.closeListener, false));
+  }
+
+  static addToggleListener() {
+    $$('[data-toggle]')
+      .forEach(element =>
+        element.off('click', Triggers.toggleListener).on('click', Triggers.toggleListener, false));
+
   }
 }

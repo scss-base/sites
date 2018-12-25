@@ -1,5 +1,6 @@
 import { $ } from '../utilities/dom';
 import Plugin from './plugin';
+import { Triggers } from '../utilities';
 
 /**
  * Modal module
@@ -15,55 +16,76 @@ export default class Modal extends Plugin {
     super(element, options);
 
     this.overlay = $('#modal-overlay');
-    this.isHidden = true;
+    this.isActive = false;
 
     this._createOverlay();
     this._moveElement();
     this._bindEvents();
+
+    Triggers.init();
   }
 
   /**
+   * Gets the class name
+   *
    * @returns {string}
    */
-  static get className() {
+  get className() {
     return 'Modal';
   }
 
   /**
    * @param {boolean} hidden
    */
-  set isHidden(hidden) {
-    this._hidden = hidden;
+  set isActive(hidden) {
+    this._active = hidden;
   }
 
   /**
    * @returns {boolean}
    */
-  get isHidden() {
-    return this._hidden;
+  get isActive() {
+    return this._active;
   }
 
   close() {
-    this.emit('close.modal');
-    this.element.style.display = this.overlay.style.display = 'none';
-    this.isHidden = true;
+    this.isActive = false;
+    this._removeHistoryHash();
+
+    this.element.style.display = 'none';
+    this.overlay.style.display = 'none';
+
+    this.element.trigger('close.base.modal');
   }
 
   open() {
-    this.emit('closeme.modal', null, document);
-    this.emit('open.modal');
-    this.element.style.display = this.overlay.style.display = 'block';
-    this.isHidden = false;
+    this.isActive = true;
+    this._createHistoryHash();
+
+    this.element.style.display = 'block';
+    this.overlay.style.display = 'block';
+
+    this.element.trigger('open.base.modal');
   }
 
   toggle() {
-    this.isHidden ? this.open() : this.close();
+    if (this.isActive) {
+      this.close();
+    } else {
+      this.open();
+    }
   }
 
   _bindEvents() {
+    this.element.on('open.base.trigger', this.open.bind(this), false);
+    this.element.on('close.base.trigger', this.close.bind(this), false);
+    this.element.on('toggle.base.trigger', this.toggle.bind(this), false);
+
+    /*
     this.on('closeme.modal', () => {
       this.element.style.display = 'none';
     }, false, document);
+    */
   }
 
   _createOverlay() {
@@ -77,6 +99,35 @@ export default class Modal extends Plugin {
   _moveElement() {
     if (this.element) {
       this.overlay.appendChild(this.element);
+    }
+  }
+
+  _createHistoryHash() {
+    const hash = `#${this.id}`;
+
+    if (window.location.hash === hash) {
+      return;
+    }
+
+    if (window.history.pushState) {
+      window.history.pushState({}, '', hash);
+    } else {
+      window.location.hash = hash;
+    }
+  }
+
+  _removeHistoryHash() {
+    const hash = `#${this.id}`;
+
+    if (window.location.hash === hash) {
+      return;
+    }
+
+    if (window.history.replaceState) {
+      const urlWithoutHash = window.location.pathname + window.location.search
+      window.history.replaceState('', document.title, urlWithoutHash);
+    } else {
+      window.location.hash = '';
     }
   }
 }

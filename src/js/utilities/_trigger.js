@@ -1,10 +1,11 @@
 import { $ } from './index';
 import { kebabCase } from '../helper';
 
-export default class Trigger {
+export default class _trigger {
   static get types() {
     return new Set([
       'close',
+      'dropdown',
       'dropdown-menu',
       'open',
       'toggle',
@@ -20,7 +21,7 @@ export default class Trigger {
   }
 
   static get selectors() {
-    return Array.from(Trigger.types.values(), type => `[data-${type}]`);
+    return Array.from(_trigger.types.values(), type => `[data-${type}]`);
   }
 
   constructor(element) {
@@ -35,7 +36,7 @@ export default class Trigger {
       const key = kebabCase(datasetName);
       const value = element.dataset[datasetName] || null;
 
-      if (Trigger.types.has(key)) {
+      if (_trigger.types.has(key)) {
         this._dataset.set(key, value);
       }
     });
@@ -57,8 +58,8 @@ export default class Trigger {
       target.set('id', id);
       target.set('element', element);
 
-      if (id && Trigger.methods.has(key)) {
-        target.set('method', key)
+      if (id && _trigger.methods.has(key)) {
+        target.set('method', key);
       }
 
       this._targets.add(target);

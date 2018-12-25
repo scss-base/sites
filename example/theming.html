@@ -39,14 +39,22 @@
 <button type="button" class="primary" data-toggle="section1" data-open="modal1">Toggle Class</button>
 <button type="button" class="primary" data-open="modal1">Open Modal</button>
 <button type="button" class="primary" data-toggle="modal1">Toggle Modal</button>
+<button type="button" class="primary" data-toggle="dropdown1">Toggle Dropdown</button>
+
+<div class="dropdown-container" id="dropdown1" data-dropdown data-auto-focus="true">
+  <h1>DropDown Container</h1>
+</div>
 
 <div class="section primary" id="section1" data-toggler="primary">
   <h1>Section</h1>
   <p>Blind Text</p>
 </div>
 
-<div id="modal1" class="modal" data-modal>
+<div id="modal1" class="modal">
   <h1>Modal 1</h1>
+  <button class="close-button" data-close type="button">
+    <span>&times;</span>
+  </button>
   <button type="button" class="secondary" data-close="modal1">Close Modal</button>
   <button type="button" class="primary" data-open="modal2">Open next Modal</button>
 </div>

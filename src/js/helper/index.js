@@ -1,1 +1,6 @@
-export { camelCase, capitalize, kebabCase } from './string';
+export {
+  camelCase,
+  capitalize,
+  kebabCase,
+  pid,
+} from './string';

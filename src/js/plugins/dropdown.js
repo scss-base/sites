@@ -6,6 +6,7 @@ export default class Dropdown extends Plugin {
     super(element, options);
     this.parentElement = this.element.parentElement;
     this._bindEvents();
+
   }
 
   /**
