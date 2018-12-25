@@ -16,7 +16,11 @@ export default class Plugin {
       !this.element.hasAttribute(`data-${this.pluginName}`) ||
       this.element.getAttribute(`data-${this.pluginName}`).length === 0
     ) {
-      this.element.setAttribute(`data-${this.pluginName}`, this.pluginId)
+      this.element.setAttribute(`data-${this.pluginName}`, this.pluginId);
+    }
+
+    if (!this.element.hasAttribute('data-base-plugin')) {
+      this.element.setAttribute('data-base-plugin', this.pluginId);
     }
 
     this.element.trigger(`init.base.${this.pluginName}`);
