@@ -4,7 +4,7 @@
  * @param {String} type
  * @param {*} detail
  */
-HTMLElement.prototype.trigger = function (type, detail = null) {
+Window.prototype.trigger = HTMLElement.prototype.trigger = function (type, detail = null) {
   const event = new CustomEvent(type, { detail });
   this.dispatchEvent(event);
 
@@ -18,7 +18,7 @@ HTMLElement.prototype.trigger = function (type, detail = null) {
  * @param fn
  * @param options
  */
-HTMLElement.prototype.on = function (type, fn, options) {
+Window.prototype.on = HTMLElement.prototype.on = function (type, fn, options = false) {
   this.addEventListener(type, fn, options);
 
   return this;
@@ -31,7 +31,7 @@ HTMLElement.prototype.on = function (type, fn, options) {
  * @param fn
  * @param options
  */
-HTMLElement.prototype.off = function (type, fn, options) {
+Window.prototype.off = HTMLElement.prototype.off = function (type, fn, options = false) {
   this.removeEventListener(type, fn, options);
 
   return this;
