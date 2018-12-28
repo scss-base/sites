@@ -1,4 +1,4 @@
-import { kebabCase, pid } from '../helper';
+import { kebabCase, random } from '../helper';
 
 export default class Plugin {
   /**
@@ -62,7 +62,7 @@ export default class Plugin {
     this.elementId = element.id;
     this.options = options;
     this.pluginName = this;
-    this.pluginId = pid(6, this.pluginName);
+    this.pluginId = random(6, this.pluginName);
 
     if (
       !this.element.hasAttribute(`data-${this.pluginName}`) ||
