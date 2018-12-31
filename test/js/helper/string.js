@@ -79,5 +79,3 @@ describe('String', function () {
     });
   });
 });
-
-

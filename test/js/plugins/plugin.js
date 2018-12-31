@@ -17,13 +17,13 @@ describe('Plugin', function () {
     }
   }
 
-  beforeEach(function () {
+  before(function () {
     htmlDivElement = document.createElement('div');
     htmlDivElement.id = 'plugin';
     document.body.appendChild(htmlDivElement);
   });
 
-  afterEach(function () {
+  after(function () {
     htmlDivElement.remove();
   });
 

@@ -1,8 +1,8 @@
 /**
  * Converts string to camel case.
  * @link https://en.wikipedia.org/wiki/Camel_case
- * @param string
- * @returns {string}
+ * @param {String} string
+ * @returns {String}
  */
 export function camelCase(string) {
   return `${string}`

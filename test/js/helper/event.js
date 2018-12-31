@@ -169,5 +169,3 @@ describe('Event', function () {
     return [capture, tracker];
   }
 });
-
-
