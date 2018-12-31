@@ -1,5 +1,6 @@
 import Plugin from './plugin';
-import { $, Keyboard, Triggers } from '../utilities';
+import { $ } from '../helper';
+import { Keyboard, Triggers } from '../utilities';
 
 /**
  * Modal module.
