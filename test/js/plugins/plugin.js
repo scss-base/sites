@@ -92,6 +92,6 @@ describe('Plugin', function () {
 
     htmlDivElement.addEventListener('init.base.testPlugin', eventListener);
     new TestPlugin(document.querySelector('#plugin'));
-    htmlDivElement.removeEventListener('test.detail', eventListener);
+    htmlDivElement.removeEventListener('init.base.testPlugin', eventListener);
   });
 });
