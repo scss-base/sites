@@ -31,7 +31,6 @@ describe('Plugin', function () {
     const plugin = new TestPlugin(document.querySelector('#plugin'));
 
     expect(plugin).to.be.an.instanceof(Plugin);
-    plugin.element.should.be.an('HTMLDivElement');
     assert.equal(plugin.pluginName, 'test-plugin');
     assert.equal(htmlDivElement.dataset.testPlugin, plugin.pluginId);
   });
