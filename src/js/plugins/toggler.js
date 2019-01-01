@@ -1,16 +1,11 @@
 import Plugin from './plugin';
 import { Triggers } from '../utilities';
+import { fire, on } from '../helper';
 
 /**
  * Toggler module to toggle a css class
  */
 export default class Toggler extends Plugin {
-  /**
-   * Gets class name.
-   * @type {string}
-   */
-  className = 'Toggler';
-
   /**
    *
    * @type {Map<string, boolean | string>}
@@ -29,11 +24,15 @@ export default class Toggler extends Plugin {
    * @param element
    * @param [options]
    */
-  constructor(element, options) {
-    super(element, options);
-    this.options = this.defaults;
+  constructor(element, options = new Map()) {
+    super(element);
+    this.pluginName = 'Toggler';
 
-    this._addListeners();
+    this.options = this.defaults;
+    this.options = options;
+    this.options = this.getOptionsFromElement();
+
+    this._initCustomEvents();
     Triggers.init();
   }
 
@@ -54,13 +53,13 @@ export default class Toggler extends Plugin {
        * Fires if the target element has the class after a toggle.
        * @event Toggler#on
        */
-      this.element.trigger('on.base.toggler');
+      fire(this.element, 'on.base.toggler');
     } else {
       /**
        * Fires if the target element does not have the class after a toggle.
        * @event Toggler#off
        */
-      this.element.trigger('off.base.toggler');
+      fire(this.element, 'off.base.toggler');
     }
   }
 
@@ -68,7 +67,7 @@ export default class Toggler extends Plugin {
    * Adds event listeners for the Toggler.
    * @private
    */
-  _addListeners() {
-    this.element.on('toggle.base.trigger', this.toggle.bind(this));
+  _initCustomEvents() {
+    on('toggle.base.trigger', this.element, this.toggle.bind(this));
   }
 }
