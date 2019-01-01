@@ -36,7 +36,7 @@ export default class Plugin {
   }
 
   /**
-   * @param {Object | Map<any[], any>} options
+   * @param {Object | Map<*, *>} options
    */
   set options(options) {
     if (options instanceof Object && !(options instanceof Map)) {
@@ -54,7 +54,7 @@ export default class Plugin {
   }
 
   /**
-   * @returns {Map<any[], any>}
+   * @returns {Map<*, *>}
    */
   get options() {
     return this._options;
@@ -62,7 +62,7 @@ export default class Plugin {
 
 
   /**
-   * @returns {Map<any[], any>}
+   * @returns {Map<*, *>}
    */
   getOptionsFromElement() {
     return new Map(Object.entries(this.element.dataset).map(datasetValue => datasetValue

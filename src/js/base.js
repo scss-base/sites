@@ -1,8 +1,9 @@
-import { Dropdown, DropdownMenu, Modal, Toggler } from './plugins';
+import { Dropdown, Modal, Toggler } from './plugins';
+import { $ } from './helper';
 
-window.Base = {
+const Base = window.Base = {
+  $,
   Dropdown,
-  DropdownMenu,
   Modal,
   Toggler,
 };

@@ -1,80 +1,64 @@
 /// Background color of the body.
-///
 /// @type Color
 $global-background: $white !default;
 
 /// Text color of the body.
-///
 /// @type Color
 $global-font-color: $black !default;
 
 /// Font size attribute applied to `<html>` and `<body>`.
-///
 /// @type Number
 $global-font-size: 100% !default;
 
 /// Font stack of sans serif font family
-///
 /// @type List
 $global-font-family-sans-serif: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif !default;
 
 /// Font stack of serif font family
-///
 /// @type List
 $global-font-family-serif: Georgia, Cambria, 'Times New Roman', Times, serif !default;
 
 /// Font stack of monospace font family
-///
 /// @type List
 $global-font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
 
 /// Font stack of the body.
-///
 /// @type List
 $global-font-family: $global-font-family-sans-serif !default;
 
 /// Base font weight used for normal type.
-///
 /// @type Keyword | Number
 $global-font-weight-normal: normal !default;
 
 /// Base font weight used for bold type.
-///
 /// @type Keyword | Number
 $global-font-weight-bold: bold !default;
 
 /// Line height of the body. `$global-line-height` is 24px while `$global-font-size` is 16px
-///
 /// @type Number
 $global-line-height: 1.5 !default;
 
 /// Text rendering method for the body text.
-///
 /// @type String
 $global-text-rendering: optimizeLegibility !default;
 
 /// Global width of your site.
-///
 /// @type Number
 $global-width: rem-calc(1280) !default;
 
 /// Global value used for margin on components.
-///
 /// @type Number
 $global-margin: 1rem !default;
 
 /// Global value used for padding on components.
-///
 /// @type Number
 $global-padding: 1rem !default;
 
 /// Global value used for all elements that have a border radius.
-///
 /// @type Number
 $global-radius: 3px !default;
 
 /// Sets the text direction of the CSS. Can be either `ltr` or `rtl`.
-///
 /// @type Keyword
 $global-text-direction: ltr !default;
 

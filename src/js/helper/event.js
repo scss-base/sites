@@ -1,6 +1,6 @@
 /**
  * Fires an event.
- * @param {String | HTMLElement} element - The element to dispatch the event to.
+ * @param {String | Element} element - The element to dispatch the event to.
  * @param {String} event - The event type
  * @param detail
  * @returns {Boolean}
@@ -19,7 +19,7 @@ export function fire(element, event, detail) {
 /**
  * Removes an event listener.
  * @param {String} event - The event type
- * @param {Window | HTMLElement | Function | String} element - The element to remove the event to (optional, defaults to window)
+ * @param {Window | Element | Function | String} element - The element to remove the event to (optional, defaults to window)
  * @param {Function} fn - The callback that ran on the event
  * @param {Boolean} capture - If true, forces bubbling on non-bubbling events
  * @returns {Boolean}
@@ -44,7 +44,7 @@ export function off(event, element, fn = undefined, capture = false) {
 /**
  * Adds an event listener.
  * @param {String} event - The event type
- * @param {Window | HTMLElement | Function | String} element - The element to attach the event to (optional, defaults to window)
+ * @param {Window | Element | Function | String} element - The element to attach the event to (optional, defaults to window)
  * @param {Function} fn - The callback to run on the event
  * @param {Boolean} capture - If true, forces bubbling on non-bubbling events
  * @returns {Boolean}
