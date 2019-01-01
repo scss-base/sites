@@ -1,5 +1,58 @@
-@mixin base-dropdown {
-  .dropdown-container {
+/// Padding for dropdown panes.
+/// @type List
+$dropdown-padding: 1rem !default;
 
+/// Background for dropdown panes.
+/// @type Color
+$dropdown-background: $global-background !default;
+
+/// Border for dropdown panes.
+/// @type List
+$dropdown-border: 1px solid $grey !default;
+
+/// Font size for dropdown panes.
+/// @type List
+$dropdown-font-size: 1rem !default;
+
+/// Width for dropdown panes.
+/// @type Number
+$dropdown-width: 300px !default;
+
+/// Border radius dropdown panes.
+/// @type Number
+$dropdown-radius: $global-radius !default;
+
+/// Sizes for dropdown panes. Each size is a CSS class you can apply.
+/// @type Map
+$dropdown-sizes: (
+  tiny: 100px,
+  small: 200px,
+  large: 400px,
+) !default;
+
+@mixin dropdown-base(
+  $background: $dropdown-background,
+  $border: $dropdown-border,
+  $radius: $dropdown-radius,
+  $font-size: $dropdown-font-size,
+  $padding: $dropdown-padding,
+  $width: $dropdown-width
+) {
+  background-color: $background;
+  border: $border;
+  border-radius: $radius;
+  display: none;
+  font-size: $font-size;
+  padding: $padding;
+  position: absolute;
+  width: $width;
+  z-index: 10;
+}
+
+@mixin base-dropdown {
+  .dropdown {
+    &:not(.menu) {
+      @include dropdown-base;
+    }
   }
 }
