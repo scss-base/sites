@@ -29,7 +29,7 @@ export default class Keyboard {
    */
   static handleKey(event, pluginName, functions) {
     if (!Keyboard.plugins.has(pluginName)) {
-      return console.warn('Plugin name not defined!');
+      return new TypeError('Plugin name not defined!');
     }
 
     const keyCode = Keyboard.parseKey(event);

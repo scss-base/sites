@@ -1,4 +1,5 @@
-import { $, $$, Core } from './index';
+import { Core } from './index';
+import { $, $$, off, on, fire } from '../helper';
 
 export default class Triggers {
   static init() {
@@ -9,21 +10,17 @@ export default class Triggers {
 
   static openListener(event) {
     const id = event.target.dataset.open;
-    $(`#${id}`).trigger('open.base.trigger');
-  };
+    fire($(`#${id}`), 'open.base.trigger');
+  }
 
   static closeListener(event) {
     const id = event.target.dataset.close;
-    if (id) {
-      $(`#${id}`).trigger('close.base.trigger');
-    } else {
-      event.target.closest('[data-base-plugin]').trigger('close.base.trigger');
-    }
+    fire(id ? $(`#${id}`) : event.target.closest('[data-base-plugin]'), 'close.base.trigger');
   }
 
   static toggleListener(event) {
     const id = event.target.dataset.toggle;
-    $(`#${id}`).trigger('toggle.base.trigger');
+    fire($(`#${id}`), 'toggle.base.trigger');
   }
 
   static closeMeListener(event) {
@@ -32,7 +29,7 @@ export default class Triggers {
 
     $$(`[data-${plugin}]`).forEach(element => {
       if (pluginId !== element.dataset[plugin]) {
-        element.trigger('close.base.trigger');
+        fire(element, 'close.base.trigger');
       }
     });
   }
@@ -45,28 +42,32 @@ export default class Triggers {
   }
 
   static addOpenListener() {
-    $$('[data-open]')
-      .forEach(element =>
-        element.off('click', Triggers.openListener).on('click', Triggers.openListener));
+    $$('[data-open]').forEach(element => {
+      off('click', element, Triggers.openListener);
+      on('click', element, Triggers.openListener);
+    });
   }
 
   static addCloseListener() {
-    $$('[data-close]')
-      .forEach(element =>
-        element.off('click', Triggers.closeListener).on('click', Triggers.closeListener));
+    $$('[data-close]').forEach(element => {
+      off('click', element, Triggers.closeListener);
+      on('click', element, Triggers.closeListener);
+    });
   }
 
   static addToggleListener() {
-    $$('[data-toggle]')
-      .forEach(element =>
-        element.off('click', Triggers.toggleListener).on('click', Triggers.toggleListener));
+    $$('[data-toggle]').forEach(element => {
+      off('click', element, Triggers.toggleListener);
+      on('click', element, Triggers.toggleListener);
+    });
   }
 
   static addCloseMeListener() {
     const pluginNames = ['dropdown', 'modal', 'tooltip'];
     pluginNames.forEach(pluginName => {
       $$(`[data-${pluginName}]`).forEach(element => {
-        element.off(`closeme.base.${pluginName}`, Triggers.closeMeListener).on(`closeme.base.${pluginName}`, Triggers.closeMeListener);
+        off(`closeme.base.${pluginName}`, element, Triggers.closeMeListener);
+        on(`closeme.base.${pluginName}`, element, Triggers.closeMeListener);
       });
     });
   }
