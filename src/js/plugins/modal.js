@@ -1,6 +1,7 @@
 import Plugin from './plugin';
-import { $ } from '../helper';
-import { Keyboard, Triggers } from '../utilities';
+import { $, fire, off, on } from '../helper';
+// import { Keyboard, Triggers } from '../utilities';
+import { Triggers } from '../utilities';
 
 /**
  * Modal module.
@@ -11,12 +12,6 @@ import { Keyboard, Triggers } from '../utilities';
  * @requires Triggers
  */
 export default class Modal extends Plugin {
-  /**
-   * Gets class name.
-   * @type {string}
-   */
-  className = 'Modal';
-
   /**
    *
    * @type {Map<string, boolean | string>}
@@ -31,13 +26,13 @@ export default class Modal extends Plugin {
      */
     closeOnClick: true,
 
-    /**
-     * Allows the modal to close if the user presses the `ESCAPE` key.
-     * @option
-     * @type {boolean}
-     * @default true
-     */
-    closeOnEsc: true,
+    // /**
+    //  * Allows the modal to close if the user presses the `ESCAPE` key.
+    //  * @option
+    //  * @type {boolean}
+    //  * @default true
+    //  */
+    // closeOnEsc: true,
 
     /**
      * Allows adding additional class names to the reveal overlay.
@@ -47,12 +42,6 @@ export default class Modal extends Plugin {
      */
     additionalOverlayClasses: undefined,
   }));
-
-  /**
-   * @type {Boolean}
-   * @private
-   */
-  _isActive = false;
 
   /**
    * @type {Map<string, function>}
@@ -65,39 +54,23 @@ export default class Modal extends Plugin {
    * @param {HTMLElement} element - HTMLElement object to use for the modal.
    * @param {Object} options - optional parameters.
    */
-  constructor(element, options) {
+  constructor(element, options = new Map()) {
     super(element, options);
+    this.pluginName = 'Modal';
 
-    this._isActive = false;
     this.options = this.defaults;
+    this.options = options;
+    this.options = this.getOptionsFromElement();
+
+    this.isOpen = false;
 
     this._createOverlay();
-    this._addListeners();
+    this._initCustomEvents();
 
     Triggers.init();
-    Keyboard.register('Modal', {
-      'ESCAPE': 'close',
-    });
-  }
-
-  /**
-   * Closes the Modal
-   * @fires Modal#closed
-   */
-  close() {
-    this._isActive = false;
-    this.element.style.display = 'none';
-    this.overlay.style.display = 'none';
-
-    this._enableScrollbar();
-    this._resetHistory();
-    this._removeModalListeners();
-
-    /**
-     * Fires when the modal is done closing.
-     * @event Modal#closed
-     */
-    this.element.trigger('closed.base.modal');
+    // Keyboard.register('Modal', {
+    //   'ESCAPE': 'close',
+    // });
   }
 
   /**
@@ -111,29 +84,49 @@ export default class Modal extends Plugin {
      * Closes any other Modals that are currently open
      * @event Modal#closeme
      */
-    this.element.trigger('closeme.base.modal', this.pluginId);
+    fire(this.element, 'closeme.base.modal', this.pluginId);
 
-    this._isActive = true;
+    this.isOpen = true;
 
     this.element.style.display = 'block';
     this.overlay.style.display = 'block';
 
     this._disableScrollbar();
     this._updateHistory();
-    this._addModalListeners();
+    this._addModalEvents();
 
     /**
      * Fires when the Modal has successfully opened.
      * @event Modal#open
      */
-    this.element.trigger('open.base.modal');
+    fire(this.element, 'open.base.modal');
+  }
+
+  /**
+   * Closes the Modal
+   * @fires Modal#closed
+   */
+  close() {
+    this.isOpen = false;
+    this.element.style.display = 'none';
+    this.overlay.style.display = 'none';
+
+    this._enableScrollbar();
+    this._resetHistory();
+    this._removeModalEvents();
+
+    /**
+     * Fires when the modal is done closing.
+     * @event Modal#closed
+     */
+    fire(this.element, 'closed.base.modal');
   }
 
   /**
    * Toggles the open/closed state of a modal.
    */
   toggle() {
-    if (this._isActive) {
+    if (this.isOpen) {
       this.close();
     } else {
       this.open();
@@ -144,25 +137,25 @@ export default class Modal extends Plugin {
    * Adds event listeners for the Modal.
    * @private
    */
-  _addListeners() {
-    this.element.on('open.base.trigger', this.open.bind(this));
-    this.element.on('close.base.trigger', this.close.bind(this));
-    this.element.on('toggle.base.trigger', this.toggle.bind(this));
+  _initCustomEvents() {
+    on('open.base.trigger', this.element, this.open.bind(this));
+    on('close.base.trigger', this.element, this.close.bind(this));
+    on('toggle.base.trigger', this.element, this.toggle.bind(this));
   }
 
   /**
    * Adds global event listeners.
    * @private
    */
-  _addModalListeners() {
-    if (this.options.get('closeOnEsc')) {
-      this._globalListeners.set('keydown.modal', this._keyDownListener.bind(this));
-      window.on('keydown', this._globalListeners.get('keydown.modal'));
-    }
+  _addModalEvents() {
+    // if (this.options.get('closeOnEsc')) {
+    //   this._globalListeners.set('keydown.modal', this._keyDownListener.bind(this));
+    //   on('keydown', this._globalListeners.get('click.overlay'));
+    // }
 
     if (this.options.get('closeOnClick')) {
       this._globalListeners.set('click.overlay', this._clickOverlayListener.bind(this));
-      this.overlay.on('click', this._globalListeners.get('click.overlay'));
+      on('click', this.overlay, this._globalListeners.get('click.overlay'));
     }
   }
 
@@ -170,14 +163,14 @@ export default class Modal extends Plugin {
    * Removes global event listeners.
    * @private
    */
-  _removeModalListeners() {
-    if (this.options.get('closeOnEsc')) {
-      window.off('keydown', this._globalListeners.get('keydown.modal'));
-      this._globalListeners.delete('keydown.modal');
-    }
+  _removeModalEvents() {
+    // if (this.options.get('closeOnEsc')) {
+    //   off('keydown', this._globalListeners.get('keydown.modal'));
+    //   this._globalListeners.delete('keydown.modal');
+    // }
 
     if (this.options.get('closeOnClick')) {
-      this.overlay.off('click', this._globalListeners.get('click.overlay'));
+      off('click', this.overlay, this._globalListeners.get('keydown.modal'));
       this._globalListeners.delete('click.overlay');
     }
   }
@@ -186,11 +179,11 @@ export default class Modal extends Plugin {
    * @param event
    * @private
    */
-  _keyDownListener(event) {
-    Keyboard.handleKey(event, 'Modal', {
-      close: () => this.close(),
-    });
-  }
+  // _keyDownListener(event) {
+  //   Keyboard.handleKey(event, 'Modal', {
+  //     close: () => this.close(),
+  //   });
+  // }
 
   /**
    * Creates an overlay, which appears behind the Modal.
