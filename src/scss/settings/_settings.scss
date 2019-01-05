@@ -13,8 +13,9 @@
 //   8. Button
 //   9. Table
 //  10. Section
-//  11. Top Bar
-//  12. Side Bar
+//  11. Pagination
+//  12. Top Bar
+//  13. Side Bar
 //
 //  ------------------
 
@@ -271,8 +272,21 @@ $section-padding: (
 );
 $section-radius: $global-radius;
 
+// 12. Pagination
+// -----------
+$pagination-font-size: rem-calc(14);
+$pagination-margin-bottom: $global-margin;
+$pagination-radius: $global-radius;
+$pagination-item-color: $black;
+$pagination-item-background-hover: $grey;
+$pagination-item-background-current: $primary-color;
+$pagination-item-color-current: $white;
+$pagination-item-color-disabled: $grey;
+$pagination-item-padding: rem-calc(3 10);
+$pagination-item-spacing: rem-calc(5);
+$pagination-ellipsis-color: $black;
 
-// 11. Top Bar
+// 12. Top Bar
 // -----------
 
 $top-bar-margin: rem-calc(30);
@@ -291,8 +305,7 @@ $top-bar-menu-item-padding: rem-calc(10 20);
 $top-bar-dropdownmenu-background: $top-bar-background;
 $top-bar-dropdownmenu-border: 1px solid $white;
 
-
-// 12. Side Bar
+// 13. Side Bar
 // -----------
 
 $side-bar-background: scale-color($black, $lightness: 20%);

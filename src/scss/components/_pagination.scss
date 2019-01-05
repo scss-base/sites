@@ -1,0 +1,149 @@
+/// Font size of pagination items.
+/// @type Number
+$pagination-font-size: rem-calc(14) !default;
+
+/// Default bottom margin of the pagination object.
+/// @type Number
+$pagination-margin-bottom: $global-margin !default;
+
+/// Default radius for pagination items.
+/// @type Number
+$pagination-radius: $global-radius !default;
+
+/// Text color of pagination items.
+/// @type Color
+$pagination-item-color: $black !default;
+
+/// Background color of pagination items on hover.
+/// @type Color
+$pagination-item-background-hover: $grey !default;
+
+/// Background color of pagination item for the current page.
+/// @type Color
+$pagination-item-background-current: $primary-color !default;
+
+/// Text color of the pagination item for the current page.
+/// @type Color
+$pagination-item-color-current: $white !default;
+
+/// Text color of a disabled pagination item.
+/// @type Color
+$pagination-item-color-disabled: $grey !default;
+
+/// Padding inside of pagination items.
+/// @type Number
+$pagination-item-padding: rem-calc(3 10) !default;
+
+/// Right margin to separate pagination items.
+/// @type Number
+$pagination-item-spacing: rem-calc(5) !default;
+
+/// Color of the ellipsis in a pagination menu.
+/// @type Color
+$pagination-ellipsis-color: $black !default;
+
+/// Adds styles for a pagination container. Apply this to a `<ul>`.
+@mixin pagination-base(
+  $margin-bottom: $pagination-margin-bottom,
+  $spacing: $pagination-item-spacing,
+  $radius: $pagination-radius,
+  $color: $pagination-item-color,
+  $padding: $pagination-item-padding,
+  $background-hover: $pagination-item-background-hover
+) {
+  display: flex;
+  flex-direction: row;
+  margin-#{$global-left}: 0;
+  margin-bottom: $margin-bottom;
+  list-style: none;
+
+  li {
+    display: none;
+
+    @include breakpoint-up('medium') {
+      display: block;
+    }
+
+    margin-#{$global-right}: $spacing;
+    border-radius: $radius;
+
+    &:last-child,
+    &:first-child {
+      display: block;
+    }
+
+    &:last-child {
+      margin-#{$global-right}: 0;
+    }
+
+    &.current {
+      display: block;
+    }
+  }
+
+  a,
+  button {
+    display: block;
+    padding: $padding;
+    border-radius: $radius;
+    color: $color;
+
+    &:hover {
+      background: $background-hover;
+    }
+  }
+}
+
+/// Adds styles for the current pagination item. Apply this to an `<a>`.
+@mixin pagination-item-current(
+  $padding: $pagination-item-padding,
+  $background-current: $pagination-item-background-current,
+  $color-current: $pagination-item-color-current
+) {
+  padding: $padding;
+  background: $background-current;
+  color: $color-current;
+  cursor: default;
+}
+
+/// Adds styles for a disabled pagination item. Apply this to an `<a>`.
+@mixin pagination-item-disabled(
+  $padding: $pagination-item-padding,
+  $color: $pagination-item-color-disabled
+) {
+  padding: $padding;
+  color: $color;
+  cursor: not-allowed;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+/// Adds styles for an ellipsis for use in a pagination list.
+@mixin pagination-ellipsis(
+  $padding: $pagination-item-padding,
+  $color: $pagination-ellipsis-color
+) {
+  padding: $padding;
+  content: '\2026';
+  color: $color;
+}
+
+@mixin base-pagination {
+  .pagination {
+    @include pagination-base;
+
+    .current {
+      @include pagination-item-current;
+    }
+
+    .disabled {
+      @include pagination-item-disabled;
+    }
+
+    .ellipsis::after {
+      @include pagination-ellipsis;
+    }
+  }
+}
