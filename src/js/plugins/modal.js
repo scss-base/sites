@@ -92,7 +92,7 @@ export default class Modal extends Plugin {
     this.overlay.style.display = 'block';
 
     this._disableScrollbar();
-    this._updateHistory();
+    // this._updateHistory();
     this._addModalEvents();
 
     /**
@@ -112,7 +112,7 @@ export default class Modal extends Plugin {
     this.overlay.style.display = 'none';
 
     this._enableScrollbar();
-    this._resetHistory();
+    // this._resetHistory();
     this._removeModalEvents();
 
     /**
