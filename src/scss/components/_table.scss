@@ -1,75 +1,60 @@
 /// Default color for table background.
-///
 /// @type Color
 $table-background: $white !default;
 
 /// Default style for table border.
-///
 /// @type List
 $table-border: 1px solid $grey !default;
 
 /// Default value for showing the stripe on rows of the tables, excluding the header and footer. If even, the even rows will have a background color. If odd, the odd rows will have a background color. If none, or any other value, the table rows will have no striping.
-///
 /// @type Keyword
 $table-stripe: even !default;
 
 /// Default background color for striped rows.
-///
 /// @type Color
 $table-striped-background: darken($table-background, 2%) !default;
 
 /// Default color of standard rows on hover.
-///
 /// @type List
 $table-row-hover: darken($table-background, 2%) !default;
 
 /// Default color of striped rows on hover.
-///
 /// @type List
 $table-row-stripe-hover: darken($table-background, 7%) !default;
 
 /// Default color for header background.
-///
 /// @type Color
 $table-head-background: darken($table-background, 2%) !default;
 
 /// Default color of header rows on hover.
-///
 /// @type List
 $table-head-row-hover: darken($table-head-background, 2%) !default;
 
 /// Default color for footer background.
-///
 /// @type Color
 $table-foot-background: darken($table-background, 2%) !default;
 
 /// Default color of footer rows on hover.
-///
 /// @type List
 $table-foot-row-hover: darken($table-background, 2%) !default;
 
 /// Default font color for header.
-///
 /// @type Color
 $table-head-font-color: $global-font-color !default;
 
 /// Default font color for footer.
-///
 /// @type Color
 $table-foot-font-color: $global-font-color !default;
 
 /// Default padding for table.
-///
 /// @type Number
 $table-padding: rem-calc(8 10 10) !default;
 
 /// Default margin for table.
-///
 /// @type Number
 $table-margin: 0 0 $global-margin !default;
 
 /// Default border radius for table.
-///
 /// @type Number
 $table-border-radius: $global-radius !default;
 
@@ -88,16 +73,12 @@ $table-border-radius: $global-radius !default;
 
 @mixin table-stripe($stripe: $table-stripe) {
   tr {
-    // If stripe is set to even, darken the even rows.
-    @if $stripe == even {
+    @if $stripe == even { // If stripe is set to even, darken the even rows.
       &:nth-child(even) {
         border-bottom: 0;
         background-color: $table-striped-background;
       }
-    }
-
-      // If stripe is set to odd, darken the odd rows.
-    @else if $stripe == odd {
+    } @else if $stripe == odd { // If stripe is set to odd, darken the odd rows.
       &:nth-child(odd) {
         background-color: $table-striped-background;
       }
@@ -181,6 +162,5 @@ $table-border-radius: $global-radius !default;
         @include table-unstripe();
       }
     }
-
   }
 }

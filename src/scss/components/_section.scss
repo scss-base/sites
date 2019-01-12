@@ -46,6 +46,7 @@ $section-radius: $global-radius !default;
   // Responsive padding
   @if type-of($padding) == 'map' {
     @each $breakpoint, $value in $padding {
+
       @if strip-unit($value) > 0 {
         @include breakpoint-up($breakpoint) {
           padding: rem-calc($value);

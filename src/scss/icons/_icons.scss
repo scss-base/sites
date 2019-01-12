@@ -1,7 +1,4 @@
-// sass-lint:disable quotes
-
 /// Adds a triangle-down icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the triangle.
 @mixin svg-icon-triangle-down($color: $black, $size: 10px 9px) {
@@ -12,7 +9,6 @@
 }
 
 /// Adds a log-out icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the log-out icon.
 @mixin svg-icon-log-out($color: $black, $size: 20px 20px) {
@@ -23,7 +19,6 @@
 }
 
 /// Adds a cross icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the cross icon.
 @mixin svg-icon-cross($color: $black, $size: 20px 20px) {
@@ -34,7 +29,6 @@
 }
 
 /// Adds a eye icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the eye icon.
 @mixin svg-icon-eye($color: $black, $size: 20px 20px) {
@@ -44,9 +38,7 @@
   background-size: $size;
 }
 
-
 /// Adds a text document icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the text document icon.
 @mixin svg-icon-text-document($color: $black, $size: 20px 20px) {
@@ -57,7 +49,6 @@
 }
 
 /// Adds a user icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the user icon.
 @mixin svg-icon-user($color: $black, $size: 20px 20px) {
@@ -68,7 +59,6 @@
 }
 
 /// Adds a users icon as background image to an element. The image is formatted as an SVG, making it easy to change the color.
-///
 /// @param {Color} $color [$black] - Color to use for the triangle.
 /// @param {Keyword|List} $size [20px 20px] - Size to use for the users icon.
 @mixin svg-icon-users($color: $black, $size: 20px 20px) {

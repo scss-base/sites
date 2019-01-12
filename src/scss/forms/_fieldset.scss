@@ -1,25 +1,20 @@
 /// Default border around custom fieldsets.
-///
 /// @type Border
 $fieldset-border: 1px solid $grey !default;
 
 /// Default padding inside custom fieldsets.
-///
 /// @type Number
 $fieldset-padding: rem-calc(20) !default;
 
 /// Default margin around custom fieldsets.
-///
 /// @type Number
 $fieldset-margin: rem-calc(18 0) !default;
 
 /// Default margin below the legend text.
-///
 /// @type Number
 $legend-margin: rem-calc(8) !default;
 
 /// Default padding between the legend text and fieldset border.
-///
 /// @type Number
 $legend-padding: rem-calc(0 3) !default;
 
@@ -45,7 +40,7 @@ $legend-padding: rem-calc(0 3) !default;
   }
 
   legend {
-    margin-bottom: $form-spacing * 0.5; // sass-lint:disable-line leading-zero
+    margin-bottom: $form-spacing * .5;
     max-width: 100%;
   }
 

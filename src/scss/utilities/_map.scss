@@ -1,9 +1,7 @@
 /// Find the next key in a map.
 /// @access private
-///
 /// @param {Map} $map - Map to traverse.
 /// @param {Mixed} $key - Key to use as a starting point.
-///
 /// @return {Mixed} The value for the key after `$key`, if `$key` was found. If `$key` was not found, or `$key` was the last value in the map, returns `null`.
 @function map-next($map, $key) {
   // Store the values of the map as a list, so we can access them with nth
@@ -12,6 +10,7 @@
   // Ghetto for loop
   $i: 1;
   $found: false;
+
   @each $val in map-keys($map) {
     @if $found == false {
       @if ($key == $val) {
@@ -32,9 +31,7 @@
 
 /// Tests whether map is empty.
 /// @access private
-///
 /// @param {Map} $map - map to run test against
-///
 /// @return {Boolean}
 @function map-is-empty($map) {
   @return length($map) == 0;
@@ -42,13 +39,9 @@
 
 /// Returns first element of `$map`.
 /// @access private
-///
 /// @param {Map} $map - map to retrieve first item from
-///
 /// @throws Cannot find first item of empty map.
-///
 /// @requires map-is-empty
-///
 /// @return {*}
 @function map-first($map) {
   @if map-is-empty($map) {

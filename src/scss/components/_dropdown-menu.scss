@@ -1,21 +1,17 @@
 /// Background color for dropdowns.
-///
 /// @type Color
 $dropdownmenu-background: $white !default;
 
 /// Border for dropdown sub-menus.
-///
 /// @type List
 $dropdownmenu-border: 1px solid $grey !default;
 
 /// Minimum width of dropdown sub-menus.
-///
 /// @type Length
 $dropdownmenu-min-width: 200px !default;
 
 /// @todo Documentation needed...
 @mixin dropdown-menu-base {
-
   > li {
     position: relative;
 
@@ -42,9 +38,7 @@ $dropdownmenu-min-width: 200px !default;
 /// @todo Documentation needed...
 @mixin dropdown-menu-direction($direction: horizontal) {
   @if ($direction == horizontal) {
-
     > li {
-
       > .menu {
         left: 0;
         top: 100%;
@@ -61,9 +55,7 @@ $dropdownmenu-min-width: 200px !default;
       }
     }
   } @else if ($direction == vertical) {
-
     > li {
-
       > .menu {
         left: 100%;
         top: 0;
@@ -85,7 +77,6 @@ $dropdownmenu-min-width: 200px !default;
 /// @todo Documentation needed...
 @mixin base-dropdown-menu {
   .dropdown {
-
     &.menu {
       @include dropdown-menu-base;
       @include dropdown-menu-direction(horizontal);

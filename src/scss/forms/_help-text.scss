@@ -18,6 +18,6 @@ $help-text-font-style: italic !default;
     color: $help-text-color;
     font-size: $help-text-font-size;
     font-style: $help-text-font-style;
-    margin-top: ($form-spacing * 0.5) * -1; // sass-lint:disable-line leading-zero
+    margin-top: ($form-spacing * .5) * -1;
   }
 }

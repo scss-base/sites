@@ -1,5 +1,3 @@
-// sass-lint:disable no-important no-color-keywords no-color-literals force-element-nesting force-pseudo-nesting force-attribute-nesting no-qualifying-elements
-
 /// If `true`, all elements will have transparent backgrounds when printed, to save on ink.
 ///
 /// @type Boolean
@@ -23,7 +21,6 @@ $print-hrefs: true !default;
       }
 
       box-shadow: none !important;
-
       color: black !important; // Black prints faster: h5bp.com/s
       text-shadow: none !important;
     }

@@ -55,7 +55,6 @@ $flex-align: (
 }
 
 @mixin base-flex-helpers {
-
   .flex-container {
     display: flex;
   }
@@ -89,5 +88,4 @@ $flex-align: (
       @include flex-align-self($y: $vdir);
     }
   }
-
 }

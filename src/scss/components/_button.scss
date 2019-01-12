@@ -1,25 +1,20 @@
 /// Default background color for buttons.
-///
 /// @type Color
 $button-background: $secondary-color !default;
 
 /// Background color on hover for buttons.
-///
 /// @type Color
 $button-background-hover: scale-color($button-background, $lightness: -20%) !default;
 
 /// Background color lightness on hover for buttons.
-///
 /// @type Number
 $button-background-hover-lightness: -20% !default;
 
 /// Font color for buttons.
-///
 /// @type List
 $button-color: $black !default;
 
 /// Font family for button elements.
-///
 /// @type Font
 $button-font-family: inherit !default;
 
@@ -27,12 +22,10 @@ $button-font-family: inherit !default;
 $button-font-weight: $global-font-weight-normal !default;
 
 /// Margin around buttons.
-///
 /// @type List
 $button-margin: 0 0 $global-margin 0 !default;
 
 /// Padding inside buttons.
-///
 /// @type List
 $button-padding: .5em 1em !default;
 
@@ -63,7 +56,6 @@ $button-danger-color: $white !default;
 $button-danger-color-hover: $white !default;
 
 /// Sizes for buttons.
-///
 /// @type Map
 $button-sizes: (
   tiny: .6rem,
@@ -73,22 +65,18 @@ $button-sizes: (
 ) !default;
 
 /// Border radius for buttons, defaulted to global-radius.
-///
 /// @type Number
 $button-radius: $global-radius !default;
 
 /// transitions for buttons.
-///
 /// @type List
 $button-transition: background-color .25s ease-out, color .25s ease-out !default;
 
 /// Mouse cursor for disabled button.
-///
 /// @type Keyword
 $button-cursor-disabled: not-allowed;
 
 /// Opacity for a disabled button.
-///
 /// @type List
 $button-opacity-disabled: .25 !default;
 
@@ -133,7 +121,6 @@ $button-opacity-disabled: .25 !default;
 
 /// @todo Documentation needed...
 @mixin base-button {
-
   button,
   .button {
     @include button-base;

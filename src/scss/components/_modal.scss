@@ -1,21 +1,16 @@
-
 /// Background color of a modal.
-///
 /// @type Color
 $modal-background: $white !default;
 
 /// Maximum width of a modal.
-///
 /// @type Number
 $modal-max-width: $global-width !default;
 
 /// Top position of a modal.
-///
 /// @type Number
 $modal-top: 100px !default;
 
 /// Sizes for modals.
-///
 /// @type Map
 $modal-sizes: (
   tiny: 30%,
@@ -25,32 +20,26 @@ $modal-sizes: (
 ) !default;
 
 /// Border around a modal.
-///
 /// @type List
 $modal-border: 1px solid $grey !default;
 
 /// Padding inside a modal.
-///
 /// @type Number
 $modal-padding: $global-padding !default;
 
 /// Radius for modal.
-///
 /// @type Number
 $modal-radius: $global-radius !default;
 
 /// The z-index for modals. The overlay uses this value, while the modal itself uses this value plus one.
-///
 /// @type Number
 $modal-z-index: 1000 !default;
 
 /// Background color of modal overlays.
-///
 /// @type Color
 $modal-overlay-background: rgba($black, .45) !default;
 
 /// Adds base styles for a modal.
-///
 /// @param {Number} $top - [$modal-top] - Top position for a modal.
 /// @param {Number} $z-index [$modal-z-index + 1] - Z-index for a modal.
 @mixin modal-base (
@@ -66,7 +55,6 @@ $modal-overlay-background: rgba($black, .45) !default;
 }
 
 /// Adds styles for a modal.
-///
 /// @param {Color} $background [$modal-background] - Background color for a modal.
 /// @param {List} $border [$modal-border] - Border style for a modal.
 /// @param {Number} $padding [$modal-padding] - Padding for a modal.
@@ -97,7 +85,6 @@ $modal-overlay-background: rgba($black, .45) !default;
 }
 
 /// Adds styles for a modal overlay.
-///
 /// @param {Color} $background [$modal-overlay-background] - Background color of the overlay.
 /// @param {Number} $z-index [$modal-z-index] - Z-index of the overlay.
 @mixin modal-overlay-base(
@@ -133,7 +120,6 @@ $modal-overlay-background: rgba($black, .45) !default;
 }
 
 @mixin base-modal {
-
   .modal {
     @include modal-base;
     @include modal-styles;

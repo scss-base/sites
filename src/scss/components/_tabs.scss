@@ -1,70 +1,56 @@
 /// Background color of a tab bar.
-///
 /// @type Color
 $tab-background: $white !default;
 
 /// Border color of tab content.
-///
 /// @type Color
 $tab-border: 1px solid $grey !default;
 
 /// Margin of the tab bar.
-///
 /// @type Number
 $tab-margin: 0 !default;
 
 /// Text color of a tab item.
-///
 /// @type Color
 $tab-item-color: $primary-color !default;
 
 /// Text color of a hover tab item.
-///
 /// @type Color
 $tab-item-color-hover: scale-color($primary-color, $lightness: -15%) !default;
 
 /// Background color of a hover tab item.
-///
 /// @type Color
 $tab-item-background-hover: $grey !default;
 
 /// Text color of an active tab item.
-///
 /// @type Color
 $tab-item-color-active: $white !default;
 
 /// Background color of an active tab item.
-///
 /// @type Color
 $tab-item-background-active: $primary-color !default;
 
 /// Padding of a tab item.
-///
 /// @type Number
 $tab-item-padding: rem-calc(11 16) !default;
 
 /// Background color of tab content.
-///
 /// @type Color
 $tab-content-background: $tab-background !default;
 
 /// Border color of tab content.
-///
 /// @type Color
 $tab-content-border: $tab-border !default;
 
 /// Text color of tab content.
-///
 /// @type Color
 $tab-content-color: $global-font-color !default;
 
 /// Padding for tab content.
-///
 /// @type Number | List
 $tab-content-padding: rem-calc(20) !default;
 
 /// Margin for tab container.
-///
 /// @type Number | List
 $tabs-container-margin: 0 0 $global-margin 0 !default;
 
@@ -81,32 +67,28 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
   list-style-type: none;
   margin: $margin;
 
+  // Reset styles of inner elements
+  input,
+  select,
+  a,
+  button {
+    margin-bottom: 0;
+  }
+
   // Reset line height to make the height of the overall item easier to calculate
   > li > a {
     display: block;
     line-height: 1;
   }
-
-  // Reset styles of inner elements
-  input,
-  select,
-  a,
-  a,
-  button {
-    margin-bottom: 0;
-  }
 }
 
 /// Sets the direction for tabs.
-///
 /// @param {Keyword} $dir [horizontal] - Direction of the menu can be `horizontal` or `vertical`.
 @mixin tabs-direction($dir: horizontal) {
   @if $dir == horizontal {
     flex-direction: row;
-
   } @else if $dir == vertical {
     flex-direction: column;
-
   } @else {
     @error 'The direction used for tabs-direction() must be horizontal or vertical.';
   }
@@ -122,7 +104,6 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
   $padding: $tab-item-padding
 ) {
   > li {
-
     > a {
       color: $color;
       padding: $padding;
@@ -232,6 +213,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 
       .tabs-content {
         @include tabs-content-direction(vertical);
+
         flex: 1 1 auto;
       }
     }

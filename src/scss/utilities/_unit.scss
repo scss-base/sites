@@ -39,7 +39,7 @@
   }
 
   // Turn 0rem into 0
-  @if $value == 0rem {
+  @if $value == 0rem { /* stylelint-disable-line length-zero-no-unit */
     $value: 0;
   }
 

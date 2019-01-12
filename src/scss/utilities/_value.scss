@@ -7,12 +7,15 @@
   @if $val == null or $val == none {
     @return false;
   }
+
   @if type-of($val) == 'number' and strip-unit($val) == 0 {
     @return false;
   }
+
   @if type-of($val) == 'list' and length($val) == 0 {
     @return false;
   }
+
   @return true;
 }
 
@@ -26,12 +29,15 @@
   // Find the width, style, or color and return it
   @each $v in $val {
     $type: type-of($v);
+
     @if $elem == width and $type == 'number' {
       @return $v;
     }
+
     @if $elem == style and $type == 'string' {
       @return $v;
     }
+
     @if $elem == color and $type == 'color' {
       @return $v;
     }

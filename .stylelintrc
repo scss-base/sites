@@ -5,5 +5,34 @@
   ],
   "plugins": [
     "stylelint-order"
-  ]
+  ],
+  "rules": {
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "after-same-name"
+        ],
+        "ignore": [
+          "after-comment",
+          "first-nested"
+        ],
+        "ignoreAtRules": [
+          "if",
+          "else",
+          "mixin"
+        ]
+      }
+    ],
+    "block-closing-brace-newline-after": [
+      "always",
+      {
+        "ignoreAtRules": [
+          "if",
+          "else"
+        ]
+      }
+    ],
+    "number-leading-zero": "never"
+  }
 }

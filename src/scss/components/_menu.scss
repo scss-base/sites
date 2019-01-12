@@ -1,60 +1,48 @@
 /// Default background color of a tab bar.
-///
 /// @type Color
 $menu-background: $white !default;
 
 /// Default border color of tab content.
-///
 /// @type Border
 $menu-border: none !default;
 
 /// Margin of a menu.
-///
 /// @type Number
 $menu-margin: 0 !default;
 
 /// Left-hand margin of a nested menu.
-///
 /// @type Number
 $menu-margin-nested: rem-calc(16) !default;
 
 /// Padding for items in a menu.
-///
 /// @type Number
 $menu-item-padding: rem-calc(10 16) !default;
 
 /// Text color of a menu item.
-///
 /// @type Color
 $menu-item-color: $primary-color !default;
 
 /// Background color of a menu item.
-///
 /// @type Color
 $menu-item-background: $white !default;
 
 /// Text color of a hover menu item.
-///
 /// @type Color
 $menu-item-color-hover: scale-color($primary-color, $lightness: -15%) !default;
 
 /// Background color of a hover menu item.
-///
 /// @type Color
 $menu-item-background-hover: $grey !default;
 
 /// Text color of an active menu item.
-///
 /// @type Color
 $menu-item-color-active: $white !default;
 
 /// Background color of an active menu item.
-///
 /// @type Color
 $menu-item-background-active: $primary-color !default;
 
 /// Creates the base styles for a menu.
-///
 /// @param {Color} $background [$menu-background] - @todo Documentation needed
 /// @param {Border} $border [$menu-border] - @todo Documentation needed
 /// @param {Number} $margin [$menu-margin] - @todo Documentation needed
@@ -70,6 +58,14 @@ $menu-item-background-active: $primary-color !default;
   list-style-type: none;
   margin: $margin;
 
+  // Reset styles of inner elements
+  input,
+  select,
+  a,
+  button {
+    margin-bottom: 0;
+  }
+
   // List items are table cell to allow for vertical alignment
   > li {
     flex: 0 0 auto;
@@ -80,18 +76,9 @@ $menu-item-background-active: $primary-color !default;
       line-height: 1;
     }
   }
-
-  // Reset styles of inner elements
-  input,
-  select,
-  a,
-  button {
-    margin-bottom: 0;
-  }
 }
 
 /// Sets the direction for a menu.
-///
 /// @param {Keyword} $dir [horizontal] - Direction of the menu can be `horizontal` or `vertical`.
 @mixin menu-direction($dir: horizontal) {
   @if $dir == horizontal {
@@ -108,7 +95,6 @@ $menu-item-background-active: $primary-color !default;
 }
 
 /// Sets the style for a menu.
-///
 /// @param {Color} $color [$menu-item-color] - @todo Documentation needed
 /// @param {Color} $background-hover [$menu-item-background-hover] - @todo Documentation needed
 /// @param {Color} $color-hover [$menu-item-color-hover] - @todo Documentation needed
@@ -125,7 +111,6 @@ $menu-item-background-active: $primary-color !default;
   $padding: $menu-item-padding
 ) {
   > li {
-
     > a {
       background-color: $background;
       color: $color;
@@ -161,8 +146,8 @@ $menu-item-background-active: $primary-color !default;
     }
 
     // Responsive orientation
-    @each $breakpoint in map_keys($breakpoints) { // sass-lint:disable-line function-name-format
-      @if $breakpoint != map-first(map_keys($breakpoints)) { // sass-lint:disable-line function-name-format
+    @each $breakpoint in map_keys($breakpoints) {
+      @if $breakpoint != map-first(map_keys($breakpoints)) {
         @include breakpoint-up($breakpoint) {
           &.#{$breakpoint}-horizontal {
             @include menu-direction(horizontal);

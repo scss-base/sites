@@ -1,5 +1,4 @@
 /// A list of named breakpoints. You can use these with the `breakpoint()` mixin to quickly create media queries.
-///
 /// @type Map
 $breakpoints: (
   small: 0,
@@ -12,6 +11,7 @@ $breakpoints: (
 /// @todo Documentation needed...
 @mixin breakpoint-up($breakpoint) {
   $min: map-get($breakpoints, $breakpoint);
+
   @if $min and strip-unit($min) > 0 {
     @media screen and (min-width: em($min, 16px)) {
       @content;
@@ -24,8 +24,10 @@ $breakpoints: (
 /// @todo Documentation needed...
 @mixin breakpoint-down($breakpoint) {
   $max: map-next($breakpoints, $breakpoint);
+
   @if $max and strip-unit($max) > 0 {
     $max: $max - 1px;
+
     @media screen and (max-width: em($max, 16px)) {
       @content;
     }

@@ -1,85 +1,70 @@
+/* stylelint-disable no-descending-specificity */
+
 /// Font color of text inputs.
-///
 /// @type Color
 $input-color: $black !default;
 
 /// Font color of placeholder text within text inputs.
-///
 /// @type Color
 $input-placeholder-color: $grey !default;
 
 /// Font family of text inputs.
-///
 /// @type Font
 $input-font-family: inherit !default;
 
 /// Font size of text inputs.
-///
 /// @type Number
 $input-font-size: rem-calc(16) !default;
 
 /// Font weight of text inputs.
-///
 /// @type Keyword
 $input-font-weight: $global-font-weight-normal !default;
 
 /// Background color of text inputs.
-///
 /// @type Color
 $input-background: $white !default;
 
 /// Background color of focused of text inputs.
-///
 /// @type Color
 $input-background-focus: $white !default;
 
 /// Background color of disabled text inputs.
-///
 /// @type Color
 $input-background-disabled: $grey !default;
 
 /// Border around text inputs.
-///
 /// @type Border
 $input-border: 1px solid $grey !default;
 
 /// Border around focused text inputs.
-///
 /// @type Color
 $input-border-focus: 1px solid $grey !default;
 
 /// Box shadow inside text inputs when not focused.
-///
 /// @type Shadow
 $input-shadow: inset 0 1px 2px rgba($black, .1) !default;
 
 /// Box shadow outside text inputs when focused.
-///
 /// @type Shadow
 $input-shadow-focus: 0 0 5px $grey !default;
 
 /// Cursor to use when hovering over a disabled text input.
-///
 /// @type Cursor
 $input-cursor-disabled: not-allowed !default;
 
 /// Properties to transition on text inputs.
-///
 /// @type Transition
 $input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
 
 /// Enables the up/down buttons that Chrome and Firefox add to `<input type='number'>` elements.
-///
 /// @type Boolean
 $input-number-spinners: true !default;
 
 /// Radius for text inputs.
-///
 /// @type Border
 $input-radius: $global-radius !default;
 
 /// Border radius for form buttons, defaulted to global-radius.
-///
 /// @type Number
 $input-button-radius: $global-radius !default;
 
@@ -112,6 +97,7 @@ $input-button-radius: $global-radius !default;
       size: $input-font-size;
       weight: $input-font-weight;
     }
+
     height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     margin: 0 0 $form-spacing;
     padding: $form-spacing / 2;
@@ -163,18 +149,18 @@ $input-button-radius: $global-radius !default;
   }
 
   // Reset Normalize setting content-box to search elements
-  input[type='search'] { // sass-lint:disable-line force-attribute-nesting no-qualifying-elements
+  input[type='search'] {
     box-sizing: border-box;
   }
 
   // Number input styles
   [type='number'] {
     @if not $input-number-spinners {
-      -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefixes
+      -moz-appearance: textfield;
 
-      &::-webkit-inner-spin-button, // sass-lint:disable-line no-vendor-prefixes
-      &::-webkit-outer-spin-button { // sass-lint:disable-line no-vendor-prefixes
-        -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
         margin: 0;
       }
     }

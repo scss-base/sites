@@ -1,20 +1,16 @@
 /// Color for form labels.
-///
 /// @type Color
 $form-label-color: $black !default;
 
 /// Font size for form labels.
-///
 /// @type Number
 $form-label-font-size: rem-calc(14) !default;
 
 /// Font weight for form labels.
-///
 /// @type Keyword
 $form-label-font-weight: $global-font-weight-normal !default;
 
 /// Line height for form labels. The higher the number, the more space between the label and its input field.
-///
 /// @type Number
 $form-label-line-height: 1.8 !default;
 
@@ -25,6 +21,7 @@ $form-label-line-height: 1.8 !default;
     size: $form-label-font-size;
     weight: $form-label-font-weight;
   }
+
   line-height: $form-label-line-height;
   margin: 0;
 }

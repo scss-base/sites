@@ -1,75 +1,60 @@
 /// Bottom margin for the top bar.
-///
 /// @type Number
 $top-bar-margin: rem-calc(30) !default;
 
 /// Padding for the top bar.
-///
 /// @type Number
 $top-bar-padding: 0 !default;
 
 /// Background color for the top bar. This color also cascades to menus within the top bar.
-///
 /// @type Color
 $top-bar-background: scale-color($black, $lightness: 20%) !default;
 
 /// Text color for the top bar title.
-///
 /// @type Color
 $top-bar-title-color: $white !default;
 
 /// Font size for the top bar title.
-///
 /// @type Keyword | Number
 $top-bar-title-font-size: rem-calc(16) !default;
 
 /// Font weight for the top bar title.
-///
 /// @type Keyword | Number
 $top-bar-title-font-weight: $global-font-weight-bold !default;
 
 /// Padding value for the top bar title.
-///
 /// @type Number
 $top-bar-title-padding: rem-calc(10) !default;
 
 /// Text color for a top bar menu item.
-///
 /// @type Color
 $top-bar-menu-item-color: $white !default;
 
 /// Background color for a hover top bar menu item.
-///
 /// @type Color
 $top-bar-menu-item-background-hover: scale-color($black, $lightness: 13.5%) !default;
 
 /// Text color for a hover top bar menu item.
-///
 /// @type Color
 $top-bar-menu-item-color-hover: $white !default;
 
 /// Background color for an active top bar menu item.
-///
 /// @type Color
 $top-bar-menu-item-background-active: $primary-color !default;
 
 /// Text color for an active top bar menu item.
-///
 /// @type Color
 $top-bar-menu-item-color-active: $white !default;
 
 /// Padding for top bar menu item.
-///
 /// @type Number
 $top-bar-menu-item-padding: rem-calc(10 20) !default;
 
 /// Background color for dropdown menus within the top bar.
-///
 /// @type Color
 $top-bar-dropdownmenu-background: $top-bar-background !default;
 
 /// Border style for dropdown menus within the top bar.
-///
 /// @type List
 $top-bar-dropdownmenu-border: 1px solid $white !default;
 
@@ -99,11 +84,11 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
 ) {
   color: $color;
   flex: 0 1 auto;
+  padding: $padding;
   font: {
     size: $font-size;
     weight: $font-weight;
   }
-  padding: $padding;
 
   > * {
     margin: 0;
@@ -141,7 +126,7 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
 @mixin top-bar-dropdownmenu-style(
   $background: $top-bar-dropdownmenu-background,
   $border: $top-bar-dropdownmenu-border
-){
+) {
   background-color: $background;
   border: $border;
 }
@@ -160,7 +145,6 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
 
 /// @todo Documentation needed...
 @mixin base-top-bar {
-
   .top-bar {
     @include top-bar-base;
   }
@@ -177,17 +161,16 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
   .top-bar-right {
     @include top-bar-container-section;
 
+    > .menu {
+      @include top-bar-menu-overwrite;
+    }
+
     .menu {
       @include top-bar-menu-style;
 
       & .menu {
         @include top-bar-dropdownmenu-style;
       }
-    }
-
-    // Reset
-    > .menu {
-      @include top-bar-menu-overwrite;
     }
   }
 }
