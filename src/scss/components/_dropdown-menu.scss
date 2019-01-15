@@ -1,74 +1,179 @@
-/// Background color for dropdowns.
+/// Enables arrows for items with dropdown menus.
+/// @type Boolean
+$dropdown-menu-arrows: true !default;
+
+/// Sets dropdown menu arrow color if arrow is used.
 /// @type Color
-$dropdownmenu-background: $white !default;
+$dropdown-menu-arrow-color: $anchor-color !default;
 
-/// Border for dropdown sub-menus.
-/// @type List
-$dropdownmenu-border: 1px solid $grey !default;
-
-/// Minimum width of dropdown sub-menus.
+/// Sets dropdown menu arrow size if arrow is used.
 /// @type Length
-$dropdownmenu-min-width: 200px !default;
+$dropdown-menu-arrow-size: 6px !default;
+
+/// Sets dropdown menu arrow padding for aligning the arrow correctly.
+/// @type Length
+$dropdown-menu-arrow-padding: rem-calc(32) !default;
+
+/// Background color for dropdown menus.
+/// @type Color
+$dropdown-menu-background: $white !default;
+
+/// Border for dropdown menus.
+/// @type List
+$dropdown-menu-border: 1px solid $grey !default;
+
+/// Minimum width of dropdown menus.
+/// @type Length
+$dropdown-menu-min-width: 200px !default;
 
 /// @todo Documentation needed...
 @mixin dropdown-menu-base {
-  > li {
+  li {
     position: relative;
 
     &.is-opened > .menu {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
     }
   }
-}
-
-/// @todo Documentation needed...
-@mixin dropdown-menu-style(
-  $background: $dropdownmenu-background,
-  $border: $dropdownmenu-border,
-  $min-width: $dropdownmenu-min-width
-) {
-  background: $background;
-  border: $border;
-  display: none;
-  min-width: $min-width;
-  position: absolute;
-  z-index: 1;
 }
 
 /// @todo Documentation needed...
 @mixin dropdown-menu-direction($direction: horizontal) {
   @if ($direction == horizontal) {
     > li {
+      // default behaviour
       > .menu {
-        left: 0;
         top: 100%;
+        left: 0;
       }
 
-      &.js-reposition-right > .menu {
-        left: auto;
+      &.opens-left > .menu {
         right: 0;
+        left: auto;
       }
 
-      &.js-reposition-up > .menu {
-        bottom: 100%;
+      &.opens-right > .menu {
+        right: auto;
+        left: 0;
+      }
+
+      &.opens-up > .menu {
         top: auto;
+        bottom: 100%;
+      }
+
+      &.opens-down > .menu {
+        top: 100%;
+        bottom: auto;
       }
     }
   } @else if ($direction == vertical) {
     > li {
+      // default behaviour
       > .menu {
-        left: 100%;
         top: 0;
+        left: 100%;
       }
 
-      &.js-reposition-right > .menu {
-        left: auto;
+      &.opens-left > .menu {
         right: 100%;
+        left: auto;
       }
 
-      &.js-reposition-up > .menu {
-        bottom: 0;
+      &.opens-right > .menu {
+        right: auto;
+        left: 100%;
+      }
+
+      &.opens-up > .menu {
         top: auto;
+        bottom: 0;
+      }
+
+      &.opens-down > .menu {
+        top: 0;
+        bottom: auto;
+      }
+    }
+  }
+}
+
+/// @todo Documentation needed...
+@mixin dropdown-menu-submenu-direction {
+  li {
+    &.opens-left > .menu {
+      right: 100%;
+      left: auto;
+    }
+
+    &.opens-right > .menu {
+      right: auto;
+      left: 100%;
+    }
+
+    &.opens-up > .menu {
+      top: auto;
+      bottom: 0;
+    }
+
+    &.opens-down > .menu {
+      top: 0;
+      bottom: auto;
+    }
+  }
+}
+
+/// @todo Documentation needed...
+@mixin dropdown-menu-submenu-style(
+  $background: $dropdown-menu-background,
+  $border: $dropdown-menu-border,
+  $min-width: $dropdown-menu-min-width
+) {
+  background: $background;
+  border: $border;
+  display: none;
+  min-width: $min-width;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 1;
+}
+
+@mixin dropdown-menu-arrows-base {
+  li.has-submenu {
+    > a {
+      padding-#{$global-right}: $dropdown-menu-arrow-padding;
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        #{$global-right}: $dropdown-menu-arrow-padding / 2 - rem-calc($dropdown-menu-arrow-size) / 2;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+@mixin dropdown-menu-arrows-direction($direction: horizontal) {
+  @if ($direction == horizontal) {
+    > li.has-submenu {
+      > a::after {
+        @include css-icon-triangle($dropdown-menu-arrow-size, $dropdown-menu-arrow-color, down);
+      }
+
+      &.opens-up > a::after {
+        @include css-icon-triangle($dropdown-menu-arrow-size, $dropdown-menu-arrow-color, up);
+      }
+    }
+  } @else if ($direction == vertical) {
+    > li.has-submenu {
+      > a::after {
+        @include css-icon-triangle($dropdown-menu-arrow-size, $dropdown-menu-arrow-color, $global-right);
+      }
+
+      &.opens-left > a::after {
+        @include css-icon-triangle($dropdown-menu-arrow-size, $dropdown-menu-arrow-color, $global-left);
       }
     }
   }
@@ -81,12 +186,26 @@ $dropdownmenu-min-width: 200px !default;
       @include dropdown-menu-base;
       @include dropdown-menu-direction(horizontal);
 
+      @if $dropdown-menu-arrows {
+        @include dropdown-menu-arrows-base;
+        @include dropdown-menu-arrows-direction(horizontal);
+      }
+
       &.vertical {
         @include dropdown-menu-direction(vertical);
+
+        @if $dropdown-menu-arrows {
+          @include dropdown-menu-arrows-direction(vertical);
+        }
       }
 
       .menu {
-        @include dropdown-menu-style;
+        @include dropdown-menu-submenu-style;
+        @include dropdown-menu-submenu-direction;
+
+        @if $dropdown-menu-arrows {
+          @include dropdown-menu-arrows-direction(vertical);
+        }
       }
     }
   }
