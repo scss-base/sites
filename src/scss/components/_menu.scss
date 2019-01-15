@@ -16,7 +16,7 @@ $menu-margin-nested: rem-calc(16) !default;
 
 /// Padding for items in a menu.
 /// @type Number
-$menu-item-padding: rem-calc(10 16) !default;
+$menu-item-padding: rem-calc(11 16) !default;
 
 /// Text color of a menu item.
 /// @type Color
@@ -85,10 +85,6 @@ $menu-item-background-active: $primary-color !default;
     flex-direction: row;
   } @else if $dir == vertical {
     flex-direction: column;
-
-    > li > a {
-      text-align: left;
-    }
   } @else {
     @error 'The direction used for menu-direction() must be horizontal or vertical.';
   }
