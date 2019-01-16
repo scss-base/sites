@@ -1,4 +1,4 @@
-import { Dropdown, DropdownMenu, Modal, Toggler } from './plugins';
+import { Dropdown, DropdownMenu, Modal, Toggler, Tooltip } from './plugins';
 import { $ } from './helper';
 
 const Base = window.Base = {
@@ -7,4 +7,5 @@ const Base = window.Base = {
   DropdownMenu,
   Modal,
   Toggler,
+  Tooltip,
 };

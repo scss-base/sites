@@ -3,67 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Theming Examples</title>
-  <link rel="stylesheet" href="../build/css/base.css">
+  <link rel="stylesheet" href="../dist/css/base.css">
 </head>
 <body>
 
-<div class="top-bar">
-  <div class="top-bar-title">
-    Title
-  </div>
-  <div class="top-bar-container">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="#item1">Item 1</a></li>
-        <li><a href="#item2">Item 2</a></li>
-        <li>
-          <a href="#item3">Item 3</a>
-          <ul class="menu nested">
-            <li><a href="#item1">Item 1</a></li>
-            <li><a href="#item2">Item 2</a></li>
-            <li><a href="#item3">Item 3</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <li><a href="#item1">Item 1</a></li>
-        <li><a href="#item2">Item 2</a></li>
-        <li><a href="#item3">Item 3</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!--<div class="top-bar">-->
+<!--<div class="top-bar-title">-->
+<!--Title-->
+<!--</div>-->
+<!--<div class="top-bar-container">-->
+<!--<div class="top-bar-left">-->
+<!--<ul class="dropdown menu" data-dropdown-menu>-->
+<!--<li><a href="#item1">Item 1</a></li>-->
+<!--<li><a href="#item2">Item 2</a></li>-->
+<!--<li>-->
+<!--<a href="#item3">Item 3</a>-->
+<!--<ul class="menu nested">-->
+<!--<li><a href="#item1">Item 1</a></li>-->
+<!--<li><a href="#item2">Item 2</a></li>-->
+<!--<li><a href="#item3">Item 3</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="top-bar-right">-->
+<!--<ul class="menu">-->
+<!--<li><a href="#item1">Item 1</a></li>-->
+<!--<li><a href="#item2">Item 2</a></li>-->
+<!--<li><a href="#item3">Item 3</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-<button type="button" class="primary" data-toggle="section1" data-open="modal1">Toggle Class</button>
-<button type="button" class="primary" data-open="modal1">Open Modal</button>
-<button type="button" class="primary" data-toggle="modal1">Toggle Modal</button>
-<button type="button" class="primary" data-toggle="dropdown1">Toggle Dropdown</button>
+<!--<button type="button" class="primary" data-toggle="section1">Toggle Class</button>-->
+<!--<button type="button" class="primary" data-toggle="dropdown1">Toggle Dropdown</button>-->
 
-<div class="dropdown-container" id="dropdown1" data-dropdown data-auto-focus="true">
-  <h1>DropDown Container</h1>
-</div>
+<!--<div class="dropdown" id="dropdown1" data-dropdown data-auto-focus="true">-->
+<!--<h1>DropDown Container</h1>-->
+<!--</div>-->
 
-<div class="section primary" id="section1" data-toggler="primary">
-  <h1>Section</h1>
-  <p>Blind Text</p>
-</div>
-
-<div id="modal1" class="modal">
-  <h1>Modal 1</h1>
-  <button class="close-button" data-close type="button">
-    <span>&times;</span>
-  </button>
-  <button type="button" class="secondary" data-close="modal1">Close Modal</button>
-  <button type="button" class="primary" data-open="modal2">Open next Modal</button>
-</div>
-
-<div id="modal2" class="modal" data-modal>
-  <h1>Modal 2</h1>
-  <button type="button" class="primary" data-close="modal2">Close Modal</button>
-</div>
-
+<!--<div class="section primary" id="section1" data-toggler="primary">-->
+<!--<h1>Section</h1>-->
+<!--<p>Blind Text</p>-->
+<!--</div>-->
 
 <div class="row">
   <div class="column">
@@ -174,6 +157,26 @@
 
 <div class="row">
   <div class="column">
+    <h2>Dropdown</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <button type="button" class="button" data-open="dropdown1">Open Dropdown1</button>
+    <button type="button" class="button" data-toggle="dropdown1">Toggle Dropdown1</button>
+    <div class="dropdown" id="dropdown1" data-dropdown>
+      Just some junk that needs to be said. Or not. Your choice.
+    </div>
+    <button type="button" class="button" data-toggle="dropdown2">Toggle Dropdown2</button>
+    <div class="dropdown" id="dropdown2" data-dropdown>
+      Just some junk that needs to be said. Or not. Your choice.
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
     <h2>Dropdown Menu</h2>
     <hr>
   </div>
@@ -212,10 +215,46 @@
 </div>
 <div class="row">
   <div class="column">
-    <a data-modal="exampleModal1">Click me for a modal</a>
+    <button type="button" class="primary" data-open="modal1">Click me for a modal</button>
+    <button type="button" class="primary" data-open="modal2">Click me for a modal</button>
+
+    <div id="modal1" class="modal">
+      <h1>Modal 1</h1>
+      <button type="button" class="primary" data-open="modal2">Open next Modal</button>
+      <button type="button" class="close-button" data-close>
+        <span>&times;</span>
+      </button>
+    </div>
+
+    <div id="modal2" class="modal" data-modal>
+      <h1>Modal 2</h1>
+      <button type="button" class="close-button" data-close>
+        <span>&times;</span>
+      </button>
+    </div>
+
   </div>
 </div>
 
-<script src="../build/js/base.js"></script>
+<div class="row">
+  <div class="column">
+    <form>
+      <div class="row">
+        <div class="medium-6 column">
+          <label>Input Label
+            <input type="text" placeholder=".medium-6.cell">
+          </label>
+        </div>
+        <div class="medium-6 column">
+          <label>Input Label
+            <input type="text" placeholder=".medium-6.cell">
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../dist/js/base.js"></script>
 </body>
 </html>

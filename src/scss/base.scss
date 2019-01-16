@@ -8,31 +8,32 @@
 
 // Components
 @import 'base/base';
-@import 'components/components';
+@import 'typography/typography';
 @import 'forms/forms';
+@import 'components/components';
 @import 'grid/grid';
 @import 'helpers/helpers';
 @import 'icons/icons';
 @import 'layouts/layouts';
-@import 'typography/typography';
 
 // Includes
 @include base-global;
+@include base-typography;
+@include base-forms;
 @include base-button;
 @include base-button-group;
 @include base-dropdown;
 @include base-dropdown-menu;
-@include base-forms;
 @include base-grid;
 @include base-menu;
 @include base-modal;
 @include base-pagination;
 @include base-section;
-@include base-tabs;
 @include base-side-bar;
 @include base-table;
+@include base-tabs;
+@include base-tooltip;
 @include base-top-bar;
-@include base-typography;
 
 // Helpers
 @include base-flex-helpers;

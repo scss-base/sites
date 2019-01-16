@@ -3,7 +3,11 @@ module.exports = {
     "amd": true,
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "window": true
   },
   "extends": "eslint:recommended",
   "parser": "babel-eslint",
@@ -13,8 +17,11 @@ module.exports = {
   },
   "rules": {
     "indent": [
-      "error",
-      2
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
     ],
     "linebreak-style": [
       "error",

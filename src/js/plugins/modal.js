@@ -1,5 +1,5 @@
 import Plugin from './plugin';
-import { $, fire, off, on } from '../helper';
+import { fire, off, on } from '../helper';
 // import { Keyboard, Triggers } from '../utilities';
 import { Triggers } from '../utilities';
 
@@ -197,7 +197,7 @@ export default class Modal extends Plugin {
         `modal-overlay ${this.options.get('additionalOverlayClasses')}` : 'modal-overlay'
     );
     this.overlay.appendChild(this.element);
-    $('body').appendChild(this.overlay);
+    document.body.appendChild(this.overlay);
   }
 
   /**

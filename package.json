@@ -45,19 +45,17 @@
   },
   "scripts": {
     "css": "npm-run-all css-compile css-prefix css-minify",
-    "css-dev": "npm-run-all css-lint css-compile css-prefix css-minify",
     "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 src/scss/base.scss dist/css/base.css",
     "css-lint": "stylelint --syntax scss 'src/scss/**/*.scss'",
     "css-minify": "cleancss --level 1 --format breaksWith=lf --source-map --source-map-inline-sources --output dist/css/base.min.css dist/css/base.css",
     "css-prefix": "postcss --config postcss.config.js --replace 'dist/css/*.css' '!dist/css/*.min.css'",
     "javascript": "npm-run-all javascript-compile",
-    "javascript-dev": "npm-run-all javascript-test javascript-compile",
     "javascript-compile": "webpack",
     "javascript-lint": "eslint src/js/**/*js test/js/**/*js",
     "javascript-test": "nyc --reporter=text mocha --require @babel/register --require jsdom-global/register 'test/**/*.js'",
-    "watch": "npm-run-all --parallel watch-*",
-    "watch-css": "nodemon --watch src/scss/ --ext scss --exec 'npm run css-dev'",
-    "watch-javascript": "nodemon --watch src/js/ --watch test/js/ --ext js --exec 'npm run javascript-dev'",
+    "watch": "npm-run-all --parallel watch-css watch-javascript",
+    "watch-css": "nodemon --watch src/scss/ --ext scss --exec 'npm run css'",
+    "watch-javascript": "nodemon --watch src/js/ --watch test/js/ --ext js --exec 'npm run javascript'",
     "dist": "npm-run-all --parallel css javascript",
     "test": "npm run javascript:test:mocha"
   }
