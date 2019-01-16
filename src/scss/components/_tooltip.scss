@@ -20,11 +20,11 @@ $tooltip-color: $white !default;
 
 /// Default padding of the tooltip background.
 /// @type Number
-$tooltip-padding: .75rem !default;
+$tooltip-padding: rem-calc(12) !default;
 
 /// Default max width for tooltips.
 /// @type Number
-$tooltip-max-width: 10rem !default;
+$tooltip-max-width: rem-calc(160) !default;
 
 /// Default font size of the tooltip text. By default, we recommend a smaller font size than the body copy.
 /// @type Number
@@ -32,11 +32,11 @@ $tooltip-font-size: $small-font-size !default;
 
 /// Default pip width for tooltips.
 /// @type Number
-$tooltip-pip-width: .75rem !default;
+$tooltip-pip-width: rem-calc(12) !default;
 
 /// Default pip height for tooltips. This is helpful for calculating the distance of the tooltip from the tooltip word.
 /// @type Number
-$tooltip-pip-height: $tooltip-pip-width * .866 !default;
+$tooltip-pip-height: rem-calc(10) !default;
 
 /// Default radius for tooltips.
 /// @type Number
@@ -72,6 +72,66 @@ $tooltip-radius: $global-radius !default;
   //top: calc(100% + #{$tooltip-pip-height});
   max-width: $max-width;
   z-index: 1200;
+
+  &::before {
+    position: absolute;
+  }
+
+  &.top::before {
+    @include css-icon-triangle($tooltip-pip-width, $tooltip-background-color, down);
+
+    top: 100%;
+  }
+
+  &.bottom::before {
+    @include css-icon-triangle($tooltip-pip-width, $tooltip-background-color, up);
+
+    bottom: 100%;
+  }
+
+  &.left::before {
+    @include css-icon-triangle($tooltip-pip-width, $tooltip-background-color, right);
+
+    left: 100%;
+  }
+
+  &.right::before {
+    @include css-icon-triangle($tooltip-pip-width, $tooltip-background-color, left);
+
+    right: 100%;
+  }
+
+  &.top,
+  &.bottom {
+    &.align-center::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.align-left::before {
+      left: 10%;
+    }
+
+    &.align-right::before {
+      right: 10%;
+    }
+  }
+
+  &.left,
+  &.right {
+    &.align-center::before {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.align-top::before {
+      top: 10%;
+    }
+
+    &.align-bottom::before {
+      bottom: 10%;
+    }
+  }
 }
 
 @mixin base-tooltip {

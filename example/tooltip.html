@@ -16,10 +16,15 @@
 </div>
 <div class="row">
   <div class="column">
-    <p>Lorem ipsum dolor sit amet, <span data-tooltip tabindex="1"
-                                         title="Lorem ipsum dolor sit amet.">consectetuer</span> adipiscing elit. Aenean
-      commodo ligula eget dolor. Aenean massa. Cum
-      sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+    <p>Lorem ipsum dolor sit amet, <span data-tooltip="tooltip1" tabindex="1" title="Lorem ipsum dolor sit amet.">consectetuer</span>
+      adipiscing elit. Aenean <span data-tooltip="tooltip2" tabindex="1" data-position="bottom"
+                                    title="Lorem ipsum dolor sit amet.">commodo</span>
+      ligula eget dolor. <span data-tooltip="tooltip3" tabindex="1" data-position="left"
+                               title="Lorem ipsum dolor sit amet.">Aenean</span>
+      massa. Cum sociis <span data-tooltip="tooltip4" tabindex="1" data-position="right"
+                              title="Lorem ipsum dolor sit amet.">natoque</span>
+      penatibus et magnis dis parturient
+      montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
       pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
       vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
       mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
@@ -34,11 +39,145 @@
   </div>
 </div>
 
+<hr>
+
+<div class="row">
+  <div class="column">
+    <button type="button" data-tooltip="tooltip5" tabindex="1" title="Fancy word for a beetle." data-position="bottom"
+            data-alignment="left">
+      Bottom Left
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip6" tabindex="1" title="Fancy word for a beetle." data-position="bottom"
+            data-alignment="center">
+      Bottom Center
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip7" tabindex="1" title="Fancy word for a beetle." data-position="bottom"
+            data-alignment="right">
+      Bottom Right
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <button type="button" data-tooltip="tooltip8" tabindex="1" title="Fancy word for a beetle." data-position="top"
+            data-alignment="left">
+      Top Left
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip9" tabindex="1" title="Fancy word for a beetle." data-position="top"
+            data-alignment="center">
+      Top Center
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip10" tabindex="1" title="Fancy word for a beetle." data-position="top"
+            data-alignment="right">
+      Top Right
+    </button>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="column">
+    <button type="button" data-tooltip="tooltip11" tabindex="1" title="Fancy word for a beetle." data-position="right"
+            data-alignment="top">
+      Right Top
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip12" tabindex="1" title="Fancy word for a beetle." data-position="left"
+            data-alignment="top">
+      Left Top
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <button type="button" data-tooltip="tooltip13" tabindex="1" title="Fancy word for a beetle." data-position="right"
+            data-alignment="center">
+      Right Center
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip14" tabindex="1" title="Fancy word for a beetle." data-position="left"
+            data-alignment="center">
+      Left Center
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <button type="button" data-tooltip="tooltip15" tabindex="1" title="Fancy word for a beetle." data-position="right"
+            data-alignment="bottom">
+      Right Bottom
+    </button>
+  </div>
+  <div class="column">
+    <button type="button" data-tooltip="tooltip16" tabindex="1" title="Fancy word for a beetle." data-position="left"
+            data-alignment="bottom">
+      Left Bottom
+    </button>
+  </div>
+</div>
+
+<p>
+  montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+  pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+  vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+  mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+  Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+  feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam
+  ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus,
+  tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,
+  blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien
+  ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed
+  fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue
+  velit cursus nunc,
+</p>
+
+
 <script src="../dist/js/base.js"></script>
 <script>
-  const hasTip = Base.$('[data-tooltip]');
+  const hasTip1 = Base.$('[data-tooltip="tooltip1"]');
+  const hasTip2 = Base.$('[data-tooltip="tooltip2"]');
+  const hasTip3 = Base.$('[data-tooltip="tooltip3"]');
+  const hasTip4 = Base.$('[data-tooltip="tooltip4"]');
+  const hasTip5 = Base.$('[data-tooltip="tooltip5"]');
+  const hasTip6 = Base.$('[data-tooltip="tooltip6"]');
+  const hasTip7 = Base.$('[data-tooltip="tooltip7"]');
+  const hasTip8 = Base.$('[data-tooltip="tooltip8"]');
+  const hasTip9 = Base.$('[data-tooltip="tooltip9"]');
+  const hasTip10 = Base.$('[data-tooltip="tooltip10"]');
+  const hasTip11 = Base.$('[data-tooltip="tooltip11"]');
+  const hasTip12 = Base.$('[data-tooltip="tooltip12"]');
+  const hasTip13 = Base.$('[data-tooltip="tooltip13"]');
+  const hasTip14 = Base.$('[data-tooltip="tooltip14"]');
+  const hasTip15 = Base.$('[data-tooltip="tooltip15"]');
+  const hasTip16 = Base.$('[data-tooltip="tooltip16"]');
 
-  new Base.Tooltip(hasTip);
+  new Base.Tooltip(hasTip1);
+  new Base.Tooltip(hasTip2);
+  new Base.Tooltip(hasTip3);
+  new Base.Tooltip(hasTip4);
+  new Base.Tooltip(hasTip5);
+  new Base.Tooltip(hasTip6);
+  new Base.Tooltip(hasTip7);
+  new Base.Tooltip(hasTip8);
+  new Base.Tooltip(hasTip9);
+  new Base.Tooltip(hasTip10);
+  new Base.Tooltip(hasTip11);
+  new Base.Tooltip(hasTip12);
+  new Base.Tooltip(hasTip13);
+  new Base.Tooltip(hasTip14);
+  new Base.Tooltip(hasTip15);
+  new Base.Tooltip(hasTip16);
 </script>
 </body>
 </html>
