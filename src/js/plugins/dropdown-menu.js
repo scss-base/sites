@@ -15,14 +15,14 @@ export default class DropdownMenu extends Positionable {
     this.options = options;
     this.options = this.getOptionsFromElement();
 
-    this.children = $$('li > ul', this.element);
+    this.subs = $$('li > ul', this.element);
 
     this._init();
   }
 
-  open(child, anchor) {
+  open(sub, anchor) {
     anchor.classList.add('is-opened');
-    this._setPosition(child, anchor);
+    this._setPosition(sub, anchor);
     fire(this.element, 'open.base.dropdown-menu');
   }
 
@@ -32,21 +32,21 @@ export default class DropdownMenu extends Positionable {
   }
 
   _init() {
-    this.children.forEach(child => {
-      const anchor = child.closest('li');
+    this.subs.forEach(sub => {
+      const anchor = sub.closest('li');
 
       anchor.classList.add('has-submenu');
-      this._initMouseEvents(child, anchor);
+      this._initMouseEvents(sub, anchor);
     });
   }
 
-  _initMouseEvents(child, anchor) {
-    on('mouseenter', anchor, this.open.bind(this, child, anchor));
+  _initMouseEvents(sub, anchor) {
+    on('mouseenter', anchor, this.open.bind(this, sub, anchor));
     on('mouseleave', anchor, this.close.bind(this, anchor));
   }
 
-  _setPosition(child, anchor) {
-    const out = this.outViewport(child);
+  _setPosition(sub, anchor) {
+    const out = this.outViewport(sub);
 
     if (out.bottom < 0) {
       anchor.classList.remove('opens-down');
