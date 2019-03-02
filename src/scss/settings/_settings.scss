@@ -327,6 +327,7 @@ $top-bar-dropdownmenu-border: 1px solid $white;
 // -----------
 
 $side-bar-background: scale-color($black, $lightness: 20%);
+$side-bar-width: rem(300);
 $side-bar-title-color: $white;
 $side-bar-title-font-size: rem-calc(16);
 $side-bar-title-font-weight: $global-font-weight-bold;

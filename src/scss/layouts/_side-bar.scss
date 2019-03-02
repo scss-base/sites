@@ -1,6 +1,9 @@
 /// Background color for the side bar menu. This color also cascades to menus within the side bar.
 /// @type Color
-$side-bar-background: scale-color($black, $lightness: 20%) !default;
+$side-bar-background: $primary-color !default;
+
+/// @type Number
+$side-bar-width: rem(300) !default;
 
 /// Text color for the side bar title.
 /// @type Color
@@ -20,19 +23,15 @@ $side-bar-title-padding: rem-calc(10) !default;
 
 /// Background color for a side bar menu item.
 /// @type Color
-$side-bar-menu-item-background: $white !default;
+$side-bar-menu-item-background: $primary-color !default;
 
 /// Text color for a side bar menu item.
 /// @type Color
-$side-bar-menu-item-color: $primary-color !default;
+$side-bar-menu-item-color: $white !default;
 
 /// Background color for a hover side bar menu item.
 /// @type Color
-$side-bar-menu-item-background: scale-color($black, $lightness: 13.5%) !default;
-
-/// Background color for a hover side bar menu item.
-/// @type Color
-$side-bar-menu-item-background-hover: scale-color($black, $lightness: 13.5%) !default;
+$side-bar-menu-item-background-hover: scale-color($primary-color, $lightness: -20%) !default;
 
 /// Text color for a hover side bar menu item.
 /// @type Color
@@ -40,7 +39,7 @@ $side-bar-menu-item-color-hover: $white !default;
 
 /// Background color for an active side bar menu item.
 /// @type Color
-$side-bar-menu-item-background-active: $primary-color !default;
+$side-bar-menu-item-background-active: scale-color($primary-color, $lightness: -10%) !default;
 
 /// Text color for an active side bar menu item.
 /// @type Color
@@ -54,34 +53,16 @@ $side-bar-menu-item-font-size: rem-calc(16) !default;
 /// @type Number
 $side-bar-menu-item-padding: rem-calc(10 20) !default;
 
-/// @todo Documentation needed...
 @mixin side-bar-base {
-  align-items: stretch;
-  display: flex;
+  display: grid;
+  grid-template: {
+    columns: $side-bar-width auto;
+    rows: unset;
+  };
   height: 100%;
   min-height: 100vh;
 }
 
-/// @todo Documentation needed...
-@mixin side-bar-content {
-  flex: 1 1 auto;
-}
-
-/// @todo Documentation needed...
-@mixin side-bar-menu(
-  $background: $side-bar-background
-) {
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: column;
-
-  &,
-  ul {
-    background-color: $background;
-  }
-}
-
-/// @todo Documentation needed...
 @mixin side-bar-title(
   $color: $side-bar-title-color,
   $font-size: $side-bar-title-font-size,
@@ -89,7 +70,6 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
   $padding: $side-bar-title-padding
 ) {
   color: $color;
-  flex: 0 1 auto;
   padding: $padding;
   font: {
     size: $font-size;
@@ -101,9 +81,8 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
   }
 }
 
-/// @todo Documentation needed...
-@mixin side-bar-menu-style(
-  $background: $side-bar-menu-item-background,
+@mixin side-bar-menu(
+  $background: $side-bar-background,
   $color: $side-bar-menu-item-color,
   $background-hover: $side-bar-menu-item-background-hover,
   $color-hover: $side-bar-menu-item-color-hover,
@@ -111,16 +90,16 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
   $color-active: $side-bar-menu-item-color-active,
   $padding: $side-bar-menu-item-padding
 ) {
-  @include menu-style($background, $color, $background-hover, $color-hover, $background-active, $color-active, $padding);
+  display: flex;
+  flex-direction: column;
+  background-color: $background;
 
-  > li {
-    > a {
-      font-size: $side-bar-menu-item-font-size;
-    }
+  .menu {
+    @include menu-style($background, $color, $background-hover, $color-hover, $background-active, $color-active, $padding);
+    background-color: $background;
   }
 }
 
-/// @todo Documentation needed...
 @mixin side-bar-container {
   display: flex;
   flex: 1 1 auto;
@@ -128,14 +107,9 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
   justify-content: space-between;
 }
 
-/// @todo Documentation needed...
 @mixin base-side-bar {
   .side-bar {
     @include side-bar-base;
-  }
-
-  .side-bar-content {
-    @include side-bar-content;
   }
 
   .side-bar-menu {
@@ -148,12 +122,5 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
 
   .side-bar-container {
     @include side-bar-container;
-  }
-
-  .side-bar-top,
-  .side-bar-bottom {
-    .menu {
-      @include side-bar-menu-style;
-    }
   }
 }
