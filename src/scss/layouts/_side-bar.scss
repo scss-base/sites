@@ -11,7 +11,7 @@ $side-bar-title-color: $white !default;
 
 /// Font size for the side bar title.
 /// @type Keyword | Number
-$side-bar-title-font-size: rem-calc(16) !default;
+$side-bar-title-font-size: 1rem !default;
 
 /// Font weight for the side bar title.
 /// @type Keyword | Number
@@ -47,7 +47,7 @@ $side-bar-menu-item-color-active: $white !default;
 
 /// Font size for the side bar menu item.
 /// @type Keyword | Number
-$side-bar-menu-item-font-size: rem-calc(16) !default;
+$side-bar-menu-item-font-size: 1rem !default;
 
 /// Padding for side bar menu item.
 /// @type Number
@@ -88,6 +88,7 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
   $color-hover: $side-bar-menu-item-color-hover,
   $background-active: $side-bar-menu-item-background-active,
   $color-active: $side-bar-menu-item-color-active,
+  $font-size: $side-bar-menu-item-font-size,
   $padding: $side-bar-menu-item-padding
 ) {
   display: flex;
@@ -95,7 +96,7 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
   background-color: $background;
 
   .menu {
-    @include menu-style($background, $color, $background-hover, $color-hover, $background-active, $color-active, $padding);
+    @include menu-style($background, $color, $background-hover, $color-hover, $background-active, $color-active, $padding, $font-size);
     background-color: $background;
   }
 }

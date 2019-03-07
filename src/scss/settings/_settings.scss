@@ -95,7 +95,7 @@ $header-styles: (
     h3: (font-size: rem-calc(19)),
     h4: (font-size: rem-calc(18)),
     h5: (font-size: rem-calc(17)),
-    h6: (font-size: rem-calc(16)),
+    h6: (font-size: 1rem),
   ),
   medium: (
     h1: (font-size: rem-calc(48)),
@@ -103,7 +103,7 @@ $header-styles: (
     h3: (font-size: rem-calc(31)),
     h4: (font-size: rem-calc(25)),
     h5: (font-size: rem-calc(20)),
-    h6: (font-size: rem-calc(16)),
+    h6: (font-size: 1rem),
   ),
 );
 $paragraph-line-height: 1.6;
@@ -147,7 +147,7 @@ $keystroke-radius: $global-radius;
 // 6. Forms
 // --------
 
-$form-spacing: rem-calc(16);
+$form-spacing: 1rem;
 $fieldset-border: 1px solid $grey;
 $fieldset-padding: rem-calc(20);
 $fieldset-margin: rem-calc(18 0);
@@ -160,7 +160,7 @@ $form-label-line-height: 1.8;
 $input-color: $black;
 $input-placeholder-color: $grey;
 $input-font-family: inherit;
-$input-font-size: rem-calc(16);
+$input-font-size: 1rem;
 $input-font-weight: $global-font-weight-normal;
 $input-background: $white;
 $input-background-focus: $white;
@@ -232,7 +232,7 @@ $button-opacity-disabled: .25;
 $menu-background: $white;
 $menu-border: none;
 $menu-margin: 0;
-$menu-margin-nested: rem-calc(16);
+$menu-margin-nested: 1rem;
 $menu-item-padding: rem-calc(11 16);
 $menu-item-background: $white;
 $menu-item-color: $primary-color;
@@ -310,7 +310,7 @@ $top-bar-margin: rem-calc(30);
 $top-bar-padding: 0;
 $top-bar-background: $primary-color;
 $top-bar-title-color: $white;
-$top-bar-title-font-size: rem-calc(16);
+$top-bar-title-font-size: 1rem;
 $top-bar-title-font-weight: $global-font-weight-bold;
 $top-bar-title-padding: rem-calc(10);
 $top-bar-menu-item-background: $primary-color;
@@ -319,6 +319,7 @@ $top-bar-menu-item-background-hover: scale-color($primary-color, $lightness: -20
 $top-bar-menu-item-color-hover: $white;
 $top-bar-menu-item-background-active: scale-color($primary-color, $lightness: -10%);
 $top-bar-menu-item-color-active: $white;
+$top-bar-menu-item-font-size: 1rem;
 $top-bar-menu-item-padding: rem-calc(10 20);
 $top-bar-dropdownmenu-background: $top-bar-background;
 $top-bar-dropdownmenu-border: 1px solid $white;
@@ -329,7 +330,7 @@ $top-bar-dropdownmenu-border: 1px solid $white;
 $side-bar-background: scale-color($black, $lightness: 20%);
 $side-bar-width: rem(300);
 $side-bar-title-color: $white;
-$side-bar-title-font-size: rem-calc(16);
+$side-bar-title-font-size: 1rem;
 $side-bar-title-font-weight: $global-font-weight-bold;
 $side-bar-title-padding: rem-calc(10);
 $side-bar-menu-item-background: $white !default;
@@ -338,5 +339,5 @@ $side-bar-menu-item-background-hover: scale-color($black, $lightness: 13.5%);
 $side-bar-menu-item-color-hover: $white;
 $side-bar-menu-item-background-active: $primary-color;
 $side-bar-menu-item-color-active: $white;
-$side-bar-menu-item-font-size: rem-calc(16);
+$side-bar-menu-item-font-size: 1rem;
 $side-bar-menu-item-padding: rem-calc(10 20);

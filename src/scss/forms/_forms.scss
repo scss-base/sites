@@ -1,7 +1,7 @@
 /// Global spacing for form elements.
 ///
 /// @type Number
-$form-spacing: rem-calc(16) !default;
+$form-spacing: 1rem !default;
 
 @import 'checkbox';
 @import 'error';

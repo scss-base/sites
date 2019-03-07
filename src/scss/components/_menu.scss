@@ -12,7 +12,7 @@ $menu-margin: 0 !default;
 
 /// Left-hand margin of a nested menu.
 /// @type Number
-$menu-margin-nested: rem-calc(16) !default;
+$menu-margin-nested: 1rem !default;
 
 /// Padding for items in a menu.
 /// @type Number
@@ -104,13 +104,18 @@ $menu-item-background-active: $primary-color !default;
   $color-hover: $menu-item-color-hover,
   $background-active: $menu-item-background-active,
   $color-active: $menu-item-color-active,
-  $padding: $menu-item-padding
+  $padding: $menu-item-padding,
+  $font-size: unset
 ) {
   > li {
     > a {
       background-color: $background;
       color: $color;
       padding: $padding;
+
+      @if ($font-size != unset) {
+        font-size: $font-size;
+      }
 
       // Hover state
       &:hover {

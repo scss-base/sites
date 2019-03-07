@@ -16,7 +16,7 @@ $top-bar-title-color: $white !default;
 
 /// Font size for the top bar title.
 /// @type Keyword | Number
-$top-bar-title-font-size: rem-calc(16) !default;
+$top-bar-title-font-size: 1rem !default;
 
 /// Font weight for the top bar title.
 /// @type Keyword | Number
@@ -49,6 +49,10 @@ $top-bar-menu-item-background-active: scale-color($primary-color, $lightness: -1
 /// Text color for an active top bar menu item.
 /// @type Color
 $top-bar-menu-item-color-active: $white !default;
+
+/// Font size for the top bar menu item.
+/// @type Keyword | Number
+$top-bar-menu-item-font-size: 1rem;
 
 /// Padding for top bar menu item.
 /// @type Number
@@ -122,9 +126,10 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
   $color-hover: $top-bar-menu-item-color-hover,
   $background-active: $top-bar-menu-item-background-active,
   $color-active: $top-bar-menu-item-color-active,
+  $font-size: $top-bar-menu-item-font-size,
   $padding: $top-bar-menu-item-padding
 ) {
-  @include menu-style($background, $color, $background-hover, $color-hover, $background-active, $color-active, $padding);
+  @include menu-style($background, $color, $background-hover, $color-hover, $background-active, $color-active, $padding, $font-size);
 }
 
 /// @todo Documentation needed...
