@@ -52,7 +52,7 @@ $top-bar-menu-item-color-active: $white !default;
 
 /// Font size for the top bar menu item.
 /// @type Keyword | Number
-$top-bar-menu-item-font-size: 1rem;
+$top-bar-menu-item-font-size: 1rem !default;
 
 /// Padding for top bar menu item.
 /// @type Number
