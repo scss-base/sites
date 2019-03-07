@@ -12,10 +12,7 @@
     "url": "https://github.com/scss-base/sites/issues"
   },
   "homepage": "https://github.com/scss-base/sites/#readme",
-  "dependencies": {
-    "normalize-scss": "7.0.1",
-    "rxjs-es": "5.0.0-beta.12"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.2.2",
     "@babel/plugin-proposal-class-properties": "7.2.3",

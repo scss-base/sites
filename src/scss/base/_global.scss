@@ -68,6 +68,8 @@ $global-right: if($global-text-direction == rtl, left, right);
 
 /// Sets the global style for a site.
 @mixin base-global {
+  @include base-normalize;
+
   *,
   *::before,
   *::after {
