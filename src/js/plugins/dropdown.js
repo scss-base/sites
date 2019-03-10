@@ -3,45 +3,44 @@ import { $$, fire, on } from '../helper';
 import { Triggers } from '../utilities';
 
 export default class Dropdown extends Positionable {
-  /**
-   * @type {Map<string, boolean>}
-   */
-  defaults = new Map(Object.entries({
-
-    /**
-     * Allow to open on hover events
-     * @option
-     * @type {boolean}
-     * @default false
-     */
-    hover: false,
-
-    /**
-     * Number of pixels between the dropdown container and the triggering element on open.
-     * @option
-     * @type {number}
-     * @default 0
-     */
-    vOffset: 0,
-    /**
-     * Number of pixels between the dropdown container and the triggering element on open.
-     * @option
-     * @type {number}
-     * @default 0
-     */
-    hOffset: 0,
-    /**
-     * Position of dropdown container. Can be left, right, bottom or top.
-     * @option
-     * @type {string}
-     * @default 'bottom'
-     */
-    position: 'bottom',
-  }));
 
   constructor(element, options = new Map()) {
     super(element);
+
     this.pluginName = 'Dropdown';
+    this.defaults = new Map(Object.entries({
+
+      /**
+       * Allow to open on hover events
+       * @option
+       * @type {boolean}
+       * @default false
+       */
+      hover: false,
+
+      /**
+       * Number of pixels between the dropdown container and the triggering element on open.
+       * @option
+       * @type {number}
+       * @default 0
+       */
+      vOffset: 0,
+      /**
+       * Number of pixels between the dropdown container and the triggering element on open.
+       * @option
+       * @type {number}
+       * @default 0
+       */
+      hOffset: 0,
+      /**
+       * Position of dropdown container. Can be left, right, bottom or top.
+       * @option
+       * @type {string}
+       * @default 'bottom'
+       */
+      position: 'bottom',
+    }));
+
 
     this.options = this.defaults;
     this.options = options;
@@ -145,6 +144,10 @@ export default class Dropdown extends Positionable {
     let top, left;
 
     switch (this.options.get('position')) {
+      case 'top':
+        top = anchorDims.offset.top - elementDims.height - this.options.get('vOffset');
+        left = anchorDims.offset.left + this.options.get('hOffset');
+        break;
       case 'left':
         top = anchorDims.offset.top + this.options.get('vOffset');
         left = anchorDims.offset.left - elementDims.width - this.options.get('hOffset');
@@ -152,10 +155,6 @@ export default class Dropdown extends Positionable {
       case 'right':
         top = anchorDims.offset.top + this.options.get('vOffset');
         left = anchorDims.offset.left + anchorDims.width + this.options.get('hOffset');
-        break;
-      case 'top':
-        top = anchorDims.offset.top - elementDims.height - this.options.get('vOffset');
-        left = anchorDims.offset.left + this.options.get('hOffset');
         break;
       default:
         top = anchorDims.offset.top + anchorDims.height + this.options.get('vOffset');

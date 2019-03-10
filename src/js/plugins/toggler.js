@@ -6,18 +6,6 @@ import { fire, on } from '../helper';
  * Toggler module to toggle a css class
  */
 export default class Toggler extends Plugin {
-  /**
-   *
-   * @type {Map<string, boolean | string>}
-   */
-  defaults = new Map(Object.entries({
-    /**
-     * Class of the element to toggle. It can be provided with or without "."
-     * @option
-     * @type {string}
-     */
-    toggler: undefined,
-  }));
 
   /**
    * Creates a new instance of Toggler.
@@ -26,7 +14,16 @@ export default class Toggler extends Plugin {
    */
   constructor(element, options = new Map()) {
     super(element);
+
     this.pluginName = 'Toggler';
+    this.defaults = new Map(Object.entries({
+      /**
+       * Class of the element to toggle. It can be provided with or without "."
+       * @option
+       * @type {string}
+       */
+      toggler: undefined,
+    }));
 
     this.options = this.defaults;
     this.options = options;

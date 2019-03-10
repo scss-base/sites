@@ -2,14 +2,12 @@ import { $$, fire, on } from '../helper';
 import Positionable from './positionable';
 
 export default class DropdownMenu extends Positionable {
-  /**
-   * @type {Map<string, *>}
-   */
-  defaults = new Map(Object.entries({}));
 
   constructor(element, options = new Map()) {
     super(element);
+
     this.pluginName = 'DropdownMenu';
+    this.defaults = new Map(Object.entries({}));
 
     this.options = this.defaults;
     this.options = options;

@@ -2,43 +2,41 @@ import Positionable from './positionable';
 import { fire, on } from '../helper';
 
 export default class Tooltip extends Positionable {
-  /**
-   * @type {Map<string, *>}
-   */
-  defaults = new Map(Object.entries({
-    /**
-     * Position of tooltip. Can be left, right, bottom or top.
-     * @option
-     * @type {string}
-     * @default 'top'
-     */
-    position: 'top',
-    /**
-     * Alignment of tooltip relative to anchor. Can be left, right, bottom, top, or center.
-     * @option
-     * @type {string}
-     * @default 'center'
-     */
-    alignment: 'center',
-    /**
-     * Distance, in pixels, the tooltip spacing auto-adjust for a vertical tooltip
-     * @option
-     * @type {number}
-     * @default 14
-     */
-    tooltipHeight: 14,
-    /**
-     * Distance, in pixels, the tooltip spacing auto-adjust for a horizontal tooltip
-     * @option
-     * @type {number}
-     * @default 12
-     */
-    tooltipWidth: 12,
-  }));
 
   constructor(element, options = new Map()) {
     super(element);
+
     this.pluginName = 'Tooltip';
+    this.defaults = new Map(Object.entries({
+      /**
+       * Position of tooltip. Can be left, right, bottom or top.
+       * @option
+       * @type {string}
+       * @default 'top'
+       */
+      position: 'top',
+      /**
+       * Alignment of tooltip relative to anchor. Can be left, right, bottom, top, or center.
+       * @option
+       * @type {string}
+       * @default 'center'
+       */
+      alignment: 'center',
+      /**
+       * Distance, in pixels, the tooltip spacing auto-adjust for a vertical tooltip
+       * @option
+       * @type {number}
+       * @default 14
+       */
+      tooltipHeight: 14,
+      /**
+       * Distance, in pixels, the tooltip spacing auto-adjust for a horizontal tooltip
+       * @option
+       * @type {number}
+       * @default 12
+       */
+      tooltipWidth: 12,
+    }));
 
     this.options = this.defaults;
     this.options = options;

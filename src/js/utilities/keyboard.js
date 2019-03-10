@@ -1,24 +1,24 @@
 export default class Keyboard {
-  /**
-   * @type {Map<string, Object.<string, string>>}
-   */
-  static plugins = new Map();
-
-  /**
-   * @type {Map<string, string>}
-   */
-  static keyCodes = new Map(Object.entries({
-    9: 'TAB',
-    13: 'ENTER',
-    27: 'ESCAPE',
-    32: 'SPACE',
-    35: 'END',
-    36: 'HOME',
-    37: 'ARROW_LEFT',
-    38: 'ARROW_UP',
-    39: 'ARROW_RIGHT',
-    40: 'ARROW_DOWN',
-  }));
+  // /**
+  //  * @type {Map<string, Object.<string, string>>}
+  //  */
+  // static plugins = new Map();
+  //
+  // /**
+  //  * @type {Map<string, string>}
+  //  */
+  // static keyCodes = new Map(Object.entries({
+  //   9: 'TAB',
+  //   13: 'ENTER',
+  //   27: 'ESCAPE',
+  //   32: 'SPACE',
+  //   35: 'END',
+  //   36: 'HOME',
+  //   37: 'ARROW_LEFT',
+  //   38: 'ARROW_UP',
+  //   39: 'ARROW_RIGHT',
+  //   40: 'ARROW_DOWN',
+  // }));
 
   /**
    * Handles the given (keyboard) event.

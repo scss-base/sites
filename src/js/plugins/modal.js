@@ -13,51 +13,46 @@ import { Triggers } from '../utilities';
  */
 export default class Modal extends Plugin {
   /**
-   *
-   * @type {Map<string, boolean | string>}
-   */
-  defaults = new Map(Object.entries({
-
-    /**
-     * Allows a click on the overlay to close the modal.
-     * @option
-     * @type {boolean}
-     * @default true
-     */
-    closeOnClick: true,
-
-    // /**
-    //  * Allows the modal to close if the user presses the `ESCAPE` key.
-    //  * @option
-    //  * @type {boolean}
-    //  * @default true
-    //  */
-    // closeOnEsc: true,
-
-    /**
-     * Allows adding additional class names to the reveal overlay.
-     * @option
-     * @type {string}
-     * @default null
-     */
-    additionalOverlayClasses: undefined,
-  }));
-
-  /**
-   * @type {Map<string, function>}
-   * @private
-   */
-  _globalListeners = new Map();
-
-  /**
    * Creates a new instance of Modal.
    * @param {HTMLElement} element - HTMLElement object to use for the modal.
    * @param {Object} options - optional parameters.
    */
   constructor(element, options = new Map()) {
     super(element, options);
-    this.pluginName = 'Modal';
 
+    this.pluginName = 'Modal';
+    this.defaults = new Map(Object.entries({
+
+      /**
+       * Allows a click on the overlay to close the modal.
+       * @option
+       * @type {boolean}
+       * @default true
+       */
+      closeOnClick: true,
+
+      // /**
+      //  * Allows the modal to close if the user presses the `ESCAPE` key.
+      //  * @option
+      //  * @type {boolean}
+      //  * @default true
+      //  */
+      // closeOnEsc: true,
+
+      /**
+       * Allows adding additional class names to the reveal overlay.
+       * @option
+       * @type {string}
+       * @default null
+       */
+      additionalOverlayClasses: undefined,
+    }));
+
+    /**
+     * @type {Map<string, function>}
+     * @private
+     */
+    this._globalListeners = new Map();
     this.options = this.defaults;
     this.options = options;
     this.options = this.getOptionsFromElement();

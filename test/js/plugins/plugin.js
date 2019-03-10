@@ -50,14 +50,14 @@ describe('Plugin', function () {
     htmlDivElement.setAttribute('data-option3', 'false');
 
     class TestPlugin2 extends Plugin {
-      defaults = new Map(Object.entries({
-        option1: undefined,
-        option2: undefined,
-      }));
-
       constructor(element, options) {
         super(element);
+
         this.pluginName = 'TestPlugin';
+        this.defaults = new Map(Object.entries({
+          option1: undefined,
+          option2: undefined,
+        }));
 
         this.options = this.defaults;
         this.options = options;
