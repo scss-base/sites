@@ -18,6 +18,13 @@ $menu-margin-nested: 1rem !default;
 /// @type Number
 $menu-item-padding: rem-calc(11 16) !default;
 
+/// Font family for items in a menu.
+/// @type Font
+$menu-item-font-family: inherit !default;
+
+/// @todo Documentation needed...
+$menu-item-font-weight: $global-font-weight-normal !default;
+
 /// Text color of a menu item.
 /// @type Color
 $menu-item-color: $primary-color !default;
@@ -105,13 +112,17 @@ $menu-item-background-active: $primary-color !default;
   $background-active: $menu-item-background-active,
   $color-active: $menu-item-color-active,
   $padding: $menu-item-padding,
-  $font-size: unset
+  $font-size: unset,
+  $font-family: $menu-item-font-family,
+  $font-weight: $menu-item-font-weight
 ) {
   > li {
     > a {
       background-color: $background;
       color: $color;
       padding: $padding;
+      font-family: $font-family;
+      font-weight: $font-weight;
 
       @if ($font-size != unset) {
         font-size: $font-size;
