@@ -169,15 +169,10 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 }
 
 /// @todo Documentation needed...
-@mixin base-tab {
+@mixin base-tabs {
   .tab {
     @include tab-base;
   }
-}
-
-/// @todo Documentation needed...
-@mixin base-tabs {
-  @include base-tab;
 
   .tabs {
     @include tabs-base;
