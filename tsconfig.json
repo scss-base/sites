@@ -1,0 +1,22 @@
+/* @see https://basarat.gitbooks.io/typescript/docs/project/tsconfig.html */
+
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es6",
+    /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
+    "declaration": false,
+    /* Generates corresponding '.d.ts' file. */
+    "sourceMap": false,
+    /* Generates corresponding '.map' file. */
+    "outDir": "src/js_new"
+    /* Redirect output structure to the directory. */
+  },
+  "include": [
+    "src/ts/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
