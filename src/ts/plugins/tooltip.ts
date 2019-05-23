@@ -65,7 +65,6 @@ export class Tooltip extends Plugin {
       id: this.pluginId,
       class: [this.options.get('tooltipClass'), this.options.get('position'), `align-${this.options.get('alignment')}`],
     });
-    console.log(this.tooltip);
 
     this.element.title = '';
     document.body.appendChild(this.tooltip);
