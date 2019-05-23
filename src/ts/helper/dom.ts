@@ -19,13 +19,15 @@ export function $$(selectors: string, node?: Element): NodeListOf<Element> {
 }
 
 export interface HTMLElementAttributes {
-  [key: string]: any;
+  text?: string;
+  id?: string;
+  class?: string | string[];
 }
 
 /**
- * Creates an HTML element specified by TagName and sets attributes by a passed object.
- * @param tagName
- * @param attributes
+ * Creates an HTML element specified by tag name and sets attributes by a passed object.
+ * @param {string} tagName
+ * @param {HTMLElementAttributes} attributes
  */
 export function createElement(tagName: string, attributes: HTMLElementAttributes): HTMLElement {
   const element = document.createElement(tagName);

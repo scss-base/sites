@@ -1,4 +1,4 @@
-import { createElement, HTMLElementAttributes } from '../helper';
+import { createElement, fire, HTMLElementAttributes, on } from '../helper';
 import { Plugin } from './plugin';
 
 export class Tooltip extends Plugin {
@@ -57,6 +57,18 @@ export class Tooltip extends Plugin {
     this.element.classList.add(this.options.get('triggerClass'));
 
     this._createTooltip();
+    this._initCustomEvents();
+    this._initMouseEvents();
+  }
+
+  public open() {
+    this.tooltip.style.display = 'block';
+    fire(this.element, 'open.base.tooltip');
+  }
+
+  public close() {
+    this.tooltip.style.display = 'none';
+    fire(this.element, 'closed.base.tooltip');
   }
 
   private _createTooltip(): void {
@@ -68,5 +80,15 @@ export class Tooltip extends Plugin {
 
     this.element.title = '';
     document.body.appendChild(this.tooltip);
+  }
+
+  private _initCustomEvents() {
+    on('open.base.trigger', this.element, this.open.bind(this));
+    on('close.base.trigger', this.element, this.close.bind(this));
+  }
+
+  private _initMouseEvents() {
+    on('mouseenter', this.element, this.open.bind(this));
+    on('mouseleave', this.element, this.close.bind(this));
   }
 }
