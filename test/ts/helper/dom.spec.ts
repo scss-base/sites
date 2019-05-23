@@ -1,5 +1,5 @@
-import chai from 'chai';
-import {$, $$} from '../../../src/js_old/helper';
+import * as chai from 'chai';
+import { $, $$ } from '../../../src/ts/helper';
 
 chai.should();
 
@@ -26,7 +26,7 @@ describe('Dom', function () {
   describe('$()', function () {
     it('should return a element', function () {
       const div1 = $('#div1');
-      const div2 = $('#div2', document);
+      const div2 = $('#div2', document.body);
 
       div1.should.be.an('HTMLDivElement');
       div2.should.be.an('HTMLDivElement');
@@ -36,7 +36,7 @@ describe('Dom', function () {
   describe('$$()', function () {
     it('should return a node list of elements', function () {
       const divList1 = $$('div');
-      const divList2 = $$('div', document);
+      const divList2 = $$('div', document.body);
 
       divList1.should.be.an('NodeList');
       divList2.should.be.an('NodeList');

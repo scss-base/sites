@@ -1,6 +1,6 @@
 import chai from 'chai';
-import { DropdownMenu } from '../../../src/js/plugins';
-import { fire } from '../../../src/js/helper';
+import {DropdownMenu} from '../../../src/js_old/plugins';
+import {fire} from '../../../src/js_old/helper';
 
 const assert = chai.assert;
 

@@ -1,5 +1,5 @@
-import chai from 'chai';
-import Plugin from '../../../src/js_old/plugins/plugin';
+import * as chai from 'chai';
+import { Plugin } from '../../../src/ts/plugins/plugin';
 
 const assert = chai.assert;
 const expect = chai.expect;
@@ -8,6 +8,44 @@ chai.should();
 
 describe('Plugin', function () {
   let htmlDivElement;
+
+  class TestPlugin extends Plugin {
+    constructor(element, options?) {
+      super('TestPlugin', element);
+      // this.options = options;
+    }
+  }
+
+  before(function () {
+    htmlDivElement = document.createElement('div');
+    htmlDivElement.id = 'plugin';
+    document.body.appendChild(htmlDivElement);
+  });
+
+  after(function () {
+    htmlDivElement.remove();
+  });
+
+  it('new...', function () {
+    const plugin = new TestPlugin(document.querySelector('#plugin'));
+
+    expect(plugin).to.be.an.instanceof(Plugin);
+    assert.equal(plugin.pluginName, 'test-plugin');
+    assert.equal(htmlDivElement.dataset.testPlugin, plugin.pluginId);
+  });
+
+  it('should do not set a data-plugin-name attribute if exist', function () {
+    htmlDivElement.setAttribute('data-test-plugin', 'test-plugin-0gfllv');
+
+    const plugin = new TestPlugin(document.querySelector('#plugin'));
+
+    expect(plugin).to.be.an.instanceof(Plugin);
+    plugin.element.should.be.an('HTMLDivElement');
+    assert.equal(plugin.pluginName, 'test-plugin');
+    assert.equal(htmlDivElement.dataset.testPlugin, 'test-plugin-0gfllv');
+  });
+
+  /*let htmlDivElement;
 
   class TestPlugin extends Plugin {
     constructor(element, options) {
@@ -92,5 +130,5 @@ describe('Plugin', function () {
     htmlDivElement.addEventListener('init.base.testPlugin', eventListener);
     new TestPlugin(document.querySelector('#plugin'));
     htmlDivElement.removeEventListener('init.base.testPlugin', eventListener);
-  });
+  });*/
 });

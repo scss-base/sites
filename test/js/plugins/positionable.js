@@ -1,5 +1,5 @@
 import chai from 'chai';
-import Positionable from '../../../src/js/plugins/positionable';
+import Positionable from '../../../src/js_old/plugins/positionable';
 
 const expect = chai.expect;
 

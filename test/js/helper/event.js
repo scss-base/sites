@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { fire, off, on } from '../../../src/js/helper';
+import {fire, off, on} from '../../../src/js_old/helper';
 
 const assert = chai.assert;
 

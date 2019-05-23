@@ -1,5 +1,5 @@
-import chai from 'chai';
-import {camelCase, capitalize, kebabCase, pascalCase, random, snakeCase} from '../../../src/js_old/helper';
+import * as chai from 'chai';
+import { camelCase, capitalize, kebabCase, pascalCase, random, snakeCase } from '../../../src/ts/helper';
 
 chai.should();
 
