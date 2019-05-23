@@ -2,15 +2,11 @@
 
 {
   "compilerOptions": {
-    /* Basic Options */
     "target": "es6",
-    /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */
     "declaration": false,
-    /* Generates corresponding '.d.ts' file. */
     "sourceMap": false,
-    /* Generates corresponding '.map' file. */
-    "outDir": "src/js_new"
-    /* Redirect output structure to the directory. */
+    "outDir": "src/js",
+    "moduleResolution": "node"
   },
   "include": [
     "src/ts/**/*"
