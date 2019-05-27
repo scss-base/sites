@@ -49,7 +49,8 @@ export default class Keyboard {
   static parseKey(event) {
     let key = Keyboard.keyCodes.get(`${event.which}`) || String.fromCharCode(event.which).toUpperCase();
 
-    // Remove un-printable characters, e.g. for `fromCharCode` calls for CTRL only events
+    // Remove un-printable characters,
+    // e.g. for `fromCharCode` calls for CTRL only events
     key = key.replace(new RegExp(/\W+/), '');
 
     if (event.shiftKey) key = `SHIFT_${key}`;

@@ -2,6 +2,12 @@ import { createElement, fire, HTMLElementAttributes, on } from "../helper";
 import { Triggers } from "../utility";
 import { Plugin } from './plugin';
 
+/**
+ * Modal module.
+ * @module Modal
+ * @extends Plugin
+ * @requires Triggers
+ */
 export class Modal extends Plugin {
   private isOpen: boolean;
   private overlay: HTMLElement;
