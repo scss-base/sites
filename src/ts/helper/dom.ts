@@ -4,7 +4,7 @@
  * @param {Element} node
  * @returns {Element}
  */
-export function $(selectors: string, node?: Element): Element {
+export function $(selectors: string, node?: HTMLElement): HTMLElement {
   return node ? node.querySelector(selectors) : document.querySelector(selectors);
 }
 
@@ -14,11 +14,12 @@ export function $(selectors: string, node?: Element): Element {
  * @param {Element} node
  * @returns {NodeListOf<Element>}
  */
-export function $$(selectors: string, node?: Element): NodeListOf<Element> {
+export function $$(selectors: string, node?: HTMLElement): NodeListOf<HTMLElement> {
   return node ? node.querySelectorAll(selectors) : document.querySelectorAll(selectors);
 }
 
 export interface HTMLElementAttributes {
+  html?: HTMLElement;
   text?: string;
   id?: string;
   class?: string | string[];
@@ -31,9 +32,13 @@ export interface HTMLElementAttributes {
  */
 export function createElement(tagName: string, attributes: HTMLElementAttributes): HTMLElement {
   const element = document.createElement(tagName);
-  const { text, ...filteredAttributes } = attributes;
+  const { html, text, ...filteredAttributes } = attributes;
 
-  element.innerHTML = text ? text : null;
+  if (html) {
+    element.appendChild(html);
+  } else {
+    element.innerHTML = text ? text : null;
+  }
 
   for (const attributeName in filteredAttributes) {
     if (filteredAttributes.hasOwnProperty(attributeName)) {
@@ -48,4 +53,51 @@ export function createElement(tagName: string, attributes: HTMLElementAttributes
   }
 
   return element;
+}
+
+export interface DimensionsRect {
+  height: number;
+  width: number;
+  readonly top: number;
+  readonly left: number;
+  offset: {
+    readonly top: number;
+    readonly left: number;
+  }
+}
+
+/**
+ *
+ * @param element
+ */
+export function getDimensions(element: HTMLElement): DimensionsRect {
+  const elementRect = element.getBoundingClientRect();
+
+  return {
+    width: elementRect.width,
+    height: elementRect.height,
+    top: elementRect.top,
+    left: elementRect.left,
+    offset: {
+      top: elementRect.top + window.pageYOffset,
+      left: elementRect.left + window.pageXOffset
+    }
+  };
+}
+
+export function outViewport(element: HTMLElement): any {
+  const elementRect = getDimensions(element);
+
+  let top = elementRect.offset.top - window.pageYOffset;
+  let bottom = (window.innerHeight + window.pageYOffset) - (elementRect.offset.top + elementRect.height);
+  let left = elementRect.offset.left - window.pageXOffset;
+  let right = window.innerWidth - (elementRect.offset.left + elementRect.width);
+
+
+  top = Math.min(top, 0);
+  bottom = Math.min(bottom, 0);
+  left = Math.min(left, 0);
+  right = Math.min(right, 0);
+
+  return { top, bottom, left, right };
 }

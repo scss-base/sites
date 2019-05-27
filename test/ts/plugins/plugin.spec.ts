@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { Plugin } from '../../../src/ts/plugins/plugin';
+import { Plugin } from '../../../src/ts/plugin/plugin';
 
 const assert = chai.assert;
 const expect = chai.expect;

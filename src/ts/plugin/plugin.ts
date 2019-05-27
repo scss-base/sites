@@ -1,6 +1,6 @@
 import { camelCase, fire, kebabCase, random } from '../helper';
 
-export class Plugin {
+export abstract class Plugin {
   public element: HTMLElement;
   public elementId: string;
   public options: Map<string, any>;
@@ -43,14 +43,14 @@ export class Plugin {
   }
 
   public setOptions(options: Object, defaults: Map<string, any>): void {
-    if (options instanceof Object) {
-      this.options = new Map([...defaults, ...new Map(Object.entries(options)), ...this._dataset]);
+    if (options && options instanceof Object) {
+      this.options = new Map([...defaults, ...new Map(Object.entries(options)), ...this.dataset(defaults)]);
     } else {
-      this.options = new Map([...defaults, ...this._dataset]);
+      this.options = new Map([...defaults, ...this.dataset(defaults)]);
     }
   }
 
-  private get _dataset(): Map<string, any> {
-    return new Map(Object.entries(this.element.dataset).filter(key => !(key.includes('basePlugin') || key.includes(camelCase(this.pluginName)))));
+  private dataset(defaults: Map<string, any>): Map<string, any> {
+    return new Map(Object.entries(this.element.dataset).filter(dataset => defaults.has(dataset[0])));
   }
 }

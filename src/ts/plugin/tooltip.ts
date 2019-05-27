@@ -1,9 +1,21 @@
 import { createElement, fire, HTMLElementAttributes, on } from '../helper';
-import { Plugin } from './plugin';
+import { Positionable } from './positionable';
 
-export class Tooltip extends Plugin {
+export interface TooltipOptions {
+  alignment: string;
+  anchorClass: string;
+  position: string;
+  tooltipClass: string;
+  tooltipHeight: number;
+  tooltipWidth: number;
+}
+
+export class Tooltip extends Positionable {
   public tooltip: HTMLElement;
 
+  /**
+   * Default settings for plugin
+   */
   private defaults = new Map(Object.entries({
     /**
      * Position of tooltip. Can be left, right, bottom or top.
@@ -47,23 +59,50 @@ export class Tooltip extends Plugin {
      * @type {string}
      * @default 'has-tip'
      */
-    triggerClass: 'has-tip',
+    anchorClass: 'has-tip',
   }));
 
-  constructor(element: HTMLElement, options?: Object) {
+  constructor(element: HTMLElement, options?: TooltipOptions) {
     super('Tooltip', element);
 
     this.setOptions(options, this.defaults);
-    this.element.classList.add(this.options.get('triggerClass'));
+    this.element.classList.add(this.options.get('anchorClass'));
 
-    this._createTooltip();
-    this._initCustomEvents();
-    this._initMouseEvents();
+    this.init();
+
+    this.createTooltip();
+    this.initCustomEvents();
+    this.initMouseEvents();
   }
 
   public open() {
     this.tooltip.style.display = 'block';
+    this.setPosition(this.tooltip, this.element);
     fire(this.element, 'open.base.tooltip');
+  }
+
+  public setPosition(parentElement: HTMLElement, childElement: HTMLElement) {
+    super.setPosition(parentElement, childElement);
+
+    let top = parseInt(parentElement.style.top, 10);
+    let left = parseInt(parentElement.style.left, 10);
+
+    switch (this.options.get('position')) {
+      case 'top':
+        top -= this.options.get('tooltipWidth');
+        break;
+      case 'left':
+        left -= this.options.get('tooltipWidth');
+        break;
+      case 'right':
+        left += this.options.get('tooltipWidth');
+        break;
+      default:
+        top += this.options.get('tooltipWidth');
+    }
+
+    parentElement.style.top = `${top}px`;
+    parentElement.style.left = `${left}px`;
   }
 
   public close() {
@@ -71,7 +110,7 @@ export class Tooltip extends Plugin {
     fire(this.element, 'closed.base.tooltip');
   }
 
-  private _createTooltip(): void {
+  private createTooltip(): void {
     this.tooltip = createElement('div', <HTMLElementAttributes>{
       text: this.element.title,
       id: this.pluginId,
@@ -82,12 +121,12 @@ export class Tooltip extends Plugin {
     document.body.appendChild(this.tooltip);
   }
 
-  private _initCustomEvents() {
+  private initCustomEvents() {
     on('open.base.trigger', this.element, this.open.bind(this));
     on('close.base.trigger', this.element, this.close.bind(this));
   }
 
-  private _initMouseEvents() {
+  private initMouseEvents() {
     on('mouseenter', this.element, this.open.bind(this));
     on('mouseleave', this.element, this.close.bind(this));
   }

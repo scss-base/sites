@@ -14,7 +14,7 @@ export function off(type: string, element: Element, listener: EventListener, cap
 
 export function on(
   type: string,
-  element: Element,
+  element: Element | Window,
   listener: EventListener,
   capture?: boolean,
   once?: boolean,

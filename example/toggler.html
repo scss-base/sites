@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toggler Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../dist/css/base.css">
+</head>
+<body>
+<div class="row">
+  <div class="column">
+    <p><a data-toggle="menuBar">Vertical!</a></p>
+    <ul class="menu" id="menuBar" data-toggler=".vertical">
+      <li><a href="#">One</a></li>
+      <li><a href="#">Two</a></li>
+      <li><a href="#">Three</a></li>
+      <li><a href="#">Four</a></li>
+    </ul>
+  </div>
+</div>
+<script src="../dist/js/base.js"></script>
+<script>
+  const toggler1 = Base.$('#menuBar');
+  new Base.Toggler(toggler1);
+</script>
+</body>
+</html>
