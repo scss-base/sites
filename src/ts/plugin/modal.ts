@@ -6,6 +6,8 @@ import { Plugin } from './plugin';
  * Modal module.
  * @module Modal
  * @extends Plugin
+ * @requires Core
+ * @requires Keyboard
  * @requires Triggers
  */
 export class Modal extends Plugin {
@@ -207,6 +209,7 @@ export class Modal extends Plugin {
   }
 
   /**
+   * Update or replace browser history
    * @private
    */
   private updateHistory(): void {
@@ -224,6 +227,7 @@ export class Modal extends Plugin {
   }
 
   /**
+   * Remove the history hash
    * @private
    */
   private resetHistory(): void {
