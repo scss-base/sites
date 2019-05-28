@@ -63,7 +63,7 @@ export class Tooltip extends Positionable {
   }));
 
   constructor(element: HTMLElement, options?: TooltipOptions) {
-    super('Tooltip', element);
+    super('tooltip', element);
 
     this.setOptions(options, this.defaults);
     this.element.classList.add(this.options.get('anchorClass'));

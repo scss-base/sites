@@ -12,7 +12,7 @@ export class DropdownMenu extends Positionable {
    * @param options
    */
   constructor(element: HTMLElement, options?: Object) {
-    super('DropdownMenu', element);
+    super('dropdownMenu', element);
     this.setOptions(options, new Map());
 
     this.subs = $$('li > ul', this.element);

@@ -1,5 +1,5 @@
-import { createElement, fire, HTMLElementAttributes, on } from "../helper";
-import { Triggers } from "../utility";
+import { createElement, fire, HTMLElementAttributes, off, on } from '../helper';
+import { Keyboard, Triggers } from '../utility';
 import { Plugin } from './plugin';
 
 /**
@@ -11,6 +11,9 @@ import { Plugin } from './plugin';
 export class Modal extends Plugin {
   private isOpen: boolean;
   private overlay: HTMLElement;
+  private overlayListener: (event: MouseEvent) => void;
+  private keyboardListener: (event: KeyboardEvent) => void;
+
   /**
    * Default settings for plugin
    */
@@ -23,13 +26,13 @@ export class Modal extends Plugin {
      */
     closeOnClick: true,
 
-    // /**
-    //  * Allows the modal to close if the user presses the `ESCAPE` key.
-    //  * @option
-    //  * @type {boolean}
-    //  * @default true
-    //  */
-    // closeOnEsc: true,
+    /**
+     * Allows the modal to close if the user presses the `ESCAPE` key.
+     * @option
+     * @type {boolean}
+     * @default true
+     */
+    closeOnEsc: true,
 
     /**
      * Allows adding additional class names to the reveal overlay.
@@ -46,7 +49,7 @@ export class Modal extends Plugin {
    * @param options
    */
   constructor(element: HTMLElement, options?: any) {
-    super('Modal', element);
+    super('modal', element);
 
     this.setOptions(options, this.defaults);
 
@@ -56,6 +59,9 @@ export class Modal extends Plugin {
     this.initCustomEvents();
 
     Triggers.init();
+    Keyboard.register(this.pluginName, {
+      'ESCAPE': 'close',
+    });
   }
 
   /**
@@ -77,7 +83,7 @@ export class Modal extends Plugin {
     this.overlay.style.display = 'block';
 
     this.disableScrollbar();
-    // this._updateHistory();
+    this.updateHistory();
     this.addModalEvents();
 
     /**
@@ -97,7 +103,7 @@ export class Modal extends Plugin {
     this.overlay.style.display = 'none';
 
     this.enableScrollbar();
-    // this._resetHistory();
+    this.resetHistory();
     this.removeModalEvents();
 
     /**
@@ -133,15 +139,23 @@ export class Modal extends Plugin {
    * @private
    */
   private addModalEvents(): void {
-    // if (this.options.get('closeOnEsc')) {
-    //   this._globalListeners.set('keydown.modal', this._keyDownListener.bind(this));
-    //   on('keydown', this._globalListeners.get('click.overlay'));
-    // }
+    if (this.options.get('closeOnEsc')) {
+      this.keyboardListener = (event) => {
+        Keyboard.handleKey(event, this.pluginName, {
+          close: this.close.bind(this),
+        });
+      };
+      on('keydown', window, this.keyboardListener);
+    }
 
     if (this.options.get('closeOnClick')) {
-      console.log('closeOnClick', 'on');
-      // this._globalListeners.set('click.overlay', this._clickOverlayListener.bind(this));
-      // on('click', this.overlay, this._globalListeners.get('click.overlay'));
+      this.overlayListener = (event) => {
+        event.stopPropagation();
+        if ((event.target as HTMLElement).closest('[data-base-plugin]') !== this.element) {
+          this.close();
+        }
+      };
+      on('click', this.overlay, this.overlayListener);
     }
   }
 
@@ -150,15 +164,12 @@ export class Modal extends Plugin {
    * @private
    */
   private removeModalEvents() {
-    // if (this.options.get('closeOnEsc')) {
-    //   off('keydown', this._globalListeners.get('keydown.modal'));
-    //   this._globalListeners.delete('keydown.modal');
-    // }
+    if (this.options.get('closeOnEsc')) {
+      off('keydown', window, this.keyboardListener);
+    }
 
     if (this.options.get('closeOnClick')) {
-      console.log('closeOnClick', 'off');
-      // off('click', this.overlay, this._globalListeners.get('keydown.modal'));
-      // this._globalListeners.delete('click.overlay');
+      off('click', this.overlay, this.overlayListener);
     }
   }
 
@@ -174,17 +185,6 @@ export class Modal extends Plugin {
     });
 
     document.body.appendChild(this.overlay);
-  }
-
-  /**
-   * @private
-   */
-  private clickOverlayListener(event): void {
-    event.stopPropagation();
-
-    if (event.target.closest('[data-base-plugin]') !== this.element) {
-      this.close();
-    }
   }
 
   /**

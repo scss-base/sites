@@ -8,7 +8,7 @@ export function fire(element: HTMLElement, event: string, detail?: any) {
   );
 }
 
-export function off(type: string, element: Element, listener: EventListener, capture?: boolean): void {
+export function off(type: string, element: Element | Window, listener: EventListener, capture?: boolean): void {
   element.removeEventListener(type, listener, <EventListenerOptions>{ capture });
 }
 

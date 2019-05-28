@@ -28,7 +28,7 @@ export class Toggler extends Plugin {
    * @param options
    */
   constructor(element, options?: TogglerOptions) {
-    super('Toggler', element);
+    super('toggler', element);
 
     this.setOptions(options, this.defaults);
     this.initCustomEvents();

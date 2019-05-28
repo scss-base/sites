@@ -50,7 +50,7 @@ export class Dropdown extends Positionable {
   }));
 
   constructor(element: HTMLElement, options?: DropdownOptions) {
-    super('Tooltip', element);
+    super('dropdown', element);
 
     this.setOptions(options, this.defaults);
 

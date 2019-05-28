@@ -1,3 +1,5 @@
+const listeners = new Map();
+
 /**
  * Fires an event.
  * @param {String | Element} element - The element to dispatch the event to.
