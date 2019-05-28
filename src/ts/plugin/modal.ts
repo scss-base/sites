@@ -1,5 +1,5 @@
 import { createElement, fire, HTMLElementAttributes, off, on } from '../helper';
-import { Keyboard, Triggers } from '../utility';
+import { Core, Keyboard, Triggers } from '../utility';
 import { Plugin } from './plugin';
 
 /**
@@ -35,6 +35,15 @@ export class Modal extends Plugin {
     closeOnEsc: true,
 
     /**
+     * Link the location hash to the modal.
+     * Set the location hash when the modal is opened/closed, and open/close the modal when the location changes.
+     * @option
+     * @type {boolean}
+     * @default true
+     */
+    deepLink: true,
+
+    /**
      * Allows adding additional class names to the reveal overlay.
      * @option
      * @type {string}
@@ -62,6 +71,10 @@ export class Modal extends Plugin {
     Keyboard.register(this.pluginName, {
       'ESCAPE': 'close',
     });
+
+    if (this.options.get('deepLink') && window.location.hash === (`#${this.element.id}`)) {
+      Core.load(this.open.bind(this));
+    }
   }
 
   /**
@@ -83,8 +96,11 @@ export class Modal extends Plugin {
     this.overlay.style.display = 'block';
 
     this.disableScrollbar();
-    this.updateHistory();
     this.addModalEvents();
+
+    if (this.options.get('deepLink')) {
+      this.updateHistory();
+    }
 
     /**
      * Fires when the Modal has successfully opened.
@@ -103,8 +119,11 @@ export class Modal extends Plugin {
     this.overlay.style.display = 'none';
 
     this.enableScrollbar();
-    this.resetHistory();
     this.removeModalEvents();
+
+    if (this.options.get('deepLink')) {
+      this.resetHistory();
+    }
 
     /**
      * Fires when the modal is done closing.
