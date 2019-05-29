@@ -70,5 +70,4 @@ fabric.properties
 bower_components
 coverage
 node_modules
-build
-dist
+
