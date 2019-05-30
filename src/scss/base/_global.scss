@@ -68,6 +68,10 @@ $global-right: if($global-text-direction == rtl, left, right);
 
 /// Sets the global style for a site.
 @mixin base-global {
+  :root {
+    --breakpoints: #{map-to-json($breakpoints)};
+  }
+
   @include base-normalize;
 
   *,

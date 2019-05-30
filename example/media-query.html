@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dropdown Examples</title>
+  <link rel="stylesheet" href="../dist/css/base.css">
+</head>
+<body>
+
+<div class="row">
+  <div class="column">
+    <h2>Media Query</h2>
+    <hr>
+  </div>
+</div>
+
+<script src="../dist/js/base.js"></script>
+<script>
+  Base.MediaQuery.init();
+  window.addEventListener('changed.base.mediaquery', (event) => {
+    console.log('changed.base.mediaquery', event.detail);
+  });
+</script>
+</body>
+</html>

@@ -50,3 +50,17 @@
 
   @return nth($map, 1);
 }
+
+/// Encode a map to JSON
+/// @access private
+/// @param {Map} $map - map to be encoded
+/// @return {String} - encoded map
+@function map-to-json($map) {
+  $str: "";
+
+  @each $key, $value in $map {
+    $str: $str + ', ' + '"#{$key}"' + ': ' + '"#{$value}"';
+  }
+
+  @return '"{#{str-slice($str, 3)}}"';
+}
