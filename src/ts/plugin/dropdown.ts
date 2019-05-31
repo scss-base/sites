@@ -58,9 +58,9 @@ export class Dropdown extends Positionable {
     this.anchors = $$(`[data-open="${this.elementId}"], [data-toggle="${this.elementId}"]`);
     this.currentAnchor = this.anchors[0];
 
-    this._initCustomEvents();
-    this._initMouseEvents();
-    this._initUiEvents();
+    this.initCustomEvents();
+    this.initMouseEvents();
+    this.initUiEvents();
 
     Triggers.init();
   }
@@ -131,13 +131,13 @@ export class Dropdown extends Positionable {
   }
 
 
-  private _initCustomEvents(): void {
+  private initCustomEvents(): void {
     on('open.base.trigger', this.element, this.open.bind(this));
     on('close.base.trigger', this.element, this.close.bind(this));
     on('toggle.base.trigger', this.element, this.toggle.bind(this));
   }
 
-  private _initMouseEvents(): void {
+  private initMouseEvents(): void {
     let timeout;
 
     this.anchors
@@ -165,7 +165,7 @@ export class Dropdown extends Positionable {
     }
   }
 
-  private _initUiEvents(): void {
+  private initUiEvents(): void {
     on('click', this.element, this.close.bind(this));
     on('resize', window, this.close.bind(this));
     on('scroll', window, this.close.bind(this));

@@ -1,5 +1,4 @@
 import {$} from '../helper';
-
 const Base = {
   $
 };

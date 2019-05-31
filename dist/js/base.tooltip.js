@@ -81,12 +81,11 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -301,8 +300,7 @@ function random(length) {
 
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -444,6 +442,154 @@ function () {
   return Keyboard;
 }();
 keyboard_Keyboard.plugins = new Map();
+// CONCATENATED MODULE: ./src/js/utility/mediaQuery.js
+function mediaQuery_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function mediaQuery_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function mediaQuery_createClass(Constructor, protoProps, staticProps) { if (protoProps) mediaQuery_defineProperties(Constructor.prototype, protoProps); if (staticProps) mediaQuery_defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var mediaQuery_MediaQuery =
+/*#__PURE__*/
+function () {
+  function MediaQuery() {
+    mediaQuery_classCallCheck(this, MediaQuery);
+  }
+
+  mediaQuery_createClass(MediaQuery, null, [{
+    key: "init",
+
+    /**
+     * Initializes the media query helper and activating the breakpoint watcher.
+     * @private
+     */
+    value: function init() {
+      MediaQuery.outdated = MediaQuery.current;
+      MediaQuery.initWatcher();
+    }
+    /**
+     * Gets all css breakpoints
+     * @returns {Object} JSON parsed object with all available CSS breakpoints.
+     */
+
+  }, {
+    key: "get",
+
+    /**
+     * Gets the media query of a breakpoint.
+     * @param {String} breakpoint - Name of the breakpoint to get.
+     * @returns {String|null} - The media query of the breakpoint, or `null` if the breakpoint doesn't exist.
+     */
+    value: function get(breakpoint) {
+      return MediaQuery.queries.has(breakpoint) ? MediaQuery.queries.get(breakpoint) : null;
+    }
+    /**
+     * Checks if the screen is at least as wide as a breakpoint.
+     * @param {String} breakpoint - Name of the breakpoint to check.
+     * @returns {Boolean} `true` if the breakpoint matches, `false` if it's smaller.
+     */
+
+  }, {
+    key: "atLeast",
+    value: function atLeast(breakpoint) {
+      var query = MediaQuery.get(breakpoint);
+      return query ? window.matchMedia(query).matches : false;
+    }
+    /**
+     * Checks if the screen matches to a breakpoint.
+     * @param {String} breakpoint - Name of the breakpoint to check, either 'small only' or 'small'. Omitting 'only' falls back to using atLeast() method.
+     * @returns {Boolean} `true` if the breakpoint matches, `false` if it does not.
+     */
+
+  }, {
+    key: "is",
+    value: function is(breakpoint) {
+      var breakpointArray = breakpoint.trim().split(' ');
+
+      if (breakpointArray.length > 1 && breakpointArray[1] === 'only') {
+        return breakpointArray[0] === MediaQuery.current;
+      } else {
+        return MediaQuery.atLeast(breakpointArray[0]);
+      }
+    }
+    /**
+     * Breakpoint listener for watcher, which fires an event on the window whenever the breakpoint changes.
+     * @fires MediaQuery#changed
+     */
+
+  }, {
+    key: "watcherListener",
+    value: function watcherListener() {
+      var current = MediaQuery.current;
+      var outdated = MediaQuery.outdated;
+
+      if (current !== outdated) {
+        MediaQuery.outdated = current;
+        /**
+         * Fires when the breakpoint changes.
+         * @event MediaQuery#changed
+         */
+
+        Object(helper["e" /* fire */])(window, 'changed.base.mediaquery', {
+          current: current,
+          outdated: outdated
+        });
+      }
+    }
+    /**
+     * Initializes a breakpoint listener on window resize.
+     */
+
+  }, {
+    key: "initWatcher",
+    value: function initWatcher() {
+      Object(helper["i" /* on */])('resize', window, MediaQuery.watcherListener);
+    }
+  }, {
+    key: "breakpoints",
+    get: function get() {
+      var breakpoints = window.getComputedStyle(document.body).getPropertyValue('--breakpoints');
+      return JSON.parse(breakpoints.substring(2, breakpoints.length - 1));
+    }
+    /**
+     * Gets all named media queries
+     * @returns {Map<string, string>} A map object with all named media queries.
+     */
+
+  }, {
+    key: "queries",
+    get: function get() {
+      var queries = new Map();
+
+      for (var prop in MediaQuery.breakpoints) {
+        if (MediaQuery.breakpoints.hasOwnProperty(prop)) {
+          queries.set(prop, "only screen and (min-width: ".concat(MediaQuery.breakpoints[prop], ")"));
+        }
+      }
+
+      return queries;
+    }
+    /**
+     * Gets the current breakpoint name
+     * @returns {String} Name of the current breakpoint.
+     */
+
+  }, {
+    key: "current",
+    get: function get() {
+      var matched = '';
+      MediaQuery.queries.forEach(function (value, key) {
+        if (window.matchMedia(value).matches) {
+          matched = key;
+        }
+      });
+      return matched;
+    }
+  }]);
+
+  return MediaQuery;
+}();
 // CONCATENATED MODULE: ./src/js/utility/triggers.js
 function triggers_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -541,8 +687,26 @@ function () {
   return Triggers;
 }();
 // CONCATENATED MODULE: ./src/js/utility/index.js
+/* concated harmony reexport Core */__webpack_require__.d(__webpack_exports__, "a", function() { return core_Core; });
+/* concated harmony reexport Keyboard */__webpack_require__.d(__webpack_exports__, "b", function() { return keyboard_Keyboard; });
+/* concated harmony reexport MediaQuery */__webpack_require__.d(__webpack_exports__, "c", function() { return mediaQuery_MediaQuery; });
+/* concated harmony reexport Triggers */__webpack_require__.d(__webpack_exports__, "d", function() { return triggers_Triggers; });
 
 
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: ./src/js/helper/index.js + 3 modules
+var helper = __webpack_require__(0);
+
+// EXTERNAL MODULE: ./src/js/utility/index.js + 4 modules
+var utility = __webpack_require__(1);
 
 // CONCATENATED MODULE: ./src/js/plugin/plugin.js
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -553,18 +717,18 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-function plugin_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function plugin_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function plugin_createClass(Constructor, protoProps, staticProps) { if (protoProps) plugin_defineProperties(Constructor.prototype, protoProps); if (staticProps) plugin_defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
 var plugin_Plugin =
 /*#__PURE__*/
 function () {
   function Plugin(pluginName, element) {
-    plugin_classCallCheck(this, Plugin);
+    _classCallCheck(this, Plugin);
 
     this.element = element;
     this.elementId = element.id;
@@ -579,7 +743,7 @@ function () {
     Object(helper["e" /* fire */])(this.element, "init.base.".concat(Object(helper["c" /* camelCase */])(this.pluginName)));
   }
 
-  plugin_createClass(Plugin, [{
+  _createClass(Plugin, [{
     key: "setOptions",
     value: function setOptions(options, defaults) {
       if (options && options instanceof Object) {
@@ -861,13 +1025,13 @@ function (_Positionable) {
     _this.anchors = Object(helper["b" /* $$ */])("[data-open=\"".concat(_this.elementId, "\"], [data-toggle=\"").concat(_this.elementId, "\"]"));
     _this.currentAnchor = _this.anchors[0];
 
-    _this._initCustomEvents();
+    _this.initCustomEvents();
 
-    _this._initMouseEvents();
+    _this.initMouseEvents();
 
-    _this._initUiEvents();
+    _this.initUiEvents();
 
-    triggers_Triggers.init();
+    utility["d" /* Triggers */].init();
     return _this;
   }
   /**
@@ -944,15 +1108,15 @@ function (_Positionable) {
       parentElement.style.left = "".concat(left, "px");
     }
   }, {
-    key: "_initCustomEvents",
-    value: function _initCustomEvents() {
+    key: "initCustomEvents",
+    value: function initCustomEvents() {
       Object(helper["i" /* on */])('open.base.trigger', this.element, this.open.bind(this));
       Object(helper["i" /* on */])('close.base.trigger', this.element, this.close.bind(this));
       Object(helper["i" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
     }
   }, {
-    key: "_initMouseEvents",
-    value: function _initMouseEvents() {
+    key: "initMouseEvents",
+    value: function initMouseEvents() {
       var _this2 = this;
 
       var timeout;
@@ -989,8 +1153,8 @@ function (_Positionable) {
       }
     }
   }, {
-    key: "_initUiEvents",
-    value: function _initUiEvents() {
+    key: "initUiEvents",
+    value: function initUiEvents() {
       Object(helper["i" /* on */])('click', this.element, this.close.bind(this));
       Object(helper["i" /* on */])('resize', window, this.close.bind(this));
       Object(helper["i" /* on */])('scroll', window, this.close.bind(this));
@@ -1212,13 +1376,13 @@ function (_Plugin) {
 
     _this.initCustomEvents();
 
-    triggers_Triggers.init();
-    keyboard_Keyboard.register(_this.pluginName, {
+    utility["d" /* Triggers */].init();
+    utility["b" /* Keyboard */].register(_this.pluginName, {
       'ESCAPE': 'close'
     });
 
     if (_this.options.get('deepLink') && window.location.hash === "#".concat(_this.element.id)) {
-      core_Core.load(_this.open.bind(modal_assertThisInitialized(_this)));
+      utility["a" /* Core */].load(_this.open.bind(modal_assertThisInitialized(_this)));
     }
 
     return _this;
@@ -1318,7 +1482,7 @@ function (_Plugin) {
 
       if (this.options.get('closeOnEsc')) {
         this.keyboardListener = function (event) {
-          keyboard_Keyboard.handleKey(event, _this2.pluginName, {
+          utility["b" /* Keyboard */].handleKey(event, _this2.pluginName, {
             close: _this2.close.bind(_this2)
           });
         };
@@ -1486,7 +1650,7 @@ function (_Plugin) {
 
     _this.initCustomEvents();
 
-    triggers_Triggers.init();
+    utility["d" /* Triggers */].init();
     return _this;
   }
   /**
@@ -1719,19 +1883,23 @@ function (_Positionable) {
 
 
 /***/ }),
-
-/***/ 8:
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _plugin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _plugin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
 window['Base'] = Object.assign({}, window['Base'], {
   Tooltip: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Tooltip */ "e"]
 });
 
 /***/ })
-
-/******/ });
+/******/ ]);
 //# sourceMappingURL=base.tooltip.js.map

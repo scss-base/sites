@@ -1,4 +1,4 @@
-export function fire(element: HTMLElement, event: string, detail?: any) {
+export function fire(element: Window | Document | Element, event: string, detail?: any) {
   return element.dispatchEvent(
     new CustomEvent(event, <CustomEventInit>{
       bubbles: true,
