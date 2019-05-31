@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dropdown Examples</title>
+  <link rel="stylesheet" href="../dist/css/base.css">
+</head>
+<body>
+
+<div class="row">
+  <div class="column">
+    <h2>Equalizer</h2>
+    <hr>
+  </div>
+</div>
+
+<div class="row" data-equalizer data-equalize-on="medium">
+  <div class="column small-12 medium-4">
+    <div class="section primary" data-equalizer-watch>
+      <img src="https://via.placeholder.com/485">
+    </div>
+  </div>
+  <div class="column small-12 medium-4">
+    <div class="section primary" data-equalizer-watch>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua.</p>
+    </div>
+  </div>
+  <div class="column small-12 medium-4">
+    <div class="section primary" data-equalizer-watch>
+      <img src="https://via.placeholder.com/485x248">
+    </div>
+  </div>
+</div>
+
+<script src="../dist/js/base.js"></script>
+<script>
+  new Base.Equalizer(Base.$('[data-equalizer]'));
+
+</script>
+</body>
+</html>
