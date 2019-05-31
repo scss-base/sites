@@ -1282,6 +1282,136 @@ function (_Positionable) {
 
   return DropdownMenu;
 }(positionable_Positionable);
+// CONCATENATED MODULE: ./src/js/plugin/equalizer.js
+function equalizer_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { equalizer_typeof = function _typeof(obj) { return typeof obj; }; } else { equalizer_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return equalizer_typeof(obj); }
+
+function equalizer_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function equalizer_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function equalizer_createClass(Constructor, protoProps, staticProps) { if (protoProps) equalizer_defineProperties(Constructor.prototype, protoProps); if (staticProps) equalizer_defineProperties(Constructor, staticProps); return Constructor; }
+
+function equalizer_possibleConstructorReturn(self, call) { if (call && (equalizer_typeof(call) === "object" || typeof call === "function")) { return call; } return equalizer_assertThisInitialized(self); }
+
+function equalizer_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function equalizer_getPrototypeOf(o) { equalizer_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return equalizer_getPrototypeOf(o); }
+
+function equalizer_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) equalizer_setPrototypeOf(subClass, superClass); }
+
+function equalizer_setPrototypeOf(o, p) { equalizer_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return equalizer_setPrototypeOf(o, p); }
+
+
+
+var equalizer_Equalizer =
+/*#__PURE__*/
+function (_Plugin) {
+  equalizer_inherits(Equalizer, _Plugin);
+
+  function Equalizer(element, options) {
+    var _this;
+
+    equalizer_classCallCheck(this, Equalizer);
+
+    _this = equalizer_possibleConstructorReturn(this, equalizer_getPrototypeOf(Equalizer).call(this, 'equalizer', element));
+    /**
+     * Default settings for plugin
+     */
+
+    _this.defaults = new Map(Object.entries({
+      /**
+       * Enable height equalization when stacked on smaller screens.
+       * @option
+       * @type {boolean}
+       * @default false
+       */
+      equalizeOnStack: false,
+
+      /**
+       * String representing the minimum breakpoint size the plugin should equalize heights on.
+       * @option
+       * @type {string}
+       * @default 'medium'
+       */
+      equalizeOn: 'medium'
+    }));
+
+    _this.setOptions(options, _this.defaults);
+
+    _this.watched = Object(helper["b" /* $$ */])('[data-equalizer-watch]', _this.element);
+    console.log(_this.watched);
+
+    _this.reflow();
+
+    return _this;
+  }
+  /**
+   * Determines if the first 2 elements are not stacked.
+   */
+
+
+  equalizer_createClass(Equalizer, [{
+    key: "initUiEvents",
+    value: function initUiEvents() {
+      Object(helper["i" /* on */])('resize', window, this.reflow.bind(this));
+    }
+    /**
+     * Calls necessary functions to update Equalizer upon DOM change
+     */
+
+  }, {
+    key: "reflow",
+    value: function reflow() {
+      if (!this.options.get('equalizeOnStack') && this.isStacked) {
+        this.watched.forEach(function (element) {
+          return element.style.height = 'auto';
+        });
+        return;
+      }
+
+      if (this.options.get('equalizeByRow')) {} else {
+        this.adjust();
+      }
+    }
+    /**
+     * Changes the CSS height property of each child in an Equalizer parent to match the tallest
+     * @fires Equalizer#preequalized
+     * @fires Equalizer#postequalized
+     */
+
+  }, {
+    key: "adjust",
+    value: function adjust() {
+      var heights = [];
+      this.watched.forEach(function (element) {
+        return heights.push(element.offsetHeight);
+      });
+      var max = Math.max.apply(Math, heights);
+      /**
+       * Fires before the heights are applied
+       * @event Equalizer#preequalized
+       */
+
+      Object(helper["e" /* fire */])(this.element, 'preequalized.base.equalizer');
+      this.watched.forEach(function (element) {
+        return element.style.height = "".concat(max, "px");
+      });
+      /**
+       * Fires when the heights have been applied
+       * @event Equalizer#postequalized
+       */
+
+      Object(helper["e" /* fire */])(this.element, 'postequalized.base.equalizer');
+    }
+  }, {
+    key: "isStacked",
+    get: function get() {
+      return this.watched.length >= 2 ? this.watched[0].getBoundingClientRect().top !== this.watched[1].getBoundingClientRect().top : false;
+    }
+  }]);
+
+  return Equalizer;
+}(plugin_Plugin);
 // CONCATENATED MODULE: ./src/js/plugin/modal.js
 function modal_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { modal_typeof = function _typeof(obj) { return typeof obj; }; } else { modal_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return modal_typeof(obj); }
 
@@ -1873,9 +2003,11 @@ function (_Positionable) {
 // CONCATENATED MODULE: ./src/js/plugin/index.js
 /* concated harmony reexport Dropdown */__webpack_require__.d(__webpack_exports__, "a", function() { return dropdown_Dropdown; });
 /* concated harmony reexport DropdownMenu */__webpack_require__.d(__webpack_exports__, "b", function() { return dropdown_menu_DropdownMenu; });
-/* concated harmony reexport Modal */__webpack_require__.d(__webpack_exports__, "c", function() { return modal_Modal; });
-/* concated harmony reexport Toggler */__webpack_require__.d(__webpack_exports__, "d", function() { return toggler_Toggler; });
-/* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "e", function() { return tooltip_Tooltip; });
+/* concated harmony reexport Equalizer */__webpack_require__.d(__webpack_exports__, "c", function() { return equalizer_Equalizer; });
+/* concated harmony reexport Modal */__webpack_require__.d(__webpack_exports__, "d", function() { return modal_Modal; });
+/* concated harmony reexport Toggler */__webpack_require__.d(__webpack_exports__, "e", function() { return toggler_Toggler; });
+/* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "f", function() { return tooltip_Tooltip; });
+
 
 
 
@@ -1896,7 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plugin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
 window['Base'] = Object.assign({}, window['Base'], {
-  Toggler: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Toggler */ "d"]
+  Toggler: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Toggler */ "e"]
 });
 
 /***/ })
