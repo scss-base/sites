@@ -16,22 +16,21 @@ export class Equalizer extends Plugin {
      */
     equalizeOnStack: false,
     /**
-     * String representing the minimum breakpoint size the plugin should equalize heights on.
+     * Enable height equalization row by row.
      * @option
-     * @type {string}
-     * @default 'medium'
+     * @type {boolean}
+     * @default false
      */
-    equalizeOn: 'medium'
+    equalizeByRow: false,
   }));
 
   constructor(element: HTMLElement, options?: any) {
     super('equalizer', element);
 
     this.setOptions(options, this.defaults);
-
     this.watched = $$('[data-equalizer-watch]', this.element);
 
-    console.log(this.watched);
+    this.initUiEvents();
 
     this.reflow();
   }
@@ -45,6 +44,9 @@ export class Equalizer extends Plugin {
       : false;
   }
 
+  /**
+   * Initializes UI events for Equalizer.
+   */
   private initUiEvents(): void {
     on('resize', window, this.reflow.bind(this));
   }
@@ -72,9 +74,10 @@ export class Equalizer extends Plugin {
    */
   private adjust(): void {
     let heights = [];
-
-    this.watched.forEach(element => heights.push(element.offsetHeight));
-
+    this.watched.forEach(element => {
+      element.style.height = 'auto';
+      heights.push(element.offsetHeight);
+    });
     const max = Math.max(...heights);
 
     /**
@@ -82,7 +85,6 @@ export class Equalizer extends Plugin {
      * @event Equalizer#preequalized
      */
     fire(this.element, 'preequalized.base.equalizer');
-
     this.watched.forEach(element => element.style.height = `${max}px`);
 
     /**
