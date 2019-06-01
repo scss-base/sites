@@ -205,11 +205,54 @@ function off(type, element, listener, capture) {
     capture: capture
   });
 }
-function on(type, element, listener, capture, once, passive) {
+function on(type, element, listener, capture) {
   element.addEventListener(type, listener, {
-    capture: capture,
-    once: once,
-    passive: passive
+    capture: capture
+  });
+}
+
+function composeListener(type, element, listener, capture) {
+  return function listenerFn(event) {
+    listener(event);
+    element.removeEventListener(type, listenerFn, {
+      capture: capture
+    });
+  };
+}
+
+function one(type, element, listener, capture) {
+  element.addEventListener(type, composeListener(type, element, listener, capture), {
+    capture: capture
+  });
+}
+// CONCATENATED MODULE: ./src/js/helper/image.js
+
+/**
+ * Loader function that helps to trigger a callback when multiple images has been loaded.
+ *
+ * @param {Array} images An array of strings with the paths to the images.
+ * @param {Function} fn Callback function executed when all images has been loaded or not.
+ */
+
+function imageLoader(images, fn) {
+  var loaded = 0;
+
+  var verifier = function verifier() {
+    loaded += 1;
+
+    if (loaded === images.length) {
+      fn.apply(undefined);
+    }
+  };
+
+  images.forEach(function (image) {
+    if (image.complete) {
+      verifier();
+      return;
+    }
+
+    one('load', image, verifier);
+    one('error', image, verifier);
   });
 }
 // CONCATENATED MODULE: ./src/js/helper/string.js
@@ -285,16 +328,19 @@ function random(length) {
 /* concated harmony reexport $$ */__webpack_require__.d(__webpack_exports__, "b", function() { return $$; });
 /* concated harmony reexport createElement */__webpack_require__.d(__webpack_exports__, "d", function() { return createElement; });
 /* concated harmony reexport getDimensions */__webpack_require__.d(__webpack_exports__, "f", function() { return getDimensions; });
-/* concated harmony reexport outViewport */__webpack_require__.d(__webpack_exports__, "j", function() { return outViewport; });
+/* concated harmony reexport outViewport */__webpack_require__.d(__webpack_exports__, "l", function() { return outViewport; });
 /* concated harmony reexport fire */__webpack_require__.d(__webpack_exports__, "e", function() { return fire; });
-/* concated harmony reexport off */__webpack_require__.d(__webpack_exports__, "h", function() { return off; });
-/* concated harmony reexport on */__webpack_require__.d(__webpack_exports__, "i", function() { return on; });
+/* concated harmony reexport off */__webpack_require__.d(__webpack_exports__, "i", function() { return off; });
+/* concated harmony reexport on */__webpack_require__.d(__webpack_exports__, "j", function() { return on; });
+/* concated harmony reexport one */__webpack_require__.d(__webpack_exports__, "k", function() { return one; });
+/* concated harmony reexport imageLoader */__webpack_require__.d(__webpack_exports__, "g", function() { return imageLoader; });
 /* concated harmony reexport camelCase */__webpack_require__.d(__webpack_exports__, "c", function() { return camelCase; });
 /* unused concated harmony import capitalize */
-/* concated harmony reexport kebabCase */__webpack_require__.d(__webpack_exports__, "g", function() { return kebabCase; });
+/* concated harmony reexport kebabCase */__webpack_require__.d(__webpack_exports__, "h", function() { return kebabCase; });
 /* unused concated harmony import pascalCase */
-/* concated harmony reexport random */__webpack_require__.d(__webpack_exports__, "k", function() { return random; });
-/* concated harmony reexport snakeCase */__webpack_require__.d(__webpack_exports__, "l", function() { return snakeCase; });
+/* concated harmony reexport random */__webpack_require__.d(__webpack_exports__, "m", function() { return random; });
+/* concated harmony reexport snakeCase */__webpack_require__.d(__webpack_exports__, "n", function() { return snakeCase; });
+
 
 
 
@@ -305,7 +351,7 @@ function random(length) {
 
 "use strict";
 
-// EXTERNAL MODULE: ./src/js/helper/index.js + 3 modules
+// EXTERNAL MODULE: ./src/js/helper/index.js + 4 modules
 var helper = __webpack_require__(0);
 
 // CONCATENATED MODULE: ./src/js/utility/core.js
@@ -337,7 +383,7 @@ function () {
       } // Otherwise, wait until document is loaded
 
 
-      Object(helper["i" /* on */])('DOMContentLoaded', document, fn);
+      Object(helper["j" /* on */])('DOMContentLoaded', document, fn);
     }
     /**
      * Run event when the whole page has loaded, including all dependent resources such as stylesheets images
@@ -353,7 +399,7 @@ function () {
       } // Otherwise, wait until window is loaded
 
 
-      Object(helper["i" /* on */])('load', window, fn);
+      Object(helper["j" /* on */])('load', window, fn);
     }
   }]);
 
@@ -428,7 +474,7 @@ function () {
       var key = '';
 
       if (!excludedKeys.includes(event.key)) {
-        key = Object(helper["l" /* snakeCase */])(ieSpecificKeys.has(event.key) ? ieSpecificKeys.get(event.key) : event.key).toUpperCase();
+        key = Object(helper["n" /* snakeCase */])(ieSpecificKeys.has(event.key) ? ieSpecificKeys.get(event.key) : event.key).toUpperCase();
       }
 
       if (event.altKey) key = "ALT_".concat(key);
@@ -544,7 +590,7 @@ function () {
   }, {
     key: "initWatcher",
     value: function initWatcher() {
-      Object(helper["i" /* on */])('resize', window, MediaQuery.watcherListener);
+      Object(helper["j" /* on */])('resize', window, MediaQuery.watcherListener);
     }
   }, {
     key: "breakpoints",
@@ -651,24 +697,24 @@ function () {
     key: "addOpenListener",
     value: function addOpenListener() {
       Object(helper["b" /* $$ */])('[data-open]').forEach(function (element) {
-        Object(helper["h" /* off */])('click', element, Triggers.openListener);
-        Object(helper["i" /* on */])('click', element, Triggers.openListener);
+        Object(helper["i" /* off */])('click', element, Triggers.openListener);
+        Object(helper["j" /* on */])('click', element, Triggers.openListener);
       });
     }
   }, {
     key: "addCloseListener",
     value: function addCloseListener() {
       Object(helper["b" /* $$ */])('[data-close]').forEach(function (element) {
-        Object(helper["h" /* off */])('click', element, Triggers.closeListener);
-        Object(helper["i" /* on */])('click', element, Triggers.closeListener);
+        Object(helper["i" /* off */])('click', element, Triggers.closeListener);
+        Object(helper["j" /* on */])('click', element, Triggers.closeListener);
       });
     }
   }, {
     key: "addToggleListener",
     value: function addToggleListener() {
       Object(helper["b" /* $$ */])('[data-toggle]').forEach(function (element) {
-        Object(helper["h" /* off */])('click', element, Triggers.toggleListener);
-        Object(helper["i" /* on */])('click', element, Triggers.toggleListener);
+        Object(helper["i" /* off */])('click', element, Triggers.toggleListener);
+        Object(helper["j" /* on */])('click', element, Triggers.toggleListener);
       });
     }
   }, {
@@ -677,8 +723,8 @@ function () {
       var pluginNames = ['dropdown', 'modal', 'tooltip'];
       pluginNames.forEach(function (pluginName) {
         Object(helper["b" /* $$ */])("[data-".concat(pluginName, "]")).forEach(function (element) {
-          Object(helper["h" /* off */])("closeme.base.".concat(pluginName), element, Triggers.closeMeListener);
-          Object(helper["i" /* on */])("closeme.base.".concat(pluginName), element, Triggers.closeMeListener);
+          Object(helper["i" /* off */])("closeme.base.".concat(pluginName), element, Triggers.closeMeListener);
+          Object(helper["j" /* on */])("closeme.base.".concat(pluginName), element, Triggers.closeMeListener);
         });
       });
     }
@@ -702,7 +748,7 @@ function () {
 
 "use strict";
 
-// EXTERNAL MODULE: ./src/js/helper/index.js + 3 modules
+// EXTERNAL MODULE: ./src/js/helper/index.js + 4 modules
 var helper = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./src/js/utility/index.js + 4 modules
@@ -762,7 +808,7 @@ function () {
   }, {
     key: "pluginName",
     set: function set(pluginName) {
-      this._pluginName = Object(helper["g" /* kebabCase */])(pluginName);
+      this._pluginName = Object(helper["h" /* kebabCase */])(pluginName);
     },
     get: function get() {
       return this._pluginName;
@@ -770,7 +816,7 @@ function () {
   }, {
     key: "pluginId",
     set: function set(pluginName) {
-      this._pluginId = Object(helper["k" /* random */])(6, pluginName);
+      this._pluginId = Object(helper["m" /* random */])(6, pluginName);
     },
     get: function get() {
       return this._pluginId;
@@ -864,7 +910,7 @@ function (_Plugin) {
   }, {
     key: "reposition",
     value: function reposition() {
-      var out = Object(helper["j" /* outViewport */])(this.parentElement);
+      var out = Object(helper["l" /* outViewport */])(this.parentElement);
 
       if (Object.values(out).some(function (o) {
         return o < 0;
@@ -1110,9 +1156,9 @@ function (_Positionable) {
   }, {
     key: "initCustomEvents",
     value: function initCustomEvents() {
-      Object(helper["i" /* on */])('open.base.trigger', this.element, this.open.bind(this));
-      Object(helper["i" /* on */])('close.base.trigger', this.element, this.close.bind(this));
-      Object(helper["i" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
+      Object(helper["j" /* on */])('open.base.trigger', this.element, this.open.bind(this));
+      Object(helper["j" /* on */])('close.base.trigger', this.element, this.close.bind(this));
+      Object(helper["j" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
     }
   }, {
     key: "initMouseEvents",
@@ -1121,30 +1167,30 @@ function (_Positionable) {
 
       var timeout;
       this.anchors.forEach(function (anchor) {
-        return Object(helper["i" /* on */])('mouseenter', anchor, function (event) {
+        return Object(helper["j" /* on */])('mouseenter', anchor, function (event) {
           return _this2.currentAnchor = event.target;
         });
       });
 
       if (this.options.get('hover')) {
         this.anchors.forEach(function (anchor) {
-          Object(helper["i" /* on */])('mouseenter', anchor, function () {
+          Object(helper["j" /* on */])('mouseenter', anchor, function () {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
               return _this2.open();
             });
           });
-          Object(helper["i" /* on */])('mouseleave', anchor, function () {
+          Object(helper["j" /* on */])('mouseleave', anchor, function () {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
               return _this2.close();
             });
           });
         });
-        Object(helper["i" /* on */])('mouseenter', this.element, function () {
+        Object(helper["j" /* on */])('mouseenter', this.element, function () {
           clearTimeout(timeout);
         });
-        Object(helper["i" /* on */])('mouseleave', this.element, function () {
+        Object(helper["j" /* on */])('mouseleave', this.element, function () {
           clearTimeout(timeout);
           timeout = setTimeout(function () {
             return _this2.close();
@@ -1155,9 +1201,9 @@ function (_Positionable) {
   }, {
     key: "initUiEvents",
     value: function initUiEvents() {
-      Object(helper["i" /* on */])('click', this.element, this.close.bind(this));
-      Object(helper["i" /* on */])('resize', window, this.close.bind(this));
-      Object(helper["i" /* on */])('scroll', window, this.close.bind(this));
+      Object(helper["j" /* on */])('click', this.element, this.close.bind(this));
+      Object(helper["j" /* on */])('resize', window, this.close.bind(this));
+      Object(helper["j" /* on */])('scroll', window, this.close.bind(this));
     }
   }]);
 
@@ -1244,7 +1290,7 @@ function (_Positionable) {
   }, {
     key: "setPosition",
     value: function setPosition(sub, anchor) {
-      var out = Object(helper["j" /* outViewport */])(sub);
+      var out = Object(helper["l" /* outViewport */])(sub);
 
       if (out.bottom < 0) {
         anchor.classList.remove('opens-down');
@@ -1275,8 +1321,8 @@ function (_Positionable) {
   }, {
     key: "initMouseEvents",
     value: function initMouseEvents(sub, anchor) {
-      Object(helper["i" /* on */])('mouseenter', anchor, this.open.bind(this, sub, anchor));
-      Object(helper["i" /* on */])('mouseleave', anchor, this.close.bind(this, anchor));
+      Object(helper["j" /* on */])('mouseenter', anchor, this.open.bind(this, sub, anchor));
+      Object(helper["j" /* on */])('mouseleave', anchor, this.close.bind(this, anchor));
     }
   }]);
 
@@ -1293,9 +1339,9 @@ function equalizer_createClass(Constructor, protoProps, staticProps) { if (proto
 
 function equalizer_possibleConstructorReturn(self, call) { if (call && (equalizer_typeof(call) === "object" || typeof call === "function")) { return call; } return equalizer_assertThisInitialized(self); }
 
-function equalizer_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function equalizer_getPrototypeOf(o) { equalizer_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return equalizer_getPrototypeOf(o); }
+
+function equalizer_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function equalizer_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) equalizer_setPrototypeOf(subClass, superClass); }
 
@@ -1328,20 +1374,27 @@ function (_Plugin) {
       equalizeOnStack: false,
 
       /**
-       * String representing the minimum breakpoint size the plugin should equalize heights on.
+       * Enable height equalization row by row.
        * @option
-       * @type {string}
-       * @default 'medium'
+       * @type {boolean}
+       * @default false
        */
-      equalizeOn: 'medium'
+      equalizeByRow: false
     }));
 
     _this.setOptions(options, _this.defaults);
 
     _this.watched = Object(helper["b" /* $$ */])('[data-equalizer-watch]', _this.element);
-    console.log(_this.watched);
 
-    _this.reflow();
+    _this.initUiEvents();
+
+    var images = Object(helper["b" /* $$ */])('img', _this.element);
+
+    if (images.length) {
+      Object(helper["g" /* imageLoader */])(images, _this.reflow.bind(equalizer_assertThisInitialized(_this)));
+    } else {
+      _this.reflow();
+    }
 
     return _this;
   }
@@ -1352,8 +1405,18 @@ function (_Plugin) {
 
   equalizer_createClass(Equalizer, [{
     key: "initUiEvents",
+
+    /**
+     * Initializes UI events for Equalizer.
+     */
     value: function initUiEvents() {
-      Object(helper["i" /* on */])('resize', window, this.reflow.bind(this));
+      var _this2 = this;
+
+      this.reflowListener = function () {
+        return _this2.reflow();
+      };
+
+      Object(helper["j" /* on */])('resize', window, this.reflowListener);
     }
     /**
      * Calls necessary functions to update Equalizer upon DOM change
@@ -1369,9 +1432,7 @@ function (_Plugin) {
         return;
       }
 
-      if (this.options.get('equalizeByRow')) {} else {
-        this.adjust();
-      }
+      return this.options.get('equalizeByRow') ? this.adjustByRow() : this.adjust();
     }
     /**
      * Changes the CSS height property of each child in an Equalizer parent to match the tallest
@@ -1384,7 +1445,8 @@ function (_Plugin) {
     value: function adjust() {
       var heights = [];
       this.watched.forEach(function (element) {
-        return heights.push(element.offsetHeight);
+        element.style.height = 'auto';
+        heights.push(element.offsetHeight);
       });
       var max = Math.max.apply(Math, heights);
       /**
@@ -1402,6 +1464,80 @@ function (_Plugin) {
        */
 
       Object(helper["e" /* fire */])(this.element, 'postequalized.base.equalizer');
+    }
+    /**
+     * Changes the CSS height property of each child in an Equalizer parent to match the tallest by row
+     * @fires Equalizer#preequalized
+     * @fires Equalizer#preequalizedrow
+     * @fires Equalizer#postequalizedrow
+     * @fires Equalizer#postequalized
+     */
+
+  }, {
+    key: "adjustByRow",
+    value: function adjustByRow() {
+      var _this3 = this;
+
+      var rows = this.groupByRow();
+      /**
+       * Fires before the heights are applied
+       */
+
+      Object(helper["e" /* fire */])(this.element, 'preequalized.base.equalizer');
+      rows.forEach(function (row) {
+        var heights = [];
+        row.forEach(function (element) {
+          return heights.push(element.offsetHeight);
+        });
+        /**
+         * Fires before the heights per row are applied
+         * @event Equalizer#preequalizedrow
+         */
+
+        Object(helper["e" /* fire */])(_this3.element, 'preequalizedrow.base.equalizer');
+        var max = Math.max.apply(Math, heights);
+        row.forEach(function (element) {
+          return element.style.height = "".concat(max, "px");
+        });
+        /**
+         * Fires when the heights per row have been applied
+         * @event Equalizer#postequalizedrow
+         */
+
+        Object(helper["e" /* fire */])(_this3.element, 'postequalizedrow.base.equalizer');
+      });
+      /**
+       * Fires when the heights have been applied
+       * @event Equalizer#postequalized
+       */
+
+      Object(helper["e" /* fire */])(this.element, 'postequalized.base.equalizer');
+    }
+    /**
+     * Finds the watchers with the same offset top value and retuns them in an array.
+     * @returns An array of watchers grouped by row.
+     */
+
+  }, {
+    key: "groupByRow",
+    value: function groupByRow() {
+      var lastElementOffsetTop = Object(helper["f" /* getDimensions */])(this.watched[0]).offset.top;
+      var rows = [];
+      var rowCount = 0;
+      rows[rowCount] = [];
+      this.watched.forEach(function (element) {
+        element.style.height = 'auto';
+        var elementOffsetTop = Object(helper["f" /* getDimensions */])(element).offset.top;
+
+        if (elementOffsetTop !== lastElementOffsetTop) {
+          rowCount += 1;
+          rows[rowCount] = [];
+          lastElementOffsetTop = elementOffsetTop;
+        }
+
+        rows[rowCount].push(element);
+      });
+      return rows;
     }
   }, {
     key: "isStacked",
@@ -1596,9 +1732,9 @@ function (_Plugin) {
   }, {
     key: "initCustomEvents",
     value: function initCustomEvents() {
-      Object(helper["i" /* on */])('open.base.trigger', this.element, this.open.bind(this));
-      Object(helper["i" /* on */])('close.base.trigger', this.element, this.close.bind(this));
-      Object(helper["i" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
+      Object(helper["j" /* on */])('open.base.trigger', this.element, this.open.bind(this));
+      Object(helper["j" /* on */])('close.base.trigger', this.element, this.close.bind(this));
+      Object(helper["j" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
     }
     /**
      * Adds event listeners for the overlay.
@@ -1617,7 +1753,7 @@ function (_Plugin) {
           });
         };
 
-        Object(helper["i" /* on */])('keydown', window, this.keyboardListener);
+        Object(helper["j" /* on */])('keydown', window, this.keyboardListener);
       }
 
       if (this.options.get('closeOnClick')) {
@@ -1629,7 +1765,7 @@ function (_Plugin) {
           }
         };
 
-        Object(helper["i" /* on */])('click', this.overlay, this.overlayListener);
+        Object(helper["j" /* on */])('click', this.overlay, this.overlayListener);
       }
     }
     /**
@@ -1641,11 +1777,11 @@ function (_Plugin) {
     key: "removeModalEvents",
     value: function removeModalEvents() {
       if (this.options.get('closeOnEsc')) {
-        Object(helper["h" /* off */])('keydown', window, this.keyboardListener);
+        Object(helper["i" /* off */])('keydown', window, this.keyboardListener);
       }
 
       if (this.options.get('closeOnClick')) {
-        Object(helper["h" /* off */])('click', this.overlay, this.overlayListener);
+        Object(helper["i" /* off */])('click', this.overlay, this.overlayListener);
       }
     }
     /**
@@ -1821,7 +1957,7 @@ function (_Plugin) {
   }, {
     key: "initCustomEvents",
     value: function initCustomEvents() {
-      Object(helper["i" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
+      Object(helper["j" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
     }
   }]);
 
@@ -1987,14 +2123,14 @@ function (_Positionable) {
   }, {
     key: "initCustomEvents",
     value: function initCustomEvents() {
-      Object(helper["i" /* on */])('open.base.trigger', this.element, this.open.bind(this));
-      Object(helper["i" /* on */])('close.base.trigger', this.element, this.close.bind(this));
+      Object(helper["j" /* on */])('open.base.trigger', this.element, this.open.bind(this));
+      Object(helper["j" /* on */])('close.base.trigger', this.element, this.close.bind(this));
     }
   }, {
     key: "initMouseEvents",
     value: function initMouseEvents() {
-      Object(helper["i" /* on */])('mouseenter', this.element, this.open.bind(this));
-      Object(helper["i" /* on */])('mouseleave', this.element, this.close.bind(this));
+      Object(helper["j" /* on */])('mouseenter', this.element, this.open.bind(this));
+      Object(helper["j" /* on */])('mouseleave', this.element, this.close.bind(this));
     }
   }]);
 

@@ -1,5 +1,5 @@
-import {$} from '../helper';
+import { $ } from '../helper';
 const Base = {
-  $
+    $
 };
 window['Base'] = Base;

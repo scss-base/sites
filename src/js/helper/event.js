@@ -8,6 +8,15 @@ export function fire(element, event, detail) {
 export function off(type, element, listener, capture) {
     element.removeEventListener(type, listener, { capture });
 }
-export function on(type, element, listener, capture, once, passive) {
-    element.addEventListener(type, listener, { capture, once, passive });
+export function on(type, element, listener, capture) {
+    element.addEventListener(type, listener, { capture });
+}
+function composeListener(type, element, listener, capture) {
+    return function listenerFn(event) {
+        listener(event);
+        element.removeEventListener(type, listenerFn, { capture });
+    };
+}
+export function one(type, element, listener, capture) {
+    element.addEventListener(type, composeListener(type, element, listener, capture), { capture });
 }

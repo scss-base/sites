@@ -205,11 +205,54 @@ function off(type, element, listener, capture) {
     capture: capture
   });
 }
-function on(type, element, listener, capture, once, passive) {
+function on(type, element, listener, capture) {
   element.addEventListener(type, listener, {
-    capture: capture,
-    once: once,
-    passive: passive
+    capture: capture
+  });
+}
+
+function composeListener(type, element, listener, capture) {
+  return function listenerFn(event) {
+    listener(event);
+    element.removeEventListener(type, listenerFn, {
+      capture: capture
+    });
+  };
+}
+
+function one(type, element, listener, capture) {
+  element.addEventListener(type, composeListener(type, element, listener, capture), {
+    capture: capture
+  });
+}
+// CONCATENATED MODULE: ./src/js/helper/image.js
+
+/**
+ * Loader function that helps to trigger a callback when multiple images has been loaded.
+ *
+ * @param {Array} images An array of strings with the paths to the images.
+ * @param {Function} fn Callback function executed when all images has been loaded or not.
+ */
+
+function imageLoader(images, fn) {
+  var loaded = 0;
+
+  var verifier = function verifier() {
+    loaded += 1;
+
+    if (loaded === images.length) {
+      fn.apply(undefined);
+    }
+  };
+
+  images.forEach(function (image) {
+    if (image.complete) {
+      verifier();
+      return;
+    }
+
+    one('load', image, verifier);
+    one('error', image, verifier);
   });
 }
 // CONCATENATED MODULE: ./src/js/helper/string.js
@@ -285,16 +328,19 @@ function random(length) {
 /* concated harmony reexport $$ */__webpack_require__.d(__webpack_exports__, "b", function() { return $$; });
 /* concated harmony reexport createElement */__webpack_require__.d(__webpack_exports__, "d", function() { return createElement; });
 /* concated harmony reexport getDimensions */__webpack_require__.d(__webpack_exports__, "f", function() { return getDimensions; });
-/* concated harmony reexport outViewport */__webpack_require__.d(__webpack_exports__, "j", function() { return outViewport; });
+/* concated harmony reexport outViewport */__webpack_require__.d(__webpack_exports__, "l", function() { return outViewport; });
 /* concated harmony reexport fire */__webpack_require__.d(__webpack_exports__, "e", function() { return fire; });
-/* concated harmony reexport off */__webpack_require__.d(__webpack_exports__, "h", function() { return off; });
-/* concated harmony reexport on */__webpack_require__.d(__webpack_exports__, "i", function() { return on; });
+/* concated harmony reexport off */__webpack_require__.d(__webpack_exports__, "i", function() { return off; });
+/* concated harmony reexport on */__webpack_require__.d(__webpack_exports__, "j", function() { return on; });
+/* concated harmony reexport one */__webpack_require__.d(__webpack_exports__, "k", function() { return one; });
+/* concated harmony reexport imageLoader */__webpack_require__.d(__webpack_exports__, "g", function() { return imageLoader; });
 /* concated harmony reexport camelCase */__webpack_require__.d(__webpack_exports__, "c", function() { return camelCase; });
 /* unused concated harmony import capitalize */
-/* concated harmony reexport kebabCase */__webpack_require__.d(__webpack_exports__, "g", function() { return kebabCase; });
+/* concated harmony reexport kebabCase */__webpack_require__.d(__webpack_exports__, "h", function() { return kebabCase; });
 /* unused concated harmony import pascalCase */
-/* concated harmony reexport random */__webpack_require__.d(__webpack_exports__, "k", function() { return random; });
-/* concated harmony reexport snakeCase */__webpack_require__.d(__webpack_exports__, "l", function() { return snakeCase; });
+/* concated harmony reexport random */__webpack_require__.d(__webpack_exports__, "m", function() { return random; });
+/* concated harmony reexport snakeCase */__webpack_require__.d(__webpack_exports__, "n", function() { return snakeCase; });
+
 
 
 
