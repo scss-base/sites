@@ -1,8 +1,9 @@
-import { $$, fire, on } from '../helper';
+import { $$, fire, getDimensions, imageLoader, on } from '../helper';
 import { Plugin } from './plugin';
 
 export class Equalizer extends Plugin {
   private watched: NodeListOf<HTMLElement>;
+  private reflowListener: () => void;
 
   /**
    * Default settings for plugin
@@ -32,7 +33,12 @@ export class Equalizer extends Plugin {
 
     this.initUiEvents();
 
-    this.reflow();
+    const images = $$('img', this.element);
+    if (images.length) {
+      imageLoader(images, this.reflow.bind(this));
+    } else {
+      this.reflow();
+    }
   }
 
   /**
@@ -48,7 +54,8 @@ export class Equalizer extends Plugin {
    * Initializes UI events for Equalizer.
    */
   private initUiEvents(): void {
-    on('resize', window, this.reflow.bind(this));
+    this.reflowListener = () => this.reflow();
+    on('resize', window, this.reflowListener);
   }
 
   /**
@@ -60,11 +67,7 @@ export class Equalizer extends Plugin {
       return;
     }
 
-    if (this.options.get('equalizeByRow')) {
-
-    } else {
-      this.adjust();
-    }
+    return this.options.get('equalizeByRow') ? this.adjustByRow() : this.adjust();
   }
 
   /**
@@ -93,4 +96,74 @@ export class Equalizer extends Plugin {
      */
     fire(this.element, 'postequalized.base.equalizer');
   }
+
+  /**
+   * Changes the CSS height property of each child in an Equalizer parent to match the tallest by row
+   * @fires Equalizer#preequalized
+   * @fires Equalizer#preequalizedrow
+   * @fires Equalizer#postequalizedrow
+   * @fires Equalizer#postequalized
+   */
+  private adjustByRow(): void {
+    const rows = this.groupByRow();
+
+    /**
+     * Fires before the heights are applied
+     */
+    fire(this.element, 'preequalized.base.equalizer');
+
+    rows.forEach((row: HTMLElement[]) => {
+      let heights = [];
+      row.forEach(element => heights.push(element.offsetHeight));
+
+      /**
+       * Fires before the heights per row are applied
+       * @event Equalizer#preequalizedrow
+       */
+      fire(this.element, 'preequalizedrow.base.equalizer');
+
+      const max = Math.max(...heights);
+      row.forEach(element => element.style.height = `${max}px`);
+
+      /**
+       * Fires when the heights per row have been applied
+       * @event Equalizer#postequalizedrow
+       */
+      fire(this.element, 'postequalizedrow.base.equalizer');
+    });
+
+    /**
+     * Fires when the heights have been applied
+     * @event Equalizer#postequalized
+     */
+    fire(this.element, 'postequalized.base.equalizer');
+  }
+
+  /**
+   * Finds the watchers with the same offset top value and retuns them in an array.
+   * @returns An array of watchers grouped by row.
+   */
+  private groupByRow(): HTMLElement[][] {
+    let lastElementOffsetTop = getDimensions(this.watched[0]).offset.top;
+    const rows = [];
+    let rowCount = 0;
+
+    rows[rowCount] = [];
+    this.watched.forEach(element => {
+      element.style.height = 'auto';
+
+      const elementOffsetTop = getDimensions(element).offset.top;
+
+      if (elementOffsetTop !== lastElementOffsetTop) {
+        rowCount += 1;
+        rows[rowCount] = [];
+        lastElementOffsetTop = elementOffsetTop;
+      }
+
+      rows[rowCount].push(element);
+    });
+
+    return rows;
+  }
 }
+
