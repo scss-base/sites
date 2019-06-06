@@ -51,6 +51,13 @@ export abstract class Plugin {
   }
 
   private dataset(defaults: Map<string, any>): Map<string, any> {
-    return new Map(Object.entries(this.element.dataset).filter(dataset => defaults.has(dataset[0])));
+    return new Map(
+        Object.entries(this.element.dataset)
+            .filter(dataset => defaults.has(dataset[0]))
+            .map(dataset => {
+              dataset[1] = JSON.parse(dataset[1]);
+              return dataset;
+            })
+    );
   }
 }
