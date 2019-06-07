@@ -803,6 +803,12 @@ function () {
     value: function dataset(defaults) {
       return new Map(Object.entries(this.element.dataset).filter(function (dataset) {
         return defaults.has(dataset[0]);
+      }).map(function (dataset) {
+        if (dataset[1] === 'true' || dataset[1] == 'false') {
+          dataset[1] = JSON.parse(dataset[1]);
+        }
+
+        return dataset;
       }));
     }
   }, {

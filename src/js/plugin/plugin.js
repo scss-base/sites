@@ -33,6 +33,13 @@ export class Plugin {
         }
     }
     dataset(defaults) {
-        return new Map(Object.entries(this.element.dataset).filter(dataset => defaults.has(dataset[0])));
+        return new Map(Object.entries(this.element.dataset)
+            .filter(dataset => defaults.has(dataset[0]))
+            .map(dataset => {
+            if (dataset[1] === 'true' || dataset[1] == 'false') {
+                dataset[1] = JSON.parse(dataset[1]);
+            }
+            return dataset;
+        }));
     }
 }
