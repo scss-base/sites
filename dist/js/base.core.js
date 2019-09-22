@@ -106,23 +106,25 @@ var __rest = undefined && undefined.__rest || function (s, e) {
 /**
  *
  * @param {string} selectors
- * @param {Element} node
+ * @param {HTMLElement | Document} node
  * @returns {Element}
  */
 
 
-function $(selectors, node) {
-  return node ? node.querySelector(selectors) : document.querySelector(selectors);
+function $(selectors) {
+  var node = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+  return node.querySelector(selectors);
 }
 /**
  *
  * @param {string} selectors
- * @param {Element} node
+ * @param {HTMLElement | Document} node
  * @returns {NodeListOf<Element>}
  */
 
-function $$(selectors, node) {
-  return node ? node.querySelectorAll(selectors) : document.querySelectorAll(selectors);
+function $$(selectors) {
+  var node = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+  return node.querySelectorAll(selectors);
 }
 /**
  * Creates an HTML element specified by tag name and sets attributes by a passed object.

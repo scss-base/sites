@@ -1,21 +1,21 @@
 /**
  *
  * @param {string} selectors
- * @param {Element} node
+ * @param {HTMLElement | Document} node
  * @returns {Element}
  */
-export function $(selectors: string, node?: HTMLElement): HTMLElement {
-  return node ? node.querySelector(selectors) : document.querySelector(selectors);
+export function $(selectors: string, node: HTMLElement | Document =  document): HTMLElement {
+  return node.querySelector(selectors);
 }
 
 /**
  *
  * @param {string} selectors
- * @param {Element} node
+ * @param {HTMLElement | Document} node
  * @returns {NodeListOf<Element>}
  */
-export function $$(selectors: string, node?: HTMLElement): NodeListOf<HTMLElement> {
-  return node ? node.querySelectorAll(selectors) : document.querySelectorAll(selectors);
+export function $$(selectors: string, node: HTMLElement | Document =  document): NodeListOf<HTMLElement> {
+  return node.querySelectorAll(selectors);
 }
 
 export interface HTMLElementAttributes {
