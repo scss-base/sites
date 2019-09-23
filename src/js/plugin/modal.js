@@ -66,7 +66,7 @@ export class Modal extends Plugin {
     /**
      * Opens the Modal and closes all others by default.
      * @fires Modal#closeme
-     * @fires Modal#open
+     * @fires Modal#opened
      */
     open() {
         /**
@@ -85,9 +85,9 @@ export class Modal extends Plugin {
         }
         /**
          * Fires when the Modal has successfully opened.
-         * @event Modal#open
+         * @event Modal#opened
          */
-        fire(this.element, 'open.base.modal');
+        fire(this.element, 'opened.base.modal');
     }
     /**
      * Closes the Modal

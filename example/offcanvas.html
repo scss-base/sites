@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Dropdown Examples</title>
+  <link rel="stylesheet" href="../dist/css/base.css">
+</head>
+<body>
+
+<div class="off-canvas position-left" id="offCanvasLeft">
+
+  <!-- Close button -->
+  <button class="close-button" aria-label="Close menu" type="button" data-close>
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  <!-- Menu -->
+  <ul class="vertical menu">
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+    <li><a href="#">Link 5</a></li>
+    <li><a href="#">Link 6</a></li>
+  </ul>
+
+</div>
+
+<div class="off-canvas position-right" id="offCanvasRight">
+
+  <!-- Close button -->
+  <button class="close-button" aria-label="Close menu" type="button" data-close>
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+  <!-- Menu -->
+  <ul class="vertical menu">
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+    <li><a href="#">Link 5</a></li>
+    <li><a href="#">Link 6</a></li>
+  </ul>
+
+</div>
+
+<div class="off-canvas-content">
+  <!-- Your page content lives here -->
+  <button type="button" class="button" data-toggle="offCanvasLeft">Toggle Menu 1</button>
+  <button type="button" class="button" data-toggle="offCanvasRight">Toggle Menu 2</button>
+</div>
+
+<script src="../dist/js/base.js"></script>
+<script>
+  const $offCanvasLeft = Base.$('#offCanvasLeft');
+  const $offCanvasRight = Base.$('#offCanvasRight');
+
+  const offCanvasLeft = new Base.OffCanvas($offCanvasLeft);
+  const offCanvasRight = new Base.OffCanvas($offCanvasRight);
+</script>
+</body>
+</html>

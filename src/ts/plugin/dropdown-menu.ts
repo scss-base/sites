@@ -31,7 +31,7 @@ export class DropdownMenu extends Positionable {
   public open(sub: HTMLElement, anchor: HTMLElement): void {
     anchor.classList.add('is-opened');
     this.setPosition(sub, anchor);
-    fire(this.element, 'open.base.dropdown-menu');
+    fire(this.element, 'opened.base.dropdown-menu');
   }
 
   /**

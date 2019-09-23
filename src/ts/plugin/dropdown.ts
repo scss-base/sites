@@ -68,7 +68,7 @@ export class Dropdown extends Positionable {
   /**
    * Opens the dropdown, and fires a bubbling event to close other dropdowns.
    * @fires Dropdown#closeme
-   * @fires Dropdown#open
+   * @fires Dropdown#opened
    */
   public open(): void {
     /**
@@ -79,7 +79,7 @@ export class Dropdown extends Positionable {
 
     this.element.style.display = 'block';
     this.setPosition(this.element, this.currentAnchor);
-    fire(this.element, 'open.base.dropdown');
+    fire(this.element, 'opened.base.dropdown');
   }
 
   /**

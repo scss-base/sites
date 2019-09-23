@@ -60,7 +60,7 @@ export class Tooltip extends Positionable {
     open() {
         this.tooltip.style.display = 'block';
         this.setPosition(this.tooltip, this.element);
-        fire(this.element, 'open.base.tooltip');
+        fire(this.element, 'opened.base.tooltip');
     }
     setPosition(parentElement, childElement) {
         super.setPosition(parentElement, childElement);
