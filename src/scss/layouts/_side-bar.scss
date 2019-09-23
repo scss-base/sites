@@ -53,7 +53,7 @@ $side-bar-menu-item-font-size: 1rem !default;
 /// @type Number
 $side-bar-menu-item-padding: rem-calc(10 20) !default;
 
-@mixin side-bar-base {
+@mixin side-bar-basics {
   display: grid;
   grid-template: {
     columns: $side-bar-width auto;
@@ -110,7 +110,7 @@ $side-bar-menu-item-padding: rem-calc(10 20) !default;
 
 @mixin base-side-bar {
   .side-bar {
-    @include side-bar-base;
+    @include side-bar-basics;
   }
 
   .side-bar-menu {

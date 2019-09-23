@@ -10,7 +10,7 @@ $select-triangle-color: $grey !default;
 /// @type Color
 $select-radius: $global-radius !default;
 
-@mixin form-select-base {
+@mixin form-select-basics {
   appearance: none;
   background-color: $select-background;
   border: $input-border;
@@ -74,6 +74,6 @@ $select-radius: $global-radius !default;
 
 @mixin form-select {
   select {
-    @include form-select-base;
+    @include form-select-basics;
   }
 }

@@ -14,7 +14,7 @@ $form-label-font-weight: $global-font-weight-normal !default;
 /// @type Number
 $form-label-line-height: 1.8 !default;
 
-@mixin form-label-base {
+@mixin form-label-basics {
   color: $form-label-color;
   display: block;
   font: {
@@ -35,7 +35,7 @@ $form-label-line-height: 1.8 !default;
 
 @mixin form-label {
   label {
-    @include form-label-base;
+    @include form-label-basics;
 
     &.middle {
       @include form-label-middle;

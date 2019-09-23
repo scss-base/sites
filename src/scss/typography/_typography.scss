@@ -8,7 +8,7 @@
   @include typography-reset;
 
   // Base typography styles (tags only)
-  @include typography-base;
+  @include typography-basics;
 
   // Base typography print style
   @include typography-print;

@@ -1,5 +1,5 @@
 /// @todo Documentation needed...
-@mixin grid-row-base(
+@mixin grid-row-basics(
   $max-width: $grid-row-width
 ) {
   display: flex;
@@ -22,7 +22,7 @@
 /// Creates a block grid for a flex grid row.
 ///
 /// @param {Number} $n - Number of columns to display on each row.
-@mixin grid-block-base($n) {
+@mixin grid-block-basics($n) {
   flex-wrap: wrap;
 
   > .column {

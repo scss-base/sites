@@ -43,7 +43,7 @@ $pagination-item-spacing: rem-calc(5) !default;
 $pagination-ellipsis-color: $black !default;
 
 /// Adds styles for a pagination container. Apply this to a `<ul>`.
-@mixin pagination-base(
+@mixin pagination-basics(
   $margin-bottom: $pagination-margin-bottom,
   $spacing: $pagination-item-spacing,
   $radius: $pagination-radius,
@@ -132,7 +132,7 @@ $pagination-ellipsis-color: $black !default;
 
 @mixin base-pagination {
   .pagination {
-    @include pagination-base;
+    @include pagination-basics;
 
     .current {
       @include pagination-item-current;

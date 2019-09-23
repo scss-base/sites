@@ -81,7 +81,7 @@ $button-cursor-disabled: not-allowed;
 $button-opacity-disabled: .25 !default;
 
 /// @todo Documentation needed...
-@mixin button-base(
+@mixin button-basics(
   $radius: $button-radius,
   $font-family: $button-font-family,
   $font-weight: $button-font-weight,
@@ -123,7 +123,7 @@ $button-opacity-disabled: .25 !default;
 @mixin base-button {
   button,
   .button {
-    @include button-base;
+    @include button-basics;
     @include button-style;
 
     // Sizes

@@ -15,7 +15,7 @@ $error-text-font-style: italic !default;
 $error-text-font-weight: $global-font-weight-normal !default;
 
 /// @todo Documentation needed...
-@mixin error-text-base(
+@mixin error-text-basics(
   $color: $error-text-color,
   $font-size: $error-text-font-size,
   $font-style: $error-text-font-style,
@@ -35,7 +35,7 @@ $error-text-font-weight: $global-font-weight-normal !default;
 /// @todo Documentation needed...
 @mixin form-error {
   .error-text {
-    @include error-text-base;
+    @include error-text-basics;
   }
 
   .error {

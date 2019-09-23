@@ -37,7 +37,7 @@ $section-padding: (
 $section-radius: $global-radius !default;
 
 /// @todo Documentation needed...
-@mixin section-base(
+@mixin section-basics(
   $margin: $section-margin,
   $padding: $section-padding
 ) {
@@ -86,7 +86,7 @@ $section-radius: $global-radius !default;
 /// @todo Documentation needed...
 @mixin base-section {
   .section {
-    @include section-base;
+    @include section-basics;
     @include section-style;
 
     // Colors

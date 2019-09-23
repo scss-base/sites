@@ -18,7 +18,7 @@ $legend-margin: rem-calc(8) !default;
 /// @type Number
 $legend-padding: rem-calc(0 3) !default;
 
-@mixin fieldset-base {
+@mixin fieldset-basics {
   border: $fieldset-border;
   margin: $fieldset-margin;
   padding: $fieldset-padding;
@@ -45,6 +45,6 @@ $legend-padding: rem-calc(0 3) !default;
   }
 
   .fieldset {
-    @include fieldset-base;
+    @include fieldset-basics;
   }
 }

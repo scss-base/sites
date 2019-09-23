@@ -10,20 +10,20 @@ var __rest = (this && this.__rest) || function (s, e) {
 /**
  *
  * @param {string} selectors
- * @param {Element} node
+ * @param {HTMLElement | Document} node
  * @returns {Element}
  */
-export function $(selectors, node) {
-    return node ? node.querySelector(selectors) : document.querySelector(selectors);
+export function $(selectors, node = document) {
+    return node.querySelector(selectors);
 }
 /**
  *
  * @param {string} selectors
- * @param {Element} node
+ * @param {HTMLElement | Document} node
  * @returns {NodeListOf<Element>}
  */
-export function $$(selectors, node) {
-    return node ? node.querySelectorAll(selectors) : document.querySelectorAll(selectors);
+export function $$(selectors, node = document) {
+    return node.querySelectorAll(selectors);
 }
 /**
  * Creates an HTML element specified by tag name and sets attributes by a passed object.

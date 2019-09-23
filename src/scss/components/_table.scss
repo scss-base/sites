@@ -61,7 +61,7 @@ $table-border-radius: $global-radius !default;
 /// Adds the general styles for tables.
 /// @param {Number} $margin [$table-margin] -
 /// @param {Number} $radius-border [$table-border-radius] -
-@mixin table-base(
+@mixin table-basics(
   $margin: $table-margin,
   $radius-border: $table-border-radius
 ) {
@@ -150,7 +150,7 @@ $table-border-radius: $global-radius !default;
 /// Outputs CSS classes for table.
 @mixin base-table {
   table {
-    @include table-base;
+    @include table-basics;
     @include table-style;
 
     tbody {

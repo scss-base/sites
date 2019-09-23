@@ -53,7 +53,7 @@ $menu-item-background-active: $primary-color !default;
 /// @param {Color} $background [$menu-background] - @todo Documentation needed
 /// @param {Border} $border [$menu-border] - @todo Documentation needed
 /// @param {Number} $margin [$menu-margin] - @todo Documentation needed
-@mixin menu-base(
+@mixin menu-basics(
   $background: $menu-background,
   $border: $menu-border,
   $margin: $menu-margin
@@ -147,7 +147,7 @@ $menu-item-background-active: $primary-color !default;
 /// Outputs CSS classes for the menu.
 @mixin base-menu {
   .menu {
-    @include menu-base;
+    @include menu-basics;
     @include menu-style;
 
     // Orientation

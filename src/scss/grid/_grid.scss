@@ -28,7 +28,7 @@ $grid-block-max: 8 !default;
 /// Outputs CSS classes for the grid.
 @mixin base-grid {
   .row {
-    @include grid-row-base;
+    @include grid-row-basics;
 
     & .row {
       @include grid-row-nest-gutter;
@@ -38,7 +38,7 @@ $grid-block-max: 8 !default;
       @include grid-row-collapse;
 
       .row {
-        @include grid-row-base;
+        @include grid-row-basics;
       }
     }
 
@@ -54,7 +54,7 @@ $grid-block-max: 8 !default;
         // Block grid
         @for $i from 1 through $grid-block-max {
           &.#{$breakpoint}-up-#{$i} {
-            @include grid-block-base($i);
+            @include grid-block-basics($i);
           }
         }
       }

@@ -67,7 +67,7 @@ $top-bar-dropdownmenu-background: $top-bar-background !default;
 $top-bar-dropdownmenu-border: 1px solid $white !default;
 
 /// @todo Documentation needed...
-@mixin top-bar-base(
+@mixin top-bar-basics(
   $margin: $top-bar-margin,
   $padding: $top-bar-padding,
   $background: $top-bar-background
@@ -156,7 +156,7 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
 /// @todo Documentation needed...
 @mixin base-top-bar {
   .top-bar {
-    @include top-bar-base;
+    @include top-bar-basics;
   }
 
   .top-bar-title {

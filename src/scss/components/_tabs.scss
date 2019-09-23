@@ -55,7 +55,7 @@ $tab-content-padding: rem-calc(20) !default;
 $tabs-container-margin: 0 0 $global-margin 0 !default;
 
 /// Adds styles for tabs.
-@mixin tabs-base(
+@mixin tabs-basics(
   $background: $tab-background,
   $border: $tab-border,
   $margin: $tab-margin
@@ -156,7 +156,7 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 }
 
 /// @todo Documentation needed...
-@mixin tab-base(
+@mixin tab-basics(
   $padding: $tab-content-padding
 ) {
   display: none;
@@ -171,11 +171,11 @@ $tabs-container-margin: 0 0 $global-margin 0 !default;
 /// @todo Documentation needed...
 @mixin base-tabs {
   .tab {
-    @include tab-base;
+    @include tab-basics;
   }
 
   .tabs {
-    @include tabs-base;
+    @include tabs-basics;
     @include tabs-style;
   }
 

@@ -3,7 +3,7 @@
 /// @type Number
 $button-group-margin: $button-margin !default;
 
-@mixin button-group-base {
+@mixin button-group-basics {
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
@@ -30,7 +30,7 @@ $button-group-margin: $button-margin !default;
 
 @mixin base-button-group {
   .button-group {
-    @include button-group-base;
+    @include button-group-basics;
 
     // Sizes
     @each $size, $value in map-remove($button-sizes, default) {

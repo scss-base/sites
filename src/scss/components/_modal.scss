@@ -42,7 +42,7 @@ $modal-overlay-background: rgba($black, .45) !default;
 /// Adds base styles for a modal.
 /// @param {Number} $top - [$modal-top] - Top position for a modal.
 /// @param {Number} $z-index [$modal-z-index + 1] - Z-index for a modal.
-@mixin modal-base (
+@mixin modal-basics (
   $top: $modal-top,
   $z-index: $modal-z-index + 1
 ) {
@@ -87,7 +87,7 @@ $modal-overlay-background: rgba($black, .45) !default;
 /// Adds styles for a modal overlay.
 /// @param {Color} $background [$modal-overlay-background] - Background color of the overlay.
 /// @param {Number} $z-index [$modal-z-index] - Z-index of the overlay.
-@mixin modal-overlay-base(
+@mixin modal-overlay-basics(
   $background: $modal-overlay-background,
   $z-index: $modal-z-index
 ) {
@@ -107,7 +107,7 @@ $modal-overlay-background: rgba($black, .45) !default;
 }
 
 /// Creates a full-screen modal, which stretches the full width and height of the window.
-@mixin modal-fullscreen-base {
+@mixin modal-fullscreen-basics {
   border: 0;
   border-radius: 0;
   height: 100vh;
@@ -121,7 +121,7 @@ $modal-overlay-background: rgba($black, .45) !default;
 
 @mixin base-modal {
   .modal {
-    @include modal-base;
+    @include modal-basics;
     @include modal-styles;
     @include modal-width;
 
@@ -134,15 +134,15 @@ $modal-overlay-background: rgba($black, .45) !default;
 
     // Full-screen mode
     &.full {
-      @include modal-fullscreen-base;
+      @include modal-fullscreen-basics;
     }
 
     @include breakpoint-only(small) {
-      @include modal-fullscreen-base;
+      @include modal-fullscreen-basics;
     }
   }
 
   .modal-overlay {
-    @include modal-overlay-base;
+    @include modal-overlay-basics;
   }
 }

@@ -27,7 +27,7 @@ $dropdown-menu-border: 1px solid $grey !default;
 $dropdown-menu-min-width: 200px !default;
 
 /// @todo Documentation needed...
-@mixin dropdown-menu-base {
+@mixin dropdown-menu-basics {
   li {
     position: relative;
 
@@ -140,7 +140,7 @@ $dropdown-menu-min-width: 200px !default;
   z-index: 1;
 }
 
-@mixin dropdown-menu-arrows-base {
+@mixin dropdown-menu-arrows-basics {
   li.has-submenu {
     > a {
       padding-#{$global-right}: $dropdown-menu-arrow-padding;
@@ -183,11 +183,11 @@ $dropdown-menu-min-width: 200px !default;
 @mixin base-dropdown-menu {
   .dropdown {
     &.menu {
-      @include dropdown-menu-base;
+      @include dropdown-menu-basics;
       @include dropdown-menu-direction(horizontal);
 
       @if $dropdown-menu-arrows {
-        @include dropdown-menu-arrows-base;
+        @include dropdown-menu-arrows-basics;
         @include dropdown-menu-arrows-direction(horizontal);
       }
 

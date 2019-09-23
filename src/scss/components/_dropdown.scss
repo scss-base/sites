@@ -30,7 +30,7 @@ $dropdown-sizes: (
   large: 400px,
 ) !default;
 
-@mixin dropdown-base(
+@mixin dropdown-basics(
   $background: $dropdown-background,
   $border: $dropdown-border,
   $radius: $dropdown-radius,
@@ -52,7 +52,7 @@ $dropdown-sizes: (
 @mixin base-dropdown {
   .dropdown {
     &:not(.menu) {
-      @include dropdown-base;
+      @include dropdown-basics;
     }
   }
 }
