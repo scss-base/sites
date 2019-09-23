@@ -1,0 +1,213 @@
+/// Width map of a left/right off-canvas panel.
+/// @type Map
+$off-canvas-sizes: (
+  small: 250px,
+) !default;
+
+/// Height map of a top/bottom off-canvas panel.
+/// @type Map
+$off-canvas-vertical-sizes: (
+  small: 250px,
+) !default;
+
+/// Background color of an off-canvas panel.
+/// @type Color
+$off-canvas-background: $grey !default;
+
+/// Length of the animation on an off-canvas panel.
+/// @type Number
+$off-canvas-transition-length: .5s !default;
+
+/// Timing function of the animation on an off-canvas panel.
+/// @type Keyword
+$off-canvas-transition-timing: ease !default;
+
+/// Z-index of an off-canvas panel.
+/// @type Number
+$off-canvas-z-index: 901 !default;
+
+/// Background color for the overlay that appears when an off-canvas panel is open.
+/// @type Color
+$off-canvas-overlay-background: rgba($white, .25) !default;
+
+/// Z-index of an off-canvas overlay.
+/// @type Number
+$off-canvas-overlay-z-index: 900 !default;
+
+/// Adds basic styles for an off-canvas panel.
+@mixin off-canvas(
+  $background: $off-canvas-background,
+  $transition: $off-canvas-transition-length $off-canvas-transition-timing,
+  $z-index: $off-canvas-z-index
+) {
+  // backface-visibility: hidden;
+  background: $background;
+  transition: transform $transition;
+  z-index: $z-index;
+}
+
+/// Adds styles to position an off-canvas panel to the left/right/top/bottom.
+@mixin off-canvas-position(
+  $position: left,
+  $orientation: horizontal,
+  $sizes: if($orientation == horizontal, $off-canvas-sizes, $off-canvas-vertical-sizes)
+) {
+  position: fixed;
+
+  &.is-open {
+    transform: translate(0, 0) !important;
+  }
+
+  @if $position == left {
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+
+    @each $breakpoint, $value in $sizes {
+      @include breakpoint-up($breakpoint) {
+        width: $value;
+        transform: translateX(-$value);
+      }
+    }
+
+    @at-root .off-canvas-content.is-open-#{$position} {
+      @each $breakpoint, $value in $sizes {
+        @include breakpoint-up($breakpoint) {
+          transform: translateX($value);
+        }
+      }
+    }
+  } @else if $position == right {
+    top: 0;
+    right: 0;
+    height: 100%;
+    overflow-y: auto;
+
+    @each $breakpoint, $value in $sizes {
+      @include breakpoint-up($breakpoint) {
+        width: $value;
+        transform: translateX($value);
+      }
+    }
+
+    @at-root .off-canvas-content.is-open-#{$position} {
+      @each $breakpoint, $value in $sizes {
+        @include breakpoint-up($breakpoint) {
+          transform: translateX(-$value);
+        }
+      }
+    }
+  } @else if $position == top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow-x: auto;
+
+    @each $breakpoint, $value in $sizes {
+      @include breakpoint-up($breakpoint) {
+        height: $value;
+        transform: translateY(-$value);
+      }
+    }
+
+    @at-root .off-canvas-content.is-open-#{$position} {
+      @each $breakpoint, $value in $sizes {
+        @include breakpoint-up($breakpoint) {
+          transform: translateY($value);
+        }
+      }
+    }
+  } @else if $position == bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow-x: auto;
+
+    @each $breakpoint, $value in $sizes {
+      @include breakpoint-up($breakpoint) {
+        height: $value;
+        transform: translateY($value);
+      }
+    }
+
+    @at-root .off-canvas-content.is-open-#{$position} {
+      @each $breakpoint, $value in $sizes {
+        @include breakpoint-up($breakpoint) {
+          transform: translateY(-$value);
+        }
+      }
+    }
+  }
+}
+
+/// Adds basic styles for an off-canvas content container.
+@mixin off-canvas-content(
+  $transition: $off-canvas-transition-length $off-canvas-transition-timing
+) {
+  backface-visibility: hidden;
+  transition: transform $transition;
+}
+
+@mixin off-canvas-overlay(
+  $background: $off-canvas-overlay-background,
+  $transition-length: $off-canvas-transition-length,
+  $transition-timing: $off-canvas-transition-timing,
+  $z-index: $off-canvas-overlay-z-index
+) {
+  background: $background;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: opacity $transition-length $transition-timing, visibility $transition-length $transition-timing;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: $z-index;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.is-closable {
+    cursor: pointer;
+  }
+}
+
+@mixin base-off-canvas {
+
+  // Off-canvas panel
+  .off-canvas {
+    @include off-canvas;
+
+    // Off-canvas position classes
+    &.position-left {
+      @include off-canvas-position(left, horizontal);
+    }
+
+    &.position-right {
+      @include off-canvas-position(right, horizontal);
+    }
+
+    &.position-top {
+      @include off-canvas-position(top, vertical);
+    }
+
+    &.position-bottom {
+      @include off-canvas-position(bottom, vertical);
+    }
+  }
+
+  // Off-canvas content container
+  .off-canvas-content {
+    @include off-canvas-content;
+  }
+
+  // Off-canvas overlay (generated by JavaScript)
+  .js-off-canvas-overlay {
+    @include off-canvas-overlay;
+  }
+}

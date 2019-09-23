@@ -1,4 +1,4 @@
-import { Dropdown, DropdownMenu, Equalizer, Modal, Toggler, Tooltip } from '../plugin';
+import { Dropdown, DropdownMenu, Equalizer, Modal, OffCanvas, Toggler, Tooltip } from '../plugin';
 import { MediaQuery } from '../utility';
 import { $ } from '../helper';
 
@@ -9,6 +9,7 @@ const Base = {
   Equalizer,
   MediaQuery,
   Modal,
+  OffCanvas,
   Toggler,
   Tooltip,
 };
