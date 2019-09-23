@@ -1091,7 +1091,7 @@ function (_Positionable) {
   /**
    * Opens the dropdown, and fires a bubbling event to close other dropdowns.
    * @fires Dropdown#closeme
-   * @fires Dropdown#open
+   * @fires Dropdown#opened
    */
 
 
@@ -1105,7 +1105,7 @@ function (_Positionable) {
       Object(helper["e" /* fire */])(this.element, 'closeme.base.dropdown', this.pluginId);
       this.element.style.display = 'block';
       this.setPosition(this.element, this.currentAnchor);
-      Object(helper["e" /* fire */])(this.element, 'open.base.dropdown');
+      Object(helper["e" /* fire */])(this.element, 'opened.base.dropdown');
     }
     /**
      * Closes the open dropdown.
@@ -1278,7 +1278,7 @@ function (_Positionable) {
     value: function open(sub, anchor) {
       anchor.classList.add('is-opened');
       this.setPosition(sub, anchor);
-      Object(helper["e" /* fire */])(this.element, 'open.base.dropdown-menu');
+      Object(helper["e" /* fire */])(this.element, 'opened.base.dropdown-menu');
     }
     /**
      * @param anchor
@@ -1664,7 +1664,7 @@ function (_Plugin) {
   /**
    * Opens the Modal and closes all others by default.
    * @fires Modal#closeme
-   * @fires Modal#open
+   * @fires Modal#opened
    */
 
 
@@ -1688,11 +1688,11 @@ function (_Plugin) {
       }
       /**
        * Fires when the Modal has successfully opened.
-       * @event Modal#open
+       * @event Modal#opened
        */
 
 
-      Object(helper["e" /* fire */])(this.element, 'open.base.modal');
+      Object(helper["e" /* fire */])(this.element, 'opened.base.modal');
     }
     /**
      * Closes the Modal
@@ -1864,6 +1864,230 @@ function (_Plugin) {
   }]);
 
   return Modal;
+}(plugin_Plugin);
+// CONCATENATED MODULE: ./src/js/plugin/off-canvas.js
+function off_canvas_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { off_canvas_typeof = function _typeof(obj) { return typeof obj; }; } else { off_canvas_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return off_canvas_typeof(obj); }
+
+function off_canvas_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function off_canvas_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function off_canvas_createClass(Constructor, protoProps, staticProps) { if (protoProps) off_canvas_defineProperties(Constructor.prototype, protoProps); if (staticProps) off_canvas_defineProperties(Constructor, staticProps); return Constructor; }
+
+function off_canvas_possibleConstructorReturn(self, call) { if (call && (off_canvas_typeof(call) === "object" || typeof call === "function")) { return call; } return off_canvas_assertThisInitialized(self); }
+
+function off_canvas_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function off_canvas_getPrototypeOf(o) { off_canvas_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return off_canvas_getPrototypeOf(o); }
+
+function off_canvas_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) off_canvas_setPrototypeOf(subClass, superClass); }
+
+function off_canvas_setPrototypeOf(o, p) { off_canvas_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return off_canvas_setPrototypeOf(o, p); }
+
+
+
+
+var off_canvas_OffCanvas =
+/*#__PURE__*/
+function (_Plugin) {
+  off_canvas_inherits(OffCanvas, _Plugin);
+
+  /**
+   * Creates a new instance of OffCanvas
+   * @param element
+   * @param options
+   */
+  function OffCanvas(element, options) {
+    var _this;
+
+    off_canvas_classCallCheck(this, OffCanvas);
+
+    _this = off_canvas_possibleConstructorReturn(this, off_canvas_getPrototypeOf(OffCanvas).call(this, 'offCanvas', element));
+    /**
+     * Default settings for plugin
+     */
+
+    _this.defaults = new Map(Object.entries({
+      /**
+       * Target an off-canvas content container by ID that may be placed anywhere. If null the closest content container will be taken.
+       * @option
+       * @type {?string}
+       * @default null
+       */
+      contentId: null,
+
+      /**
+       * Target an off-canvas content container by class name that should be placed closest to off-canvas panel.
+       * @option
+       * @type {string}
+       * @default off-canvas-content
+       */
+      contentClass: 'off-canvas-content',
+
+      /**
+       * Allow the user to click outside of the menu to close it.
+       * @option
+       * @type {boolean}
+       * @default true
+       */
+      closeOnClick: true,
+
+      /**
+       * Adds an overlay.
+       * @option
+       * @type {boolean}
+       * @default true
+       */
+      contentOverlay: true
+    }));
+
+    _this.setOptions(options, _this.defaults);
+
+    _this.setContent();
+
+    _this.setPosition();
+
+    _this.createOverlay();
+
+    _this.initCustomEvents();
+
+    utility["d" /* Triggers */].init();
+    return _this;
+  }
+  /**
+   * Opens the off-canvas menu.
+   * @fires OffCanvas#opened
+   */
+
+
+  off_canvas_createClass(OffCanvas, [{
+    key: "open",
+    value: function open() {
+      this.element.classList.add('is-open');
+      this.content.classList.add("is-open-".concat(this.position));
+
+      if (this.options.get('contentOverlay')) {
+        this.overlay.classList.add('is-visible');
+      }
+
+      if (this.options.get('closeOnClick') === true && this.options.get('contentOverlay')) {
+        this.overlay.classList.add('is-closable');
+      }
+
+      this.addOverlayEvent();
+      /**
+       * Fires when the off-canvas menu open transition is done.
+       * @event OffCanvas#opened
+       */
+
+      Object(helper["e" /* fire */])(this.element, 'opened.base.off-canvas');
+    }
+    /**
+     * Closes the off-canvas menu.
+     * @fires OffCanvas#closed
+     */
+
+  }, {
+    key: "close",
+    value: function close() {
+      this.element.classList.remove('is-open');
+      this.content.classList.remove("is-open-".concat(this.position));
+
+      if (this.options.get('contentOverlay')) {
+        this.overlay.classList.remove('is-visible');
+      }
+
+      if (this.options.get('closeOnClick') === true && this.options.get('contentOverlay')) {
+        this.overlay.classList.remove('is-closable');
+      }
+
+      this.removeOverlayEvent();
+      /**
+       * Fires when the off-canvas menu close transition is done.
+       * @event OffCanvas#closed
+       */
+
+      Object(helper["e" /* fire */])(this.element, 'closed.base.off-canvas');
+    }
+    /**
+     * Toggles the off-canvas menu open or closed.
+     */
+
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      if (this.element.classList.contains('is-open')) {
+        this.close();
+      } else {
+        this.open();
+      }
+    }
+    /**
+     * Adds event listeners to the off-canvas.
+     * @private
+     */
+
+  }, {
+    key: "initCustomEvents",
+    value: function initCustomEvents() {
+      Object(helper["j" /* on */])('open.base.trigger', this.element, this.open.bind(this));
+      Object(helper["j" /* on */])('close.base.trigger', this.element, this.close.bind(this));
+      Object(helper["j" /* on */])('toggle.base.trigger', this.element, this.toggle.bind(this));
+    }
+  }, {
+    key: "setContent",
+    value: function setContent() {
+      this.content = this.options.get('contentId') ? Object(helper["a" /* $ */])("#".concat(this.options.get('contentId'))) : Object(helper["a" /* $ */])(".".concat(this.options.get('contentClass')), this.element.parentElement);
+    }
+  }, {
+    key: "setPosition",
+    value: function setPosition() {
+      var _this2 = this;
+
+      var positionList = ['position-left', 'position-top', 'position-right', 'position-bottom'].filter(function (position) {
+        return _this2.element.classList.contains(position);
+      });
+      this.position = positionList.length ? positionList[0].replace('position-', '') : 'left';
+    }
+  }, {
+    key: "createOverlay",
+    value: function createOverlay() {
+      var overlay = Object(helper["a" /* $ */])('.js-off-canvas-overlay', this.element.parentElement);
+
+      if (this.options.get('contentOverlay') && !overlay) {
+        this.overlay = Object(helper["d" /* createElement */])('div', {
+          class: 'js-off-canvas-overlay'
+        });
+        this.element.parentElement.append(this.overlay);
+      } else if (this.options.get('contentOverlay') && overlay) {
+        this.overlay = overlay;
+      }
+    }
+  }, {
+    key: "addOverlayEvent",
+    value: function addOverlayEvent() {
+      var _this3 = this;
+
+      if (this.options.get('closeOnClick')) {
+        this.overlayListener = function (event) {
+          event.stopPropagation();
+
+          _this3.close();
+        };
+
+        Object(helper["j" /* on */])('click', this.overlay, this.overlayListener);
+      }
+    }
+  }, {
+    key: "removeOverlayEvent",
+    value: function removeOverlayEvent() {
+      if (this.options.get('closeOnClick')) {
+        Object(helper["i" /* off */])('click', this.overlay, this.overlayListener);
+      }
+    }
+  }]);
+
+  return OffCanvas;
 }(plugin_Plugin);
 // CONCATENATED MODULE: ./src/js/plugin/toggler.js
 function toggler_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { toggler_typeof = function _typeof(obj) { return typeof obj; }; } else { toggler_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return toggler_typeof(obj); }
@@ -2081,7 +2305,7 @@ function (_Positionable) {
     value: function open() {
       this.tooltip.style.display = 'block';
       this.setPosition(this.tooltip, this.element);
-      Object(helper["e" /* fire */])(this.element, 'open.base.tooltip');
+      Object(helper["e" /* fire */])(this.element, 'opened.base.tooltip');
     }
   }, {
     key: "setPosition",
@@ -2149,8 +2373,10 @@ function (_Positionable) {
 /* concated harmony reexport DropdownMenu */__webpack_require__.d(__webpack_exports__, "b", function() { return dropdown_menu_DropdownMenu; });
 /* concated harmony reexport Equalizer */__webpack_require__.d(__webpack_exports__, "c", function() { return equalizer_Equalizer; });
 /* concated harmony reexport Modal */__webpack_require__.d(__webpack_exports__, "d", function() { return modal_Modal; });
-/* concated harmony reexport Toggler */__webpack_require__.d(__webpack_exports__, "e", function() { return toggler_Toggler; });
-/* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "f", function() { return tooltip_Tooltip; });
+/* concated harmony reexport OffCanvas */__webpack_require__.d(__webpack_exports__, "e", function() { return off_canvas_OffCanvas; });
+/* concated harmony reexport Toggler */__webpack_require__.d(__webpack_exports__, "f", function() { return toggler_Toggler; });
+/* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "g", function() { return tooltip_Tooltip; });
+
 
 
 
@@ -2177,8 +2403,9 @@ var Base = {
   Equalizer: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Equalizer */ "c"],
   MediaQuery: _utility__WEBPACK_IMPORTED_MODULE_1__[/* MediaQuery */ "c"],
   Modal: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Modal */ "d"],
-  Toggler: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Toggler */ "e"],
-  Tooltip: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Tooltip */ "f"]
+  OffCanvas: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* OffCanvas */ "e"],
+  Toggler: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Toggler */ "f"],
+  Tooltip: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Tooltip */ "g"]
 };
 window['Base'] = Base;
 
