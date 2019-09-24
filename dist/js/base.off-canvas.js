@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2387,7 +2387,13 @@ function (_Positionable) {
 /***/ }),
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2395,9 +2401,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plugin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
 window['Base'] = Object.assign({}, window['Base'], {
-  Dropdown: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Dropdown */ "a"]
+  OffCanvas: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* OffCanvas */ "e"]
 });
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=base.dropdown.js.map
+//# sourceMappingURL=base.off-canvas.js.map

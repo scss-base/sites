@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -490,22 +490,22 @@ function () {
   return Keyboard;
 }();
 keyboard_Keyboard.plugins = new Map();
-// CONCATENATED MODULE: ./src/js/utility/mediaQuery.js
-function mediaQuery_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+// CONCATENATED MODULE: ./src/js/utility/media-query.js
+function media_query_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function mediaQuery_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function media_query_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function mediaQuery_createClass(Constructor, protoProps, staticProps) { if (protoProps) mediaQuery_defineProperties(Constructor.prototype, protoProps); if (staticProps) mediaQuery_defineProperties(Constructor, staticProps); return Constructor; }
+function media_query_createClass(Constructor, protoProps, staticProps) { if (protoProps) media_query_defineProperties(Constructor.prototype, protoProps); if (staticProps) media_query_defineProperties(Constructor, staticProps); return Constructor; }
 
 
-var mediaQuery_MediaQuery =
+var media_query_MediaQuery =
 /*#__PURE__*/
 function () {
   function MediaQuery() {
-    mediaQuery_classCallCheck(this, MediaQuery);
+    media_query_classCallCheck(this, MediaQuery);
   }
 
-  mediaQuery_createClass(MediaQuery, null, [{
+  media_query_createClass(MediaQuery, null, [{
     key: "init",
 
     /**
@@ -737,7 +737,7 @@ function () {
 // CONCATENATED MODULE: ./src/js/utility/index.js
 /* concated harmony reexport Core */__webpack_require__.d(__webpack_exports__, "a", function() { return core_Core; });
 /* concated harmony reexport Keyboard */__webpack_require__.d(__webpack_exports__, "b", function() { return keyboard_Keyboard; });
-/* concated harmony reexport MediaQuery */__webpack_require__.d(__webpack_exports__, "c", function() { return mediaQuery_MediaQuery; });
+/* concated harmony reexport MediaQuery */__webpack_require__.d(__webpack_exports__, "c", function() { return media_query_MediaQuery; });
 /* concated harmony reexport Triggers */__webpack_require__.d(__webpack_exports__, "d", function() { return triggers_Triggers; });
 
 
@@ -2389,7 +2389,10 @@ function (_Positionable) {
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
