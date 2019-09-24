@@ -44,3 +44,10 @@ $breakpoints: (
     }
   }
 }
+
+/// @todo Documentation needed...
+@mixin breakpoint-orientated($orientation) {
+  @media screen and (orientation: $orientation) {
+    @content;
+  }
+}

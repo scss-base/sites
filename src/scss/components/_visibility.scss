@@ -1,0 +1,96 @@
+/// Hide an element by default, only displaying it within a certain breakpoint.
+/// @param {Keyword} $size - Breakpoint to use. **Must be a breakpoint defined in `$breakpoints`.**
+@mixin show-for-only($size) {
+  $lower-bound-size: map-get($breakpoints, $size);
+  $upper-bound-size: map-next($breakpoints, $size);
+
+  @if $upper-bound-size == null {
+    @media screen and (max-width: em($lower-bound-size, 16px)) {
+      display: none !important;
+    }
+  }
+  @else {
+    @media screen and (max-width: em($lower-bound-size, 16px)), screen and (min-width: em($upper-bound-size, 16px)) {
+      display: none !important;
+    }
+  }
+}
+
+@mixin base-visibility {
+  // Basic hiding classes
+  .hide {
+    display: none !important;
+  }
+
+  .invisible {
+    visibility: hidden;
+  }
+
+  // Responsive visibility classes
+  @each $breakpoint in map_keys($breakpoints) {
+    @if $breakpoint != map-first(map_keys($breakpoints)) {
+      @include breakpoint-up($breakpoint) {
+        .hide-for-#{$breakpoint} {
+          display: none !important;
+        }
+      }
+
+      @include breakpoint-down($breakpoint) {
+        .show-for-#{$breakpoint} {
+          display: none !important;
+        }
+      }
+    }
+
+    @include breakpoint-only($breakpoint) {
+      .hide-for-#{$breakpoint}-only {
+        display: none !important;
+      }
+    }
+
+    .show-for-#{$breakpoint}-only {
+      @include show-for-only($breakpoint);
+    }
+  }
+
+  // Screen reader visibility classes
+  .show-for-sr,
+  .show-on-focus {
+    @include element-invisible;
+  }
+
+  // Only display the element when it's focused
+  .show-on-focus {
+    &:active,
+    &:focus {
+      @include element-invisible-off;
+    }
+  }
+
+  // Landscape and portrait visibility
+  .show-for-landscape,
+  .hide-for-portrait {
+    display: block !important;
+
+    @include breakpoint-orientated(landscape) {
+      display: block !important;
+    }
+
+    @include breakpoint-orientated(portrait) {
+      display: none !important;
+    }
+  }
+
+  .hide-for-landscape,
+  .show-for-portrait {
+    display: none !important;
+
+    @include breakpoint-orientated(landscape) {
+      display: none !important;
+    }
+
+    @include breakpoint-orientated(portrait) {
+      display: block !important;
+    }
+  }
+}
