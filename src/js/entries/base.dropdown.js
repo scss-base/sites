@@ -1,2 +1,2 @@
 import { Dropdown } from '../plugin';
-window['Base'] = Object.assign({}, window['Base'], { Dropdown });
+window['Base'] = Object.assign(Object.assign({}, window['Base']), { Dropdown });

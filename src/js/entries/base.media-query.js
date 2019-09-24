@@ -1,2 +1,2 @@
 import { MediaQuery } from '../utility';
-window['Base'] = Object.assign({}, window['Base'], { MediaQuery });
+window['Base'] = Object.assign(Object.assign({}, window['Base']), { MediaQuery });

@@ -1,2 +1,2 @@
 import { Modal } from '../plugin';
-window['Base'] = Object.assign({}, window['Base'], { Modal });
+window['Base'] = Object.assign(Object.assign({}, window['Base']), { Modal });

@@ -1,2 +1,2 @@
 import { Triggers } from '../utility';
-window['Base'] = Object.assign({}, window['Base'], { Triggers });
+window['Base'] = Object.assign(Object.assign({}, window['Base']), { Triggers });

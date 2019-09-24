@@ -100,7 +100,7 @@ var __rest = undefined && undefined.__rest || function (s, e) {
   }
 
   if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0) t[p[i]] = s[p[i]];
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
   }
   return t;
 };
@@ -755,7 +755,7 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plugin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
-window['Base'] = Object.assign({}, window['Base'], {
+window['Base'] = Object.assign(Object.assign({}, window['Base']), {
   Tooltip: _plugin__WEBPACK_IMPORTED_MODULE_0__[/* Tooltip */ "g"]
 });
 
