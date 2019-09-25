@@ -966,6 +966,36 @@ button.disabled, button[disabled],
   font-size: 1.25rem;
 }
 
+.close-button {
+  position: absolute;
+  z-index: 1100;
+  color: #4d4d4d;
+  cursor: pointer;
+  border: unset;
+  margin: unset;
+  padding: unset;
+  background-color: unset;
+}
+
+.close-button:hover, .close-button:focus {
+  color: #000;
+  background-color: unset;
+}
+
+.close-button.small {
+  right: 0.66rem;
+  top: 0.33em;
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+.close-button.medium, .close-button {
+  right: 1rem;
+  top: 0.5rem;
+  font-size: 2em;
+  line-height: 1;
+}
+
 .dropdown:not(.menu) {
   background-color: #fff;
   border: 1px solid #bdbdbd;
@@ -2024,6 +2054,43 @@ button.disabled, button[disabled],
 
 .menu.nested {
   margin-left: 1rem;
+}
+
+.menu-icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.menu-icon::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  box-shadow: 0 7px 0 #000, 0 14px 0 #000;
+  content: '';
+}
+
+.menu-icon:hover::after {
+  background: #bdbdbd;
+  box-shadow: 0 7px 0 #bdbdbd, 0 14px 0 #bdbdbd;
+}
+
+button.menu-icon {
+  border: unset;
+  margin: unset;
+  padding: unset;
+  background-color: unset;
+}
+
+button.menu-icon:hover {
+  background-color: unset;
 }
 
 .modal {

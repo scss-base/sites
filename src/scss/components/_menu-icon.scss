@@ -1,0 +1,17 @@
+@mixin base-menu-icon {
+  .menu-icon {
+    @include css-icon-hamburger();
+  }
+
+  // Button style reset
+  button.menu-icon {
+    border: unset;
+    margin: unset;
+    padding: unset;
+    background-color: unset;
+
+    &:hover {
+      background-color: unset;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+/// Default position of the close button. The first value should be `right` or `left`, and the second value should be `top` or `bottom`.
+/// @type List
+$close-button-position: right top !default;
+
+/// Default z-index for a close button.
+/// @type Number
+$close-button-z-index: 1100 !default;
+
+/// Button size to use as default
+/// @type String
+/// @see $close-button-size
+/// @see $close-button-offset-horizontal
+/// @see $close-button-offset-vertical
+$close-button-default-size: medium !default;
+
+/// Right (or left) offset(s) for a close button.
+/// @type Number|Map
+$close-button-offset-horizontal: (
+  small: .66rem,
+  medium: 1rem,
+) !default;
+
+/// Top (or bottom) offset(s) for a close button.
+/// @type Number|Map
+$close-button-offset-vertical: (
+  small: .33em,
+  medium: .5rem,
+) !default;
+
+/// Sizes of the close button. Used to generate sizing modifiers.
+/// @type Number|Map
+$close-button-sizes: (
+  small: 1.5em,
+  medium: 2em,
+) !default;
+
+/// The line-height of the close button. It affects the spacing of the element.
+/// @type Number
+$close-button-line-height: 1 !default;
+
+/// Default color of the close button.
+/// @type Color
+$close-button-color: scale-color($black, $lightness: 30%) !default;
+
+/// Default color of the close button when being hovered on.
+/// @type Color
+$close-button-color-hover: $black !default;
+
+/// Get the size and position for a close button. If the input value is a number, the number is returned. If the input value is a config map and the map has the key `$size`, the value is returned.
+///
+/// @param {Number|Map} $value - A number or map that represents the size or position value(s) of the close button.
+/// @param {Keyword} $size - The size of the close button to use.
+///
+/// @return {Number} The given number or the value found in the map.
+@function get-size-val($value, $size) {
+  // Check if the value is a number
+  @if type-of($value) == 'number' {
+    // If it is, just return the number
+    @return $value;
+  }
+
+  // Check if the size name exists in the value map
+  @else if map-has-key($value, $size) {
+    // If it does, return the value
+    @return map-get($value, $size);
+  }
+}
+
+/// Sets the size and position of a close button.
+/// @param {Keyword} $breakpoint [medium] - The size to use. Set to `small` to create a small close button. The 'medium' values defined in `$close-button-*` variables will be used as the default size and position of the close button.
+@mixin close-button-size($breakpoint) {
+  $x: nth($close-button-position, 1);
+  $y: nth($close-button-position, 2);
+
+  #{$x}: get-size-val($close-button-offset-horizontal, $breakpoint);
+  #{$y}: get-size-val($close-button-offset-vertical, $breakpoint);
+  font-size: get-size-val($close-button-sizes, $breakpoint);
+  line-height: get-size-val($close-button-line-height, $breakpoint);
+}
+
+/// Adds styles for a close button, using the styles in the settings variables.
+@mixin close-button {
+  position: absolute;
+  z-index: $close-button-z-index;
+  color: $close-button-color;
+  cursor: pointer;
+
+  // Button reset
+  border: unset;
+  margin: unset;
+  padding: unset;
+  background-color: unset;
+
+  &:hover,
+  &:focus {
+    color: $close-button-color-hover;
+
+    // Button reset
+    background-color: unset;
+  }
+}
+
+@mixin base-close-button {
+  .close-button {
+    @include close-button;
+
+    // Generate a placeholder and a class for each size
+    @each $name, $size in $close-button-sizes {
+      @at-root {
+        %close-button-#{$name} {
+          @include close-button-size($name);
+        }
+      }
+
+      &.#{$name} {
+        @extend %close-button-#{$name};
+      }
+    }
+
+    // Use by default the placeholder of the default size
+    @extend %close-button-#{$close-button-default-size};
+  }
+}
