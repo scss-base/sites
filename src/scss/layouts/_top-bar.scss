@@ -90,6 +90,7 @@ $top-bar-dropdownmenu-border: 1px solid $white !default;
   $font-weight: $top-bar-title-font-weight,
   $padding: $top-bar-title-padding
 ) {
+  display: flex;
   color: $color;
   flex: 0 1 auto;
   padding: $padding;
