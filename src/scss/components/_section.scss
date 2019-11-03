@@ -71,6 +71,7 @@ $section-radius: $global-radius !default;
 @mixin section-style (
   $background: $section-background,
   $border: $section-border,
+  $border-radius: $section-radius,
   $color: $section-color
 ) {
 
@@ -80,6 +81,7 @@ $section-radius: $global-radius !default;
 
   background-color: $background;
   border: $border;
+  border-radius: $border-radius;
   color: $color;
 }
 
