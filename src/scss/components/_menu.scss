@@ -18,6 +18,10 @@ $menu-margin-nested: 1rem !default;
 /// @type Number
 $menu-item-padding: rem-calc(11 16) !default;
 
+/// Font size for items in a menu.
+/// @type Font
+$menu-item-font-size: inherit !default;
+
 /// Font family for items in a menu.
 /// @type Font
 $menu-item-font-family: inherit !default;
@@ -112,7 +116,7 @@ $menu-item-background-active: $primary-color !default;
   $background-active: $menu-item-background-active,
   $color-active: $menu-item-color-active,
   $padding: $menu-item-padding,
-  $font-size: unset,
+  $font-size: $menu-item-font-size,
   $font-family: $menu-item-font-family,
   $font-weight: $menu-item-font-weight
 ) {
@@ -123,10 +127,7 @@ $menu-item-background-active: $primary-color !default;
       padding: $padding;
       font-family: $font-family;
       font-weight: $font-weight;
-
-      @if ($font-size != unset) {
-        font-size: $font-size;
-      }
+      font-size: $font-size;
 
       // Hover state
       &:hover {
